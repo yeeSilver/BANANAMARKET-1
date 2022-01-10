@@ -131,4 +131,5 @@
 - 채팅 입력창에서 텍스트가 입력되면 `전송` 버튼이 활성화됩니다.
 - 이미지 버튼을 클릭하고 이미지를 선택하면 전송 버튼이 활성화됩니다.
 - 채팅방 상단 우측 버튼을 클릭하면 아래와 같은 모달이 화면 하단에 나타납니다.
-- ![image](https://user-images.githubusercontent.com/58941022/148709745-6038fcad-e446-4c71-b72b-22bfd40cce8d.png)
+- ![image](https://user-images.githubusercontent.com/58941022/148709768-d4c30096-13bd-4c01-883c-45f9383d82c5.png)
+
