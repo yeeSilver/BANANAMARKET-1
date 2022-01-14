@@ -1,4 +1,4 @@
-@import "../compoenets/navbar.css";
+@import "./components/navbar.css";
 .write-sec{
   margin: 30px 34px;
 }
@@ -25,6 +25,8 @@
 }
 .write-sec .img-upload-con div img{
   position: absolute;
+  width: 30px;
+  height: 30px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
