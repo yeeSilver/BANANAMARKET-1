@@ -1,0 +1,83 @@
+@import "./components/navbar.css";
+.hide{
+  display: none;
+}
+/* feed-main */
+.feed-main {
+  margin: 50px 0 65px;
+}
+.feed-main .home-feed{
+  padding: 20px 16px;
+}
+.feed-main .home-feed .post-art{
+  margin-bottom: 20px;
+}
+.feed-main .home-feed .post-art .post-user{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.post-art .post-user .img-mini-profile{
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
+.post-con-info{
+  display: flex;
+  align-items: center;
+}
+
+/* post-art > post-user */
+.post-con-info div{
+  margin-left: 12px;
+}
+.post-con-info div .post-title{
+  font-size: 14px;
+}
+.post-con-info div .post-user-id{
+  margin-top: 4px;
+  color: #767676;
+  font-size: 12px;
+}
+
+/* post-art > post-main */
+.post-art .post-main .post-con-main{
+  padding-left: 54px;
+}
+.post-art .post-main .post-con-main p{
+  font-size: 14px;
+  line-height: 18px;
+  margin: 16px 0;
+}
+.post-art .post-main .post-con-main img{
+  /* 이미지 크기 지정다시하기 */
+  height: 100%;
+  /* aspect-ratio: auto 9 / 16; */
+}
+
+.post-art .post-main .reaction-con{
+  padding-left: 54px; 
+  color: #767676;
+}
+.post-art .post-main .reaction-con .reaction-list{
+  display: flex;
+  align-items: center;
+}
+.reaction-con .reaction-list li{
+  display: flex;
+  align-items: center;
+  vertical-align: center;
+  list-style: none;
+  margin: 14px 18.5px 19px 0;
+  font-size: 12px;
+}
+.reaction-con .reaction-list li img{
+  margin-right: 8.5px;
+}
+.reaction-con .post-date{
+  font-size: 10px;
+}
+
+.con-reaction .reaction-list li img:hover{
+  fill: tomato;
+}

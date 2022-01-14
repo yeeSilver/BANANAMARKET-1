@@ -1,10 +1,13 @@
 const $emailPw = document.querySelector(".cont-banana");
 const $id_error = document.querySelector(".join-id-error");
 const $pw_error = document.querySelector(".join-pw-error");
+<<<<<<< HEAD
 const $profile = document.querySelector(".profile")
 const $profileImg = document.querySelector(".profile-img")
 const $loginBtn = document.querySelector(".login-button")
 
+=======
+>>>>>>> 5123afe93447f8b42fcf3ce04d093a43f1adfc8f
 
 async function checkEmailValid(email) {
   const url = "http://146.56.183.55:5050";
@@ -37,12 +40,16 @@ document.querySelector(".login-button").addEventListener("click", async () => {
     const emailValid = await checkEmailValid(email);
     if (emailValid) {
       $emailPw.style.display = "none";
+<<<<<<< HEAD
       $profile.style.display = "flex"
+=======
+>>>>>>> 5123afe93447f8b42fcf3ce04d093a43f1adfc8f
     } else {
       $id_error.innerHTML = "*이미 가입된 이메일 주소입니다.";
     }
   }
 }
+<<<<<<< HEAD
 });
 
 // 이미지 등록
@@ -106,3 +113,9 @@ async function join(){
   }
 }
 $loginBtn.addEventListener("click",join)
+=======
+if(pw.length > 5 && exptext.test(email) === true && checkEmailValid(email)) {
+    location.href = "setting.html"
+}
+});
+>>>>>>> 5123afe93447f8b42fcf3ce04d093a43f1adfc8f

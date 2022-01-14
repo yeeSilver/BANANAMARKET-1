@@ -218,10 +218,13 @@ body {
   font-weight: 400;
 }
 
+<<<<<<< HEAD
 .cont-banana.profile {
   display: none;
 }
 
+=======
+>>>>>>> 5123afe93447f8b42fcf3ce04d093a43f1adfc8f
 /* top-upload-nav */
 
 .top-upload-nav {
@@ -282,10 +285,16 @@ body {
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 .cont-banana .profile-user-image {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+=======
+.profile-img img:first-child {
+  width: 110px;
+  height: 110px;
+>>>>>>> 5123afe93447f8b42fcf3ce04d093a43f1adfc8f
 }
 
 .profile-img img:last-child {
