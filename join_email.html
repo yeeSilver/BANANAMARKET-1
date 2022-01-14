@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/hyunsu.css">
+    <title>join_email</title>
+</head>
+
+<body>
+    <section class="banana-container">
+        <form class="cont-banana email-pw">
+            <h1 class="tit-txt">이메일로 회원가입</h1>
+            <div class="inp email">
+                <label for="join-id">이메일</label>
+                <input type="email" placeholder="이메일 주소를 입력해 주세요." id="join-id">
+            </div>
+            <p class="join-id-error"></p>
+            <div class="inp pw">
+                <label for="join-pw">비밀번호</label>
+                <input type="password" placeholder="비밀번호를 설정해 주세요." id="join-pw">
+            </div>
+            <p class="join-pw-error"></p>
+            <button class="btn login-button" type="button">다음</button>
+        </form>
+        <form class="cont-banana profile">
+            <h1 class="tit-txt">프로필 설정</h1>
+            <p>나중에 언제든지 변경할 수 있습니다.</p>
+            <label class="profile-img" for="profileImg">  
+            <input type="file" id="profileImg" name="profile-img" accept="image/*" class="blind" />
+                <img src="../img/profile_img.png" alt="프로필 이미지" class="profile-user-image">
+                <img src="../img/upload_img_btn.png" alt="업로드 이미지 버튼">
+            </label>
+            <div class="inp-wrap">
+                <div class="inp userName">
+                    <label for="userNameInput">사용자 이름 </label>
+                    <input type="text" placeholder="2~10자 이내여야 합니다." id="userNameInput">
+                </div>
+                <div class="inp wantId">
+                    <label for="userIdInput">계정 ID</label>
+                    <input type="test" placeholder="영문, 숫자, 특수문자(.),(....)만 사용 가능합니다." id="userIdInput">
+                </div>
+                <div class="inp intro">
+                    <label for="userIntroInput">소개</label>
+                    <input type="text" placeholder="자신과 판매할 상품에 대해 소개해주세요!" id="userIntroInput">
+                </div>
+            </div>
+            <button class="btn login-button" type="button">바나나마켓 시작하기</button>
+        </form>
+    </section>
+    <script src="../js/join_email.js"></script>
+</body>
+
+</html>
