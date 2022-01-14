@@ -1,0 +1,65 @@
+@import "../compoenets/navbar.css";
+.write-sec{
+  margin: 30px 34px;
+}
+.write-sec p{
+  margin-bottom: 18px;
+  font-size: 12px;
+  color: #767676;
+}
+
+/* img-upload */
+.write-sec{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.write-sec .img-upload-con div{
+  position: relative;
+  width: 322px;
+  height: 205px;
+  border-radius: 10px;
+  background: #F2F2F2;
+  cursor: pointer;
+}
+.write-sec .img-upload-con div img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.write-sec .img-upload-con div .img-upload{
+  object-fit: fill;
+}
+
+/* list-write-input */
+.list-write-input{
+  margin-top: 30px;
+}
+.list-write-input ul li{
+  width: 322px;
+}
+.list-write-input ul li label + input{
+  display: block;
+  background: none;
+  border: none; 
+  width: 100%;
+}
+.list-write-input ul li{
+  border-bottom: #DBDBDB solid 1px;
+  margin-bottom: 16px;
+}
+.list-write-input ul li input:focus {
+  outline:none;
+}
+.list-write-input ul li label{
+  font-size: 12px;
+}
+.list-write-input ul li input{
+  font-size: 14px;
+  margin: 10px 0;
+}
+.list-write-input ul li input::placeholder {
+  color: #DBDBDB;
+}
