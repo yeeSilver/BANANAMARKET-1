@@ -1,9 +1,9 @@
 const splash = document.querySelector('.splash');
 
 setTimeout(function() {
-  splash.classList.add('display-none')
+  splash.classList.add('hide')
   location.href = "login.html"
-}, 2000)
+}, 2500)
 
 
 
