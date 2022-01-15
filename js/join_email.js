@@ -3,8 +3,8 @@ const $id_error = document.querySelector(".join-id-error");
 const $pw_error = document.querySelector(".join-pw-error");
 const $profile = document.querySelector(".profile")
 const $profileImg = document.querySelector(".profile-img")
-const $loginBtn = document.querySelector(".login-button")
-
+const $loginBtn = document.querySelector(".login-button.submit")
+const $idinput_error = document.querySelector(".join-idinput-error")
 
 async function checkEmailValid(email) {
   const url = "http://146.56.183.55:5050";
@@ -23,7 +23,7 @@ async function checkEmailValid(email) {
   return json.message == "사용 가능한 이메일 입니다." ? true : false;
 }
 
-document.querySelector(".login-button").addEventListener("click", async () => {
+document.querySelector(".login-button.next").addEventListener("click", async () => {
   const email = document.querySelector("#join-id").value;
   const pw = document.querySelector("#join-pw").value;
   const exptext = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
@@ -64,7 +64,7 @@ async function profileImage(e) {
   const files = e.target.files
   const result = await imageUpload(files)
   $profileImg.src = "http://146.56.183.55:5050" + "/" + result
-  console.log(result)
+  console.log($profileImg.src)
   document.querySelector('.profile-user-image').src =  $profileImg.src
 }
 document.querySelector("#profileImg").addEventListener("change", profileImage)
@@ -75,8 +75,8 @@ async function join(){
   const userName = document.querySelector("#userNameInput").value;
   const userId = document.querySelector("#userIdInput").value;
   const intro = document.querySelector("#userIntroInput").value;
-  const imageUrl = document.querySelector("#profileImg").src
-  try {
+  const imageUrl = document.querySelector(".profile-user-image").src
+  try{
       const res = await fetch("http://146.56.183.55:5050/user", {
           method: "POST",
           headers: {
@@ -93,10 +93,19 @@ async function join(){
               }
           })
       })
-      console.log(res)
       const json = await res.json()
+      const message = json.message
+      if(res.status===422) {
+        if(message == "이미 사용중인 계정 ID입니다.")
+        {
+          $idinput_error.innerHTML = "*이미 사용중인 계정 ID입니다.";
+        }
+        else {
+          $idinput_error.innerHTML = "*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다."
+        }
+      }
       if(res.status==200){
-          location.href = "./index.html"
+          location.href = "./feed.html"
       }
       else{
           console.log(json)
@@ -105,4 +114,4 @@ async function join(){
       alert(err)
   }
 }
-$loginBtn.addEventListener("click",join)
+$loginBtn.addEventListener("click", join)

@@ -218,6 +218,12 @@ body {
   font-weight: 400;
 }
 
+.cont-banana .join-idinput-error {
+  margin-top : 5px;
+  color: #EB5757;
+  font-size: 12px;
+  font-weight: 400;
+}
 .cont-banana.profile {
   display: none;
 }
