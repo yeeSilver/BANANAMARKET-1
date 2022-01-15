@@ -218,6 +218,16 @@ body {
   font-weight: 400;
 }
 
+.cont-banana .join-idinput-error {
+  margin-top : 5px;
+  color: #EB5757;
+  font-size: 12px;
+  font-weight: 400;
+}
+.cont-banana.profile {
+  display: none;
+}
+
 /* top-upload-nav */
 
 .top-upload-nav {
@@ -278,9 +288,10 @@ body {
   cursor: pointer;
 }
 
-.profile-img img:first-child {
-  width: 110px;
-  height: 110px;
+.cont-banana .profile-user-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 .profile-img img:last-child {
