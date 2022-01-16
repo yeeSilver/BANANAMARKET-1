@@ -24,9 +24,9 @@ async function login() {
         
         body:JSON.stringify(loginData)
     })
-    const json = await res.json();
+    const json = await res.json()
     if(json.status === 422) {
-        error.innerHTML = `*${json.message}`
+        error.innerHTML = `*${json.message}`    
     }
     localStorage.setItem("Token", json.user.token)
     location.href = "./feed.html"
@@ -36,5 +36,6 @@ const $loginBtn = document.querySelector('.login-button')
 $loginBtn.addEventListener("click", login)
 
 join.addEventListener('click', function() {
-    location.href = "join_email.html"
+    location.href = "./join_email.html"
 })
+

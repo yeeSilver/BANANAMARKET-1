@@ -6,7 +6,13 @@
 .feed-main {
   margin: 50px 0 65px;
 }
+
+.feed-container {
+  display: none;
+}
+
 .feed-main .home-feed{
+  display: block;
   padding: 20px 16px;
 }
 .feed-main .home-feed .post-art{
@@ -26,6 +32,7 @@
   display: flex;
   align-items: center;
 }
+
 
 /* post-art > post-user */
 .post-con-info div{
@@ -81,3 +88,36 @@
 .con-reaction .reaction-list li img:hover{
   fill: tomato;
 }
+
+.home-initial-sec div{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.home-initial-sec div p{
+  margin: 47px 0 20px;
+  font-size: 12px;
+  color: #767676;
+}
+.home-initial-sec div .search-btn.second {
+  padding: 13px 34px;
+  border-radius: 44px;
+  border: none;
+  background-color: #F4BC1E;
+  color: #fff;
+  translate: all 0.3s;
+  cursor: pointer;
+}
+.home-initial-sec div .search-btn.second {
+  transform: scale(0.9);
+}
+
+.search-header .search-btn.first {
+  cursor: pointer;
+}
+
