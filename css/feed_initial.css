@@ -15,15 +15,19 @@
   font-size: 12px;
   color: #767676;
 }
-.home-initial-sec div .search-btn{
+.home-initial-sec div .search-btn.second {
   padding: 13px 34px;
   border-radius: 44px;
   border: none;
   background-color: #F4BC1E;
-  ;
   color: #fff;
   translate: all 0.3s;
+  cursor: pointer;
 }
-.home-initial-sec div .search-btn:active{
+.home-initial-sec div .search-btn.second {
   transform: scale(0.9);
+}
+
+.search-header .search-btn.first {
+  cursor: pointer;
 }

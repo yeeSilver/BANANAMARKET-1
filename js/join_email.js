@@ -95,7 +95,7 @@ async function join(){
       })
       const json = await res.json()
       const message = json.message
-      if(res.status===422) {
+      if(res.status === 422) {
         if(message == "이미 사용중인 계정 ID입니다.")
         {
           $idinput_error.innerHTML = "*이미 사용중인 계정 ID입니다.";
@@ -104,7 +104,7 @@ async function join(){
           $idinput_error.innerHTML = "*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다."
         }
       }
-      if(res.status==200){
+      if(res.status == 200){
           location.href = "./feed.html"
       }
       else{
