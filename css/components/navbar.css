@@ -88,7 +88,9 @@
 .top-upload-nav .profile-save:focus {
   background-color: #F4BC1E;
 }
-
+.click{
+  background-color: #F4BC1E;
+}
 /* footer-nav bar */
 footer .footer-nav{
   position: fixed;
@@ -130,4 +132,5 @@ footer .footer-nav ul{
 .footer-nav ul li:hover > span{
   color: #F4BC1E;
 }
+
 
