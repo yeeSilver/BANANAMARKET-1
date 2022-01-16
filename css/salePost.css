@@ -15,12 +15,17 @@
   justify-content: center;
   align-items: flex-start;
 }
-.write-sec .img-upload-con div{
+.write-sec .img-upload-con .sale-img-bg{
   position: relative;
   width: 322px;
   height: 205px;
   border-radius: 10px;
+  /* background: url("../img/2/test.png") no-repeat; */
+  background-position: center;
+  background-repeat: no-repeat;
   background: #F2F2F2;
+  background-size: cover;
+  /* object-fit: cover; */
   cursor: pointer;
 }
 .write-sec .img-upload-con div img{
@@ -33,6 +38,9 @@
 }
 .write-sec .img-upload-con div .img-upload{
   object-fit: fill;
+}
+.product-img-form img{
+  cursor: pointer;
 }
 
 /* list-write-input */

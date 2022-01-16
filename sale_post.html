@@ -14,43 +14,46 @@
     <!-- top-upload-nav  -->
     <nav class="top-upload-nav">
       <div class="arrow">
-        <img src="./img/2/icon-arrow-left.png" alt="">
+        <img src="./img/icon-arrow-left.png" alt="">
       </div>
-      <button class="profile-save">저장</button>
+      <button type="button" class="profile-save">저장</button>
     </nav>
   </header>
   <!-- write -->
   <main>
-  <section class="write-sec">
-    <p>이미지 등록</p>
-    <div class="img-upload-con">
-      <div>
-        <input type="image" src="" alt="" class="img-upload" required>
-        <!-- <img src="" alt="" class="img-upload"> -->
-        <img src="./img/2/write/img-button.png" alt="">
-      </div>
+    <section class="write-sec">
+      <p>이미지 등록</p>
+      <div class="img-upload-con">
+        <div class="sale-img-bg">
+          <form method="post" class="product-img-form">
+            <label for="product-img">
+              <input type="file" accept="image/*" enctype="multipart/form-data" name="itemImage" class="hide" id="product-img" required>
+              <img src="./img/2/write/img-button.png" alt="">
+          </label>
+          </form>
+        </div>
     </div>
-
+    
     <div class="list-write-input">
-      <!-- ul>li or div ?? -->
-      <form action="" name="write" method="post">
+      <form name="write" method="post" class="product-sale-form">
         <ul>
           <li>
             <label for="product">상품명</label>
-            <input type="text" id="product" placeholder="2-15자 이내여야 합니다." required>
+            <input type="text" name="itemName" id="product" placeholder="2-15자 이내여야 합니다." required>
           </li>
           <li>
             <label for="price">가격</label>
-            <input type="number" id="price" placeholder="숫자만 입력 가능합니다." required>
+            <input type="number" name="price" id="price" placeholder="숫자만 입력 가능합니다." required>
           </li>
           <li>
             <label for="sale link">판매 링크</label>
-            <input type="text" id="sale link" placeholder="URL을 입력해주세요." required>
+            <input type="text" name="link" id="sale-link" placeholder="URL을 입력해주세요." required>
           </li>
         </ul>
       </form>
     </div>
   </section>
   </main>
+  <script src="./js/sale_post.js"></script>
 </body>
 </html>
