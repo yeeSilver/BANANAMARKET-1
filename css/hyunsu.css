@@ -6,38 +6,51 @@ h1 {
 }
 
 body {
-    background-color: black;
+    /* background-color: black; */
     box-sizing: border-box;
   }
-  
-  /* Splash */
+#wrap{
+  position: relative;
+  width: 100%;
+  min-width: 390px;
+  height: 100vh;
+  top: 0;
+} 
 
   .banana-container {
     margin: 0 auto;
-    background-color: white;
     width: 100%;
-    max-width: 390px;
-    height: 820px;
+    height: 100%;
     overflow: hidden;
+  }
+
+  /* Splash */
+
+  .banana-container.splash {
+    position: fixed;
+    background-color: white;
+    transition: all 0.4s;
+    top: 0;
+    z-index: 99;
   }
   
   .banana-container.splash .img-banana {
     display: block;
-    margin: 238px 120px 53px 122px;
-    width: 148px;
+    margin: 190px auto;
     height: 140px;
-    background: url("../img/banana_market.png") no-repeat;
-    background-size: 140px auto;
+    background: url("../img/banana_market.png") center no-repeat;
+    background-size: 140px;
   }
 
   .banana-container.splash .txt-banana {
     position: absolute;
-    top: 55%;
+    top: 45%;
     left: 50%;
+    letter-spacing: 3px;
     font-size: 33px;
-    font-weight: 700;
+    font-weight: 600;
     color: #F4BC1E;
-    transform: translate(-50%, 50%);
+    transform: translate(-50%, 100%);
   }
 
   /* login */
@@ -48,10 +61,10 @@ body {
   }
   
   .banana-container.login .login-img {
-    margin: 162px 121px 201px 121px;
-    width: 148px;
-    height: 144px;
-    background: url("../img/banana_market_w.png") center center no-repeat;
+    margin: 190px auto;
+    height: 140px;
+    background: url("../img/banana_market_w.png") center no-repeat;
+    
   }
   
   .banana-container.login article {
@@ -59,24 +72,24 @@ body {
     flex-direction: column;
     align-items: center;
     position: absolute;
-    bottom: -40px;
+    bottom: 0px;
     width: 100%;
-    max-width: 390px;
-    height: 362px;
+    min-width: 390px;
+    height: 302px;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 20px 20px 0 0;
     font-size: 12px;
     color: #767676;
   }
   
   .banana-container.login article button {
-    width: 322px;
+    width: 85%;
+    min-width: 322px;
     height: 44px;
     background-color: white;
     color: #767676;
-    border-radius: 44px;
+    border-radius: 20px;
     font-size: 14px;
-    font-weight: 400;
     margin-bottom: 10px;
   }
   
@@ -228,10 +241,14 @@ body {
   display: none;
 }
 
+.cont-banana.profile-setting {
+  display: flex;
+}
+
 /* top-upload-nav */
 
 .top-upload-nav {
-  width: 390px;
+  width: 100%;
   height: 48px;
   display: flex;
   justify-content: space-between;
@@ -307,6 +324,8 @@ body {
   flex-direction: column;
   gap: 16px;
 }
-
+.cont-banana .inp-wrap input{
+    outline: none;
+}
 
 

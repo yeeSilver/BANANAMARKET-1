@@ -5,18 +5,24 @@ let saleImg = document.querySelector('#product-img');
 const userToken = localStorage.getItem("Token");
 // const accountname = localStorage.getItem("useraccount");
 
+
 console.log(userToken)
 
-// saveBtn.addEventListener('click',(event) => {
+// console.log(accountname)
+// console.log(userToken)
+// console.log(useraccount)
+// let imgName;
+// saleImg.addEventListener('change',(event) => {
 //   imgName = (event.target.files[0].name);
+//   console.log(imgName)
 // })
 
 //입력하면 버튼 활성화
+
 let saleName;
 let salePrice;
 let saleLink;
 // console.log(saleName && salePrice && saleLink);
-
 
 // function listner(){
 //   switch(!inputText.value){
@@ -47,6 +53,9 @@ async function uploadSaleImgName(files){
 }
 
 
+saleImg.addEventListener("change", getSaleImgName);
+
+
 // 미리보기 구현
 async function profileImage(e) {
   const files = e.target.files
@@ -55,6 +64,7 @@ async function profileImage(e) {
   const saleImgUrl = saleImg.src;
   document.querySelector('.sale-img-bg').style.backgroundImage = `url(${saleImgUrl})`;
 }
+
 saleImg.addEventListener("change", profileImage);
 
 // 판매 게시글 업로드 saleImg.src
@@ -64,6 +74,7 @@ async function UploadSalePost(e){
   // const saleLink = document.querySelector('#sale-link').value;
   const files = e.target.files
   const urlresult = await uploadSaleImgName(files);
+  const imgUrl = "http://146.56.183.55:5050" + "/" + urlresult;
   const imgUrl = "http://146.56.183.55:5050" + "/" + urlresult;
   // const imgUrl = imgName.src
   console.log(imgUrl)
@@ -80,6 +91,7 @@ async function UploadSalePost(e){
             "price": salePrice,
             "link": saleLink,
             "itemImage":imgUrl
+
           }
         })
     })
@@ -150,3 +162,4 @@ async function GetSaleInfo(accountname){
 //     "itemImage":`http://146.56.183.55:5050/${imgFileName}`,
 //   }
 // })
+
