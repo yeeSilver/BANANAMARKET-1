@@ -241,10 +241,14 @@ body {
   display: none;
 }
 
+.cont-banana.profile-setting {
+  display: flex;
+}
+
 /* top-upload-nav */
 
 .top-upload-nav {
-  width: 390px;
+  width: 100%;
   height: 48px;
   display: flex;
   justify-content: space-between;

@@ -45,7 +45,6 @@ document.querySelector(".login-button.next").addEventListener("click", async () 
 }
 });
 
-// 이미지 등록
 
 async function imageUpload(files) {
   const formData = new FormData();
@@ -58,7 +57,6 @@ async function imageUpload(files) {
   const productImgName = data["filename"];
   return productImgName;
 }
-
 
 async function profileImage(e) {
   const files = e.target.files

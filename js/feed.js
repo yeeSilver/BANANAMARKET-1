@@ -3,11 +3,17 @@ const search_btn2 = document.querySelector(".search-btn.second");
 const search_btn3 = document.querySelector(".search-btn.third");
 const feed_container = document.querySelector(".feed-container");
 const home_feed_container = document.querySelector(".home-feed-container")
+const splash = document.querySelector('.splash');
 
 const home = document.querySelector(".img-home");
 const chat = document.querySelector(".img-chat");
 const plus = document.querySelector(".img-plus");
 const profile = document.querySelector(".img-profile");
+
+// setTimeout(function() {
+//   splash.style.opacity = '0'
+//   splash.style.zIndex = '-1'
+// }, 3000)
 
 home.addEventListener('click', function() {
   location.href = "./feed.html"
@@ -18,7 +24,7 @@ chat.addEventListener('click', function() {
 })
 
 plus.addEventListener('click', function() {
-  location.href = "./login_email.html"
+  location.href = "./setting.html"
 })
 
 profile.addEventListener('click', function() {
