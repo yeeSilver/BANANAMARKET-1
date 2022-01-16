@@ -29,7 +29,8 @@ async function login() {
         error.innerHTML = `*${json.message}`
     }
     localStorage.setItem("Token", json.user.token)
-    location.href = "./index.html"
+    // location.href = "./index.html"
+    location.href = "./sale_post.html"
 }
 const $loginBtn = document.querySelector('.login-button')
 $loginBtn.addEventListener("click", login)
