@@ -1,5 +1,12 @@
 const login = document.querySelector('.login-email')
 const join = document.querySelector('.join-email')
+const splash = document.querySelector('.splash');
+
+setTimeout(function() {
+  splash.style.opacity = '0'
+  splash.style.zIndex = '-1'
+}, 2000)
+
 
 login.addEventListener('click', function() {
     location.href = "./login_email.html"
