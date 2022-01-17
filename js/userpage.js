@@ -1,7 +1,9 @@
 
 const sellDiv = document.querySelector('.sell-items');
 
-
+window.onload = function(){
+  GetSaleInfo();
+}
 // 판매 게시글 가져오기
 async function GetSaleInfo(){
   const token = localStorage.getItem("Token")
@@ -15,6 +17,7 @@ async function GetSaleInfo(){
   })
   const salejson = await saleimgdata.json();
   const sale_pro = salejson.product;
+  console.log(salejson);
   sale_pro.forEach((el)=>{
     const itemName = el.itemName;
     const itemImg = el.itemImage;
