@@ -28,6 +28,7 @@ saveBtn.addEventListener("click",(e)=>{
   uploadSaleImgName(imgFile);
   UploadSalePost(imgFile);
 })
+
 //이미지 등록하면 이미지 url을 보내줌. url을 이미지 
 //이미지 업로드 
 async function uploadSaleImgName(files){
@@ -43,6 +44,9 @@ async function uploadSaleImgName(files){
 }
 
 
+saleImg.addEventListener("change", getSaleImgName);
+
+
 // 미리보기 구현
 async function profileImage(e) {
   const files = e.target.files
@@ -51,6 +55,7 @@ async function profileImage(e) {
   const saleImgUrl = saleImg.src;
   document.querySelector('.sale-img-bg').style.backgroundImage = `url(${saleImgUrl})`;
 }
+
 saleImg.addEventListener("change", profileImage);
 
 // 판매 게시글 업로드 saleImg.src
@@ -59,6 +64,7 @@ async function UploadSalePost(files){
   salePrice_val = Number(salePrice_val);
   const urlresult = await uploadSaleImgName(files);
   const imgUrl = "http://146.56.183.55:5050" + "/" + urlresult;
+
   try{
     const res = await fetch("http://146.56.183.55:5050/product", {
         method: "POST",
@@ -72,6 +78,7 @@ async function UploadSalePost(files){
             "price": salePrice_val,
             "link": saleLink.value,
             "itemImage":imgUrl
+
           }
         })
     })
@@ -116,3 +123,4 @@ async function GetSaleInfo(accountname){
 //     "itemImage":`http://146.56.183.55:5050/${imgFileName}`,
 //   }
 // })
+
