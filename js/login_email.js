@@ -29,6 +29,7 @@ async function login() {
         error.innerHTML = `*${json.message}`    
     }
     localStorage.setItem("Token", json.user.token)
+    localStorage.setItem("accountname", json.user.accountname)
     location.href = "./feed.html"  
 
 }
