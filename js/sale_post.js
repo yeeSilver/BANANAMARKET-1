@@ -2,7 +2,9 @@ const saveBtn = document.querySelector('.sale-save');
 const saleImg = document.querySelector('#product-img');
 saveBtn.disabled = true;
 const userToken = localStorage.getItem("Token");
-const userToken = localStorage.getItem("useraccount");
+// const useraccount = localStorage.getItem("useraccount");
+const useraccount = userToken.useraccount;
+// console.log(useraccount)
 //입력하면 버튼 활성화
 const form_txt = document.querySelector('.product-sale-form');
 const saleName = document.querySelector('#product');
@@ -93,30 +95,6 @@ async function UploadSalePost(files){
 }}
 
 
-// 판매 게시글 가져오기
-async function GetSaleInfo(accountname){
-  const token = localStorage.getItem("Token")
-  const saleimgdata = await fetch(`http://146.56.183.55:5050/product/${accountname}`, {
-    method: "GET",
-    headers:{
-      "Authorization" : `Bearer ${userToken}`,
-      "Content-type" : "application/json"
-    }
-  })
-  const salejson = await saleimgdata.json();
-  console.log(salejson);
-
-}
 
 
-// 이미지 주소를 받아오면 이미지 url에 넣어주면 됨 
-// saveBtn.addEventListener('click',getSaleImgName);
-// body:JSON.stringify({
-//   "product":{
-//     "itemName": saleName.value,
-//     "price": salePrice.value,
-//     "link": saleLink.value,
-//     "itemImage":`http://146.56.183.55:5050/${imgFileName}`,
-//   }
-// })
 
