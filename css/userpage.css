@@ -307,7 +307,7 @@ body{
 
 /* 판매 중인 상품 */
 
-.sell{
+/* .sell{
     border-top: .5px solid #DBDBDB;
     border-bottom: .5px solid #DBDBDB;
     margin-top: 6px;
@@ -350,6 +350,43 @@ body{
     font-size: 12px;
     font-weight: 700;
     color: #F4BC1E;
+} */
+
+.sell{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0 20px 20px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+}
+.sell h2{
+    font-size: 18px;
+    font-weight: 700;
+}
+.sell .sell-items{
+    display: flex;
+    margin-top: 16px;
+}
+.sell .sell-items .display-sell{
+    width: 140px;
+    height: 132px;
+    margin-right: 10px; 
+}
+
+.sell .display-sell img{
+    width: 140px;
+    height: 90px;
+    border-radius: 8px;
+}
+.sell .display-sell p{
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 400;
+}
+.sell .display-sell small{
+    color: #F4BC1E;
+    font-size: 12px;
+    margin-top: 4px;
 }
 
 /* 피드 */

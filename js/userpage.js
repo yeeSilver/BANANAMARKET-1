@@ -32,14 +32,17 @@ async function GetSaleInfo(accountname){
     const itemLink = el.link;
     const itemPrice = el.price;
     console.log(itemImg);
-    sellDiv.innerHTML = 
+    let sellArt = document.createElement('article');
+    sellArt.classList.add('display-sell');
+    sellArt.innerHTML = 
     `
-    <article class="display-inline">
-      <a href="${itemLink}"><img src="${itemImg}" alt=""></a>
-      <p>${itemName}</p>
-      <small>${itemPrice}</small>
-    </article>
+      <a href="${itemLink}">
+        <img src="${itemImg}" alt="">
+        <p>${itemName}</p>
+        <small>${itemPrice}원</small>
+      </a>
     `
+    sellDiv.appendChild(sellArt);
   })
 }
 
