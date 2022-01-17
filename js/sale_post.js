@@ -2,7 +2,7 @@ const saveBtn = document.querySelector('.sale-save');
 const saleImg = document.querySelector('#product-img');
 saveBtn.disabled = true;
 const userToken = localStorage.getItem("Token");
-
+const userToken = localStorage.getItem("useraccount");
 //입력하면 버튼 활성화
 const form_txt = document.querySelector('.product-sale-form');
 const saleName = document.querySelector('#product');
@@ -42,10 +42,6 @@ async function uploadSaleImgName(files){
     const saleImgFileName = data.filename;
     return saleImgFileName;
 }
-
-
-saleImg.addEventListener("change", getSaleImgName);
-
 
 // 미리보기 구현
 async function profileImage(e) {
