@@ -1,38 +1,34 @@
-const saveBtn = document.querySelector('.profile-save');
-let saleImg = document.querySelector('#product-img');
-// const previewDiv = document.querySelector('.sale-img-bg');
-
+const saveBtn = document.querySelector('.sale-save');
+const saleImg = document.querySelector('#product-img');
+saveBtn.disabled = true;
 const userToken = localStorage.getItem("Token");
-// const accountname = localStorage.getItem("useraccount");
-
-console.log(userToken)
-
-// saveBtn.addEventListener('click',(event) => {
-//   imgName = (event.target.files[0].name);
-// })
 
 //입력하면 버튼 활성화
-let saleName;
-let salePrice;
-let saleLink;
-// console.log(saleName && salePrice && saleLink);
+const form_txt = document.querySelector('.product-sale-form');
+const saleName = document.querySelector('#product');
+const salePrice = document.querySelector('#price');
+const saleLink = document.querySelector('#sale-link');
+form_txt.addEventListener('keyup',()=>{
+  let saleName_val = saleName.value;
+  let salePrice_val = salePrice.value;
+  let saleLink_val = saleLink.value;
+  let saleImg_val = saleImg.files[0];
+  if((saleName_val)  && (salePrice_val) && (saleLink_val) &&(saleImg_val)){
+    saveBtn.disabled = false;
+    saveBtn.classList.add('click');
+    console.log("clear");
+  }else{
+    console.log("모두 입력하세요")
+  }
+})
 
-
-// function listner(){
-//   switch(!inputText.value){
-//     case true: button.disabled = true; break;
-//     case false: button.disabled = false; break;
-//   }
-// }
-// input.addEventListener('keyup', checkInput);
-//   function checkInput(){
-//     saleName = document.querySelector('#product').value;
-//     salePrice = document.querySelector('#price').value;
-//     saleLink = document.querySelector('#sale-link').value;
-//     if(saleName)
-//   }
+saveBtn.addEventListener("click",(e)=>{
+  console.log('click');
+  imgFile = (saleImg.files);
+  uploadSaleImgName(imgFile);
+  UploadSalePost(imgFile);
+})
 //이미지 등록하면 이미지 url을 보내줌. url을 이미지 
-
 //이미지 업로드 
 async function uploadSaleImgName(files){
   const dataform = new FormData();
@@ -58,15 +54,11 @@ async function profileImage(e) {
 saleImg.addEventListener("change", profileImage);
 
 // 판매 게시글 업로드 saleImg.src
-async function UploadSalePost(e){
-  // const saleName = document.querySelector('#product').value;
-  // const salePrice = document.querySelector('#price').value;
-  // const saleLink = document.querySelector('#sale-link').value;
-  const files = e.target.files
+async function UploadSalePost(files){
+  let salePrice_val = salePrice.value;
+  salePrice_val = Number(salePrice_val);
   const urlresult = await uploadSaleImgName(files);
   const imgUrl = "http://146.56.183.55:5050" + "/" + urlresult;
-  // const imgUrl = imgName.src
-  console.log(imgUrl)
   try{
     const res = await fetch("http://146.56.183.55:5050/product", {
         method: "POST",
@@ -76,9 +68,9 @@ async function UploadSalePost(e){
         },
         body : JSON.stringify({
           "product":{
-            "itemName": saleName,
-            "price": salePrice,
-            "link": saleLink,
+            "itemName": saleName.value,
+            "price": salePrice_val,
+            "link": saleLink.value,
             "itemImage":imgUrl
           }
         })
@@ -88,7 +80,6 @@ async function UploadSalePost(e){
     const message =  saleData.message    
     if(res.status==200){
       console.log('완료')
-      // location.href = "./index.html"
       }
       else{
           console.log(saleData)
@@ -98,31 +89,6 @@ async function UploadSalePost(e){
     alert('오류가 났습니다.')
 }}
 
-
-// saveBtn.addEventListener('click',() => {
-// const form_img = document.querySelector('.product-img-form');
-const form_txt = document.querySelector('.product-sale-form');
-saveBtn.addEventListener('click',() => {
-  saleImg = document.querySelector('#product-img').files[0].name;
-  saleName = document.querySelector('#product').value;
-  salePrice = document.querySelector('#price').value;
-  saleLink = document.querySelector('#sale-link').value;
-  console.log(saleName, salePrice, saleLink, saleImg);
-  if(saleName && salePrice && saleLink && saleImg){
-    saveBtn.style.backgroundColor="orange";
-    // upload;
-    console.log(saleName && salePrice && saleLink && saleImg);
-    console.log("clear");
-  }else{
-    alert("모두 입력해주세요!")
-  }
-})
-
-// function upload(){
-//   uploadSaleImgName;
-//   UploadSalePost;
-// }
-// saveBtn.addEventListener("click", UploadSalePost);
 
 // 판매 게시글 가져오기
 async function GetSaleInfo(accountname){

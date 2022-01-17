@@ -16,7 +16,7 @@
       <div class="arrow">
         <img src="./img/icon-arrow-left.png" alt="">
       </div>
-      <button type="submit" class="profile-save">저장</button>
+      <button type="button" class="sale-save">저장</button>
     </nav>
   </header>
   <!-- write -->
@@ -27,7 +27,7 @@
         <div class="sale-img-bg">
           <form method="post" class="product-img-form">
             <label for="product-img">
-              <input type="file" accept="image/*" enctype="multipart/form-data" name="itemImage" class="hide" id="product-img" required>
+              <input type="file" accept="image/*" enctype="multipart/form-data" name="itemImage" id="product-img" required>
               <img src="./img/2/write/img-button.png" alt="">
           </label>
           </form>
@@ -49,7 +49,7 @@
           </li>
           <li>
             <label for="sale link">판매 링크</label>
-            <input type="text" name="link" id="sale-link" placeholder="URL을 입력해주세요." required>
+            <input type="url" name="link" id="sale-link" placeholder="URL을 입력해주세요." required>
             <input type="submit" class="hide">
           </li>
         </ul>

@@ -7,13 +7,38 @@
   font-size: 12px;
   color: #767676;
 }
-
+/* btn */
+.sale-save{
+  font-size: 14px;
+  font-weight: 500;
+  width: 90px;
+  height: 32px;
+  margin: 8px 16px;
+  background-color: #EEDBA5;
+  border-radius: 32px;
+  color: white;
+  border: none;
+}
+.click{
+  background-color: #F4BC1E;
+  cursor: pointer;
+}
 /* img-upload */
 .write-sec{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+}
+.product-img-form{
+  width: 100%;
+  height: 100%;
+}
+.product-img-form input{
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
 }
 .write-sec .img-upload-con .sale-img-bg{
   position: relative;
@@ -27,6 +52,7 @@
   background-size: cover;
   /* object-fit: cover; */
   cursor: pointer;
+  z-index: 10;
 }
 .write-sec .img-upload-con div img{
   position: absolute;
