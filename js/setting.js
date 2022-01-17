@@ -2,6 +2,11 @@ const $profileImg = document.querySelector(".profile-img")
 const $saveBtn = document.querySelector(".profile-save-btn")
 const $idinput_error = document.querySelector(".join-idinput-error")
 const token = localStorage.getItem("Token");
+const arrow = document.querySelector('.arrow')
+
+arrow.addEventListener('click',function() {
+  location.href = "feed.html"
+})
 
 async function imageUpload(files) {
     const formData = new FormData();
