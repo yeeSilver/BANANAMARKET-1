@@ -24,11 +24,11 @@ chat.addEventListener('click', function() {
 })
 
 plus.addEventListener('click', function() {
-  location.href = "./setting.html"
+  location.href = "./sale_post.html"
 })
 
 profile.addEventListener('click', function() {
-  location.href = "./login_email.html"
+  location.href = "./userpage.html"
 })
 
 search_btn1.addEventListener("click", function () {
@@ -44,12 +44,6 @@ search_btn3.addEventListener("click", function () {
 
 const container = document.querySelector(".feed-main");
 console.log(localStorage.getItem("Token"));
-if (localStorage.getItem("Token")) {
-  getFeed();
-} else {
-  location.href = "./login.html";
-}
-
 async function getFeed() {
   const url = "http://146.56.183.55:5050";
   const token = localStorage.getItem("Token");
@@ -62,7 +56,7 @@ async function getFeed() {
   });
   const json = await res.json();
   const posts = json.posts;
-  if(posts.length !== 0){
+  if(posts.length !== 0) {
   posts.forEach((post) => {
     const authorImage = post.author.image;
     const authorAccount = post.author.accountname;
@@ -106,9 +100,11 @@ async function getFeed() {
         </article>
       </section>
             `;
-  });
 
-} else {
+});
+
+} 
+else {
     feed_container.style.display = "block";
     home_feed_container.style.display = "none"
 }
