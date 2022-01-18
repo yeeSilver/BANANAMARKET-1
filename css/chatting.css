@@ -95,6 +95,12 @@
     color: #DBDBDB;
 }
 
+.footer-nav ul li:nth-child(2) img{
+    filter: invert(82%) sepia(62%) saturate(444%) hue-rotate(356deg) brightness(135%) contrast(111%);
+    transform: translateY(-0.5px) scale(1.03);
+  }
 
-
-
+  .footer-nav ul li:nth-child(2) span{
+    color: #F4BC1E;
+    transform: translateY(-0.5px) scale(1.03);
+  }
