@@ -5,7 +5,7 @@ const splash = document.querySelector('.splash');
 setTimeout(function() {
   splash.style.opacity = '0'
   splash.style.zIndex = '-1'
-}, 1500)
+}, 1000)
 
 
 login.addEventListener('click', function() {
