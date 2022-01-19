@@ -46,21 +46,32 @@ async function getProfile() {
 
   document.querySelector(".followings-num").innerHTML+=`
   <p class="followingBtn">${팔로잉수}</p>
-  <small>followers</small>
+  <small>followeings</small>
 `
+
+  const 팔로워 = document.querySelector('.followBtn')
+  const 팔로잉 = document.querySelector('.followingBtn')
+
+  팔로워.addEventListener('click', function() {
+  location.href = "./followerlist.html"
+  })
+  팔로잉.addEventListener('click', function() {
+  location.href = "./followinglist.html"
+  })
+
 }
 
 getProfile()
 
-const 팔로워 = document.querySelector('.followBtn')
-const 팔로잉 = document.querySelector('.followingBtn')
+// const 팔로워 = document.querySelector('.followers-num')
+// const 팔로잉 = document.querySelector('.followings-num')
 
-팔로워.addEventListener('click', function() {
-location.href = "./followerlist.html"
-})
-팔로잉.addEventListener('click', function() {
-location.href = "./followerlist.html"
-})
+// 팔로워.addEventListener('click', function() {
+// location.href = "./followerlist.html"
+// })
+// 팔로잉.addEventListener('click', function() {
+// location.href = "./followerlist.html"
+// })
 
 const sellDiv = document.querySelector('.sell-items');
 
