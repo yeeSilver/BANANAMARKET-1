@@ -73,8 +73,8 @@ async function getFeed() {
                 <div class="post-con-info">
     <img class="img-mini-profile" src=" ${authorImage}"/>
     <div>
-    <h2 class="post-title"> ${authorName}</h2>
-    <p class="post-user-id"> @${authorAccount}</p>
+    <h2 class="post-title" > ${authorName}</h2>
+    <p class="post-user-id" > @${authorAccount}</p>
     </div>
     </div>
     </div>
