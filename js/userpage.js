@@ -24,8 +24,6 @@ async function getProfile() {
   const 팔로워수 = json.profile.followerCount;
   const 팔로잉수 = json.profile.followingCount;
 
-  console.log(계정);
-
   document.querySelector(".profile").innerHTML += `
   <a href="" class="display-inline basic-profile"><img src="${이미지}" alt=""></a>
   <div class="profile-desc">
@@ -89,7 +87,6 @@ async function GetSaleInfo() {
     const itemImg = el.itemImage;
     const itemLink = el.link;
     const itemPrice = el.price;
-    console.log(itemImg);
     let sellArt = document.createElement("article");
     sellArt.classList.add("display-sell");
     sellArt.innerHTML = `
@@ -100,5 +97,91 @@ async function GetSaleInfo() {
       </a>
     `;
     sellDiv.appendChild(sellArt);
+  });
+}
+
+// 피드 보여주는 버튼 부분
+const albumBtn = document.querySelector(".show-album img");
+const listBtn = document.querySelector(".show-list img");
+const albumSec = document.querySelector(".album");
+const listSec = document.querySelector(".home-feed");
+
+albumBtn.addEventListener("click", () => {
+  albumBtn.src = "./img/icon-post-album-on.png";
+  listBtn.src = "./img/icon-post-list-off.png";
+  listSec.classList.add("hide");
+  albumSec.classList.remove("hide");
+  GetAlbum();
+});
+
+listBtn.addEventListener("click", () => {
+  albumBtn.src = "./img/icon-post-album-off.png";
+  listBtn.src = "./img/icon-post-list-on.png";
+  albumSec.classList.add("hide");
+  listSec.classList.remove("hide");
+  GetList();
+});
+
+// 피드 가져오기 리스트형식
+async function GetList() {
+  const token = localStorage.getItem("Token");
+  const accountname = localStorage.getItem("accountname");
+  const albumPhotoDiv = document.querySelector(".album-photos");
+  const albumimgdata = await fetch(
+    `http://146.56.183.55:5050/post/${accountname}/userpost`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    }
+  );
+  const album = await albumimgdata.json();
+  const albumPost = album.post;
+  albumPost.forEach((el) => {
+    const imgsrc = el.image;
+    console.log(imgsrc);
+    let albumDiv = document.createElement("div");
+    albumDiv.innerHTML = `
+    <div>
+      <a href="">
+      <img src="${imgsrc}" alt="">
+      </a>
+    </div>
+    `;
+    albumPhotoDiv.appendChild(albumDiv);
+  });
+}
+
+// 피드 가져오기 앨범형식
+async function GetAlbum() {
+  const token = localStorage.getItem("Token");
+  const accountname = localStorage.getItem("accountname");
+  const albumPhotoDiv = document.querySelector(".album-photos");
+  const albumimgdata = await fetch(
+    `http://146.56.183.55:5050/post/${accountname}/userpost`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    }
+  );
+  const album = await albumimgdata.json();
+  const albumPost = album.post;
+  albumPost.forEach((el) => {
+    const imgsrc = el.image;
+    console.log(imgsrc);
+    let albumDiv = document.createElement("div");
+    albumDiv.innerHTML = `
+    <div>
+      <a href="">
+      <img src="${imgsrc}" alt="">
+      </a>
+    </div>
+    `;
+    albumPhotoDiv.appendChild(albumDiv);
   });
 }
