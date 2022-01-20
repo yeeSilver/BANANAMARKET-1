@@ -1,4 +1,5 @@
 @charset "utf-8";
+@import "./components/navbar.css";
 
 /* setting */
 /* animation */
@@ -587,44 +588,12 @@ body{
     fill: tomato;
 }
 
-/* 하단 바 */
+.footer-nav ul li:nth-child(1) img{
+    filter: invert(82%) sepia(62%) saturate(444%) hue-rotate(356deg) brightness(135%) contrast(111%);
+    transform: translateY(-0.5px) scale(1.03);
+  }
 
-.footer .footer-nav{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #fff;
-}
-.footer .footer-nav ul{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 35px;
-    border-top: #DBDBDB 0.5px solid;
-}
-.footer-nav ul li{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 15px 0 6px;
-    translate: all .3s;
-}
-.footer-nav ul li img{
-    width: 24px;
-    height: 24px;
-    margin-bottom: 7px;
-}
-.footer-nav ul li span{
-    color: #767676;
-    font-size: 10px;
-}
-.footer-nav ul li:hover > img{
-    /* fill: #F4BC1E; */
-    filter: invert(77%) sepia(82%) saturate(976%) hue-rotate(344deg) brightness(100%) contrast(92%);
-    transform: translateY(-2px);
-}
-.footer-nav ul li:hover > span{
+  .footer-nav ul li:nth-child(1) span{
     color: #F4BC1E;
-    transform: translateY(-2px);
-}
+    transform: translateY(-0.5px) scale(1.03);
+  }
