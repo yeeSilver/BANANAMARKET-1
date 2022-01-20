@@ -123,3 +123,15 @@
 .search-header .search-btn {
   cursor: pointer;
 }
+
+/* 네비바 기타옵션 */
+.footer-nav ul li:nth-child(1) img {
+  filter: invert(82%) sepia(62%) saturate(444%) hue-rotate(356deg)
+    brightness(135%) contrast(111%);
+  transform: translateY(-0.5px) scale(1.03);
+}
+
+.footer-nav ul li:nth-child(1) span {
+  color: #f4bc1e;
+  transform: translateY(-0.5px) scale(1.03);
+}
