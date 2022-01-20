@@ -53,9 +53,23 @@ async function getFollow() {
                 <p>${팔로우이름}</p>
                 <small>${팔로우소개}</small>
             </div>
-            <button type="submit" class="cancel-btn">취소</button>
+            <button type="submit" class="cancel-btn fBtn">취소</button>
         </li>
         `
+    });
+
+    let fBtn = document.querySelector(".fBtn")
+
+    fBtn.addEventListener("click", function() {
+        if(fBtn.innerText === '팔로우') {
+            fBtn.classList.remove('follow-btn');
+            fBtn.classList.add('cancel-btn');
+            fBtn.innerText = '취소';
+        }else{
+            fBtn.classList.remove('cancel-btn')
+            fBtn.classList.add('follow-btn');
+            fBtn.innerText = '팔로우';
+        }
     });
 
 }
