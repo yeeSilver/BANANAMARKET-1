@@ -185,3 +185,35 @@ async function GetAlbum() {
     albumPhotoDiv.appendChild(albumDiv);
   });
 }
+
+// 모달창 구현
+let dotBtn = document.querySelector(".icon-more")
+let modalBg = document.querySelector(".modal_bg")
+let modal = document.querySelector(".userpage_modal")
+let logout = document.querySelector(".user_logout")
+let modalLogout = document.querySelector(".modal_logout")
+let cancleBtn = document.querySelector(".cancle-btn")
+let logoutBtn = document.querySelector(".logout-btn")
+
+const open = () => {
+  modalBg.classList.add("on")
+  modal.classList.add("on")
+}
+const close = () => {
+  modalBg.classList.remove("on")
+  modal.classList.remove("on")
+  modalLogout.classList.remove("on")
+}
+
+const Logout_open = () => {
+  modalLogout.classList.add("on")
+}
+const Logout_close = () => {
+  location.href = "./login.html"
+}
+
+dotBtn.addEventListener("click", open);
+modalBg.addEventListener("click", close);
+logout.addEventListener("click", Logout_open);
+cancleBtn.addEventListener("click", close);
+logoutBtn.addEventListener("click", Logout_close)

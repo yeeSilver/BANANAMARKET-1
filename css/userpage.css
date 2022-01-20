@@ -59,95 +59,6 @@
   display: inline-block;
 }
 
-.modal1 {
-  width: 390px;
-  height: 138px;
-  background: #fff;
-  border-radius: 10px 10px 0 0;
-}
-
-.modal1::before {
-  content: "";
-  display: inline-block;
-  width: 50px;
-  height: 4px;
-  border-radius: 5px;
-  background: #dbdbdb;
-  border-radius: 5px;
-  margin: 16px 170px;
-}
-
-.modal1 p {
-  width: 100%;
-  height: 46px;
-  padding: 14px 338px 16px 26px;
-  font-size: 13px;
-  font-weight: 400;
-}
-
-.modal2 {
-  width: 390px;
-  height: 184px;
-  background: #fff;
-  border-radius: 10px 10px 0 0;
-}
-
-.modal2::before {
-  content: "";
-  display: inline-block;
-  width: 50px;
-  height: 4px;
-  border-radius: 5px;
-  background: #dbdbdb;
-  border-radius: 5px;
-  margin: 16px 170px;
-}
-
-.modal2 p {
-  width: 100%;
-  height: 46px;
-  padding: 14px 0 16px 26px;
-  font-size: 13px;
-  font-weight: 400;
-}
-
-.modal3 {
-  width: 252px;
-  height: 110px;
-  border-radius: 10px;
-  background: #fff;
-  text-align: center;
-  border-radius: 10px;
-}
-
-.modal3 p {
-  width: 100%;
-  height: 64px;
-  font-size: 15px;
-  font-weight: 500;
-  border-bottom: 0.5px solid #dbdbdb;
-  line-height: 64px;
-}
-
-.modal3 .cancle-btn {
-  width: 125px;
-  height: 45px;
-  float: left;
-  font-size: 14px;
-  color: #000;
-  border-right: 0.5px solid #dbdbdb;
-  border-radius: 0 0 0 10px;
-}
-
-.modal3 .del-btn {
-  width: 125px;
-  height: 45px;
-  float: right;
-  font-size: 14px;
-  color: #f4bc1e;
-  border-radius: 10px;
-}
-
 /* 버튼 초기화 */
 button {
   background: inherit;
@@ -582,6 +493,109 @@ body {
   color: #767676;
   font-size: 10px;
 }
+
+
+/* 모달창 */
+.modal_bg {
+  position: fixed;
+  width: 100%;
+  min-width: 390px;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.modal_bg.on {
+  background-color: #00000041;
+  z-index: 99;
+}
+
+.userpage_modal {
+  /* display: none; */
+  position: fixed;
+  bottom: -120px;
+  left: 0;
+  width: 100%;
+  min-width: 390px;
+  height: 120px;
+  background-color: #fff;
+  border-radius: 10px 10px 0 0;
+  z-index: 99;
+  text-align: left;
+  cursor: pointer;
+  transition: all .3s linear;
+}
+
+.userpage_modal.on {
+  bottom: 0;
+}
+
+.userpage_modal hr {
+  width: 50px;
+  height: 5px;
+  background-color: #DBDBDB;
+  border: none;
+}
+
+.userpage_modal button {
+  display: block;
+  text-align: left;
+  width: 100%;
+  padding: 25px 0 0 20px;
+  font-size: 14px;
+}
+
+.modal_logout {
+  position: fixed;
+  right: 50%;
+  top: 50%;
+  transform: translate(50%, -50%);
+  width: 252px;
+  height: 110px;
+  border-radius: 10px;
+  background: #FFF;
+  text-align: center;
+  border-radius: 10px;
+  z-index: 999;
+  display: none;
+ 
+}
+
+.modal_logout.on{
+  display: block;
+}
+
+.modal_logout p {
+  width: 100%;
+  height: 64px;
+  font-size: 15px;
+  font-weight: 500;
+  border-bottom: .5px solid #DBDBDB;
+  line-height: 64px;
+}
+
+.modal_logout .cancle-btn {
+  width: 125px;
+  height: 45px;
+  float: left;
+  font-size: 14px;
+  color: #000;
+  border-right: .5px solid #DBDBDB;
+  border-radius: 0 0 0 10px;
+
+}
+
+.modal_logout .logout-btn {
+  width: 125px;
+  height: 45px;
+  float: right;
+  font-size: 14px;
+  color: #F4BC1E;
+  border-radius: 10px;
+}
+
+/* 네비바 기타옵션 */
 .footer-nav ul li:nth-child(1) img {
   filter: invert(82%) sepia(62%) saturate(444%) hue-rotate(356deg)
     brightness(135%) contrast(111%);
