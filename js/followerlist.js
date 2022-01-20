@@ -53,6 +53,7 @@ async function getFollow() {
                 <p>${팔로우이름}</p>
                 <small>${팔로우소개}</small>
             </div>
+            <button type="submit" class="cancel-btn">취소</button>
         </li>
         `
     });

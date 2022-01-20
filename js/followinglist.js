@@ -53,6 +53,7 @@ async function getFollowing() {
                 <p>${팔로우이름}</p>
                 <small>${팔로우소개}</small>
             </div>
+            <button type="submit" class="follow-btn">팔로우</button>
         </li>
         `
     });
