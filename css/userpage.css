@@ -22,23 +22,31 @@
   overflow: hidden;
 }
 
-.follow-btn {
-  width: 120px;
-  height: 34px;
-  background: #f4bc1e;
-  border-radius: 30px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #fff;
+.follow-btn{
+  width: 56px;
+  height: 25px;
+  border-radius: 26px;
+  background: #F4BC1E;
+  color: #FFF;
+  font-size: 12px;
+  text-align: center;
+  margin: 11px 0 11px;
+  vertical-align: top;
 }
 
-.unfollow-btn {
-  width: 120px;
-  height: 34px;
-  background: #fff;
-  border-radius: 30px;
-  border: 1px solid #dbdbdb;
+.cancel-btn{
+  width: 56px;
+  height: 25px;
+  border-radius: 26px;
+  background: #FFF;
+  color: #767676;
+  border: 1px solid #DBDBDB;
+  font-size: 12px;
+  text-align: center;
+  margin: 11px 0 11px;
+  vertical-align: top;
 }
+
 
 .follow-btn-small {
   width: 56px;
@@ -314,30 +322,6 @@ body {
   font-size: 12px;
   font-weight: 400;
   color: #767676;
-}
-
-.followers-list .follow-btn {
-  width: 56px;
-  height: 25px;
-  border-radius: 26px;
-  background: #f4bc1e;
-  color: #fff;
-  font-size: 12px;
-  text-align: center;
-  margin: 11px 0 11px;
-  vertical-align: top;
-}
-
-.followers-list .cancel-btn {
-  width: 56px;
-  height: 25px;
-  border-radius: 26px;
-  color: #767676;
-  border: 1px solid #dbdbdb;
-  font-size: 12px;
-  text-align: center;
-  margin: 11px 0 11px;
-  vertical-align: top;
 }
 
 /* 피드 */
