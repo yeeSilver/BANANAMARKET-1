@@ -106,8 +106,10 @@ button {
 }
 
 /* style */
-body {
+
+#wrap {
   width: 390px;
+  margin: 0 auto;
   background: #e5e5e5;
 }
 
@@ -140,15 +142,17 @@ body {
 /* 프로필 */
 
 .profile {
+  width: 390px;
+  margin: 0 auto;
   border-bottom: 0.5px solid #dbdbdb;
-  background: #fff;
+  /* background: rgb(222, 68, 68); */
   margin-top: 48px;
 }
 
 .basic-profile {
-  margin: 30px 35px 0 35px;
-  width: 110px;
-  height: 110px;
+  margin: 20px auto;
+  width: 100px;
+  transform: translate(40%, 10%);
 }
 
 .followers-num {
