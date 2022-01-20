@@ -106,7 +106,6 @@ button {
 }
 
 /* style */
-
 body {
   width: 390px;
   background: #e5e5e5;
@@ -407,7 +406,10 @@ body {
   font-size: 12px;
   cursor: pointer;
 }
-.con-reaction .list-reaction li img {
+.con-reaction .list-reaction li svg {
+  margin-right: 8.5px;
+}
+.con-reaction .list-reaction li img{
   margin-right: 8.5px;
 }
 /* .con-reaction .list-reaction li div {
@@ -417,9 +419,10 @@ body {
 .con-reaction .list-reaction .con-reaction .post-date {
   font-size: 10px;
 }
+
 .likes-on {
-  filter: invert(82%) sepia(62%) saturate(44%) hue-rotate(356deg)
-    brightness(15%) contrast(50%);
+  fill: #F26E22;
+  stroke: #F26E22;
 }
 
 .post-date {
