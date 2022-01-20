@@ -1,6 +1,7 @@
 // 로그인한 프로필 가져오기
 async function getProfile() {
   const accountname = localStorage.getItem("accountname");
+
   const url = `http://146.56.183.55:5050/profile/${accountname}`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
@@ -45,22 +46,22 @@ async function getProfile() {
 
   document.querySelector(".followings-num").innerHTML += `
   <p class="followingBtn">${팔로잉수}</p>
-  <small>followers</small>
+  <small>followeings</small>
 `;
+
   const 팔로워 = document.querySelector(".followBtn");
   const 팔로잉 = document.querySelector(".followingBtn");
-  console.log(팔로워);
+
   팔로워.addEventListener("click", function () {
     location.href = "./followerlist.html";
   });
   팔로잉.addEventListener("click", function () {
-    location.href = "./followerlist.html";
+    location.href = "./followinglist.html";
   });
 }
 
 getProfile();
 
-// 판매 게시글 가져오는 파트
 const sellDiv = document.querySelector(".sell-items");
 
 window.onload = function () {

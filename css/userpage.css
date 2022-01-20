@@ -240,6 +240,8 @@ body{
     vertical-align: top;
     margin-left: 56px;
     margin-top: 65px;
+    text-align: center;
+    /* background-color: #000; */
 }
 
 .followings-num{
@@ -252,6 +254,8 @@ body{
     margin-right: 55px;
     margin-top: 65px;
     float: right;
+    text-align: center;
+    /* background-color: #000; */
 }
 
 .followings-num small, .followers-num small{
