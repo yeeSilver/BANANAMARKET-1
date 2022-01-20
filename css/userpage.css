@@ -508,20 +508,28 @@ body {
   display: flex;
   align-items: center;
   vertical-align: center;
-  margin: 14px 18.5px 19px 0;
+  margin: 14px 18.5px 14px 0;
   font-size: 12px;
+  cursor: pointer;
 }
 .con-reaction .list-reaction li img {
   margin-right: 8.5px;
 }
-.con-reaction .post-date {
+/* .con-reaction .list-reaction li div {
+  margin-right: 8.5px;
+  background-image: url(./img/2/heart.svg) no-repeat center;
+} */
+.con-reaction .list-reaction .con-reaction .post-date {
   font-size: 10px;
 }
-
-.con-reaction .list-reaction li img:hover {
-  fill: tomato;
+.likes-on {
+  filter: invert(82%) sepia(62%) saturate(44%) hue-rotate(356deg)
+    brightness(15%) contrast(50%);
 }
 
+.post-date {
+  font-size: 10px;
+}
 /* 앨범식 */
 .album {
   border-top: 0.5px solid #dbdbdb;
@@ -551,6 +559,7 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
 /* 하단 바 */
 
 .footer .footer-nav {

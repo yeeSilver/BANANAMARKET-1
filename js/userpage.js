@@ -11,7 +11,6 @@ async function getProfile() {
       "Content-type": "application/json",
     },
   });
-  console.log(res);
   const json = await res.json();
   console.log(json);
   console.log(
@@ -61,10 +60,6 @@ async function getProfile() {
 getProfile();
 
 const sellDiv = document.querySelector(".sell-items");
-
-window.onload = function () {
-  GetSaleInfo();
-};
 // 판매 게시글 가져오기
 async function GetSaleInfo() {
   const token = localStorage.getItem("Token");
@@ -105,17 +100,25 @@ const albumBtn = document.querySelector(".show-album img");
 const listBtn = document.querySelector(".show-list img");
 const albumSec = document.querySelector(".album");
 const listSec = document.querySelector(".home-feed");
-
 window.onload = function () {
+  // load();
+  GetSaleInfo();
   albumSec.classList.add("hide");
   GetList();
+  GetAlbum();
 };
+// async function load(){
+//   GetSaleInfo();
+//   albumSec.classList.add("hide");
+//   GetList();
+//   GetAlbum();
+// }
+
 albumBtn.addEventListener("click", () => {
   albumBtn.src = "./img/icon-post-album-on.png";
   listBtn.src = "./img/icon-post-list-off.png";
   listSec.classList.add("hide");
   albumSec.classList.remove("hide");
-  GetAlbum();
 });
 
 listBtn.addEventListener("click", () => {
@@ -123,7 +126,6 @@ listBtn.addEventListener("click", () => {
   listBtn.src = "./img/icon-post-list-on.png";
   albumSec.classList.add("hide");
   listSec.classList.remove("hide");
-  GetList();
 });
 
 // 피드 가져오기 리스트형식
@@ -149,24 +151,25 @@ async function GetList() {
     const content = el.content;
     const feedImg = el.image;
     let updateAt = el.updatedAt;
-    updateAt = updateAt.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g);
-    console.log(typeof updateAt);
-    console.log(updateAt.join());
-    // let updateAts = updateAt.join();
-    // updateAts = updateAt.split("-");
+    // updateAt = updateAt.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g);
+    const year = updateAt.slice(0, 3);
+    const month = updateAt.slice(5, 6);
+    const date = updateAt.slice(8, 9);
+
     let heartCount = 0;
     let commentCount = 0;
+
     if (el.hearted && el.comments) {
       heartCount = el.heartCount;
       commentCount = el.comments.length;
     }
-    console.log(el);
 
     let feedArt = document.createElement("article");
     feedArt.classList.add("art-post");
-
-    feedArt.innerHTML = `
-      <div class="post-user">
+    feedArt.insertAdjacentHTML(
+      "afterbegin",
+      `
+    <div class="post-user">
       <img
         src="${userImg}"
         alt=""
@@ -187,7 +190,7 @@ async function GetList() {
         <p>
           ${content}
         </p>
-        <img src="${feedImg}" alt="" />
+        <img src="${feedImg}" alt="" class="feedImg"/>
       </div>
       <!-- likes -->
       <div class="con-reaction">
@@ -203,15 +206,35 @@ async function GetList() {
           </li>
         </ul>
         <!-- 업로드 날짜 -->
-        <p class="post-date">${updateAt} </p>
+        <p class="post-date">${year}년 ${month}월 ${date}일 </p>
         </div>
-        </div>
-        `;
+      </div>
+    </div>
+        `
+    );
     listSec.appendChild(feedArt);
   });
+
+  const feedImgsrcs = document.querySelectorAll(".feedImg");
+  feedImgsrcs.forEach((feedImgsrc, i) => {
+    if (i.src === "") {
+      feedImgsrc.style.display = "none";
+    }
+  });
+
+  const likesBtns = document.querySelectorAll(".likes img");
+  likesBtns.forEach((likeBtn) => {
+    likeBtn.addEventListener("click", function () {
+      if (likeBtn.classList.contains("likes-on")) {
+        likeBtn.classList.remove("likes-on");
+      } else {
+        likeBtn.classList.add("likes-on");
+      }
+    });
+  });
 }
-// <p class="post-date">${updateAts[0]}년 ${updateAts[1]}월 ${updateAts[2]}일 </p>
-// <p class="post-date">${updateAts[0]}년 ${updateAts[1]}월 ${updateAts[2]}일 </p>
+
+// const likesBtn = document.querySelector(".likes img");
 
 // 피드 가져오기 앨범형식
 async function GetAlbum() {
@@ -232,15 +255,18 @@ async function GetAlbum() {
   const albumPost = album.post;
   albumPost.forEach((el) => {
     const imgsrc = el.image;
-    console.log(imgsrc);
     let albumDiv = document.createElement("div");
     albumDiv.innerHTML = `
-    <div>
+    <div class="album-img-con">
       <a href="">
       <img src="${imgsrc}" alt="">
       </a>
     </div>
     `;
+    const albumImgDiv = document.querySelector(".album-img-con");
     albumPhotoDiv.appendChild(albumDiv);
+    // if (imgsrc === "") {
+    //   albumImgDiv.style.display = "none";
+    // }
   });
 }
