@@ -448,10 +448,12 @@ body {
 .feed-main .home-feed .art-post {
   margin-bottom: 20px;
 }
+
+/* art-post > post-user */
 .art-post .post-user {
   position: relative;
 }
-.art-post .post-user .img-mini-profile {
+.post-user .img-mini-profile {
   position: absolute;
   top: 0;
   left: 0;
@@ -459,7 +461,9 @@ body {
   height: 42px;
   border-radius: 50%;
 }
-
+.post-user div {
+  margin-left: 54px;
+}
 .post-user #more {
   position: absolute;
   top: 0;
@@ -467,15 +471,12 @@ body {
   width: 18px;
   height: 18px;
 }
-/* art-post > post-user */
-.post-user div {
-  margin-left: 12px;
-}
 .post-user div .post-title {
+  padding-top: 4px;
   font-size: 14px;
 }
 .post-user div .post-user-id {
-  margin-top: 4px;
+  padding-top: 6px;
   color: #767676;
   font-size: 12px;
 }
