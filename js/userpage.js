@@ -144,12 +144,14 @@ async function GetList() {
   );
   const list = await feedimgdata.json();
   const listPost = list.post;
+  const heartedlist = [];
   listPost.forEach((el, i) => {
     const username = el.author.username;
     const userImg = el.author.image;
     const accountname = el.author.accountname;
     const content = el.content;
     const feedImg = el.image;
+    const hearted = el.hearted;
     let updateAt = el.updatedAt;
     // updateAt = updateAt.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g);
     const year = updateAt.slice(0, 4);
@@ -159,7 +161,7 @@ async function GetList() {
     let heartCount = 0;
     let commentCount = 0;
 
-    if (el.hearted && el.comments) {
+    if (hearted && el.comments) {
       heartCount = el.heartCount;
       commentCount = el.comments.length;
     }
@@ -215,10 +217,16 @@ async function GetList() {
         `
     );
     listSec.appendChild(feedArt);
+    heartedlist.push(hearted);
     // 문제의 그부분! 1번째 방법
     // if (feedImg === "") {
     //   const feedimgdiv = document.querySelector(".feedImg");
     //   feedimgdiv.style.display = "none";
+    // }
+    // const heartimg = document.querySelector('likes img')
+    
+    // if(hearted){
+    //   heartimg.classList.add("likes-on")
     // }
   });
   // 문제의 그부분! 2번째 방법
@@ -226,25 +234,102 @@ async function GetList() {
   // feedImgs.forEach((feedImg, i) => {
   //   let img = i.img;
   //   console.log(img.src);
-  //   if (img.src === "-") {
+  //   if (img.src === "") {
   //     console.log(img.src);
   //     i.style.display = "none";
   //   }
   // });
 
+  //좋아요가 있는 부분은 색이 있는 하트 보여주기
+  console.log(heartedlist)
   const likesBtns = document.querySelectorAll(".likes img");
+  
+  heartedlist.forEach((list, i) => {
+    if (list === true){
+      likesBtns[i].classList.add("likes-on");
+    } 
+  })
+
   likesBtns.forEach((likeBtn) => {
     likeBtn.addEventListener("click", function () {
       if (likeBtn.classList.contains("likes-on")) {
+        // GetLikes(postId);
         likeBtn.classList.remove("likes-on");
       } else {
+        // UploadLikes(postId);
         likeBtn.classList.add("likes-on");
       }
     });
   });
 }
 
-// const likesBtn = document.querySelector(".likes img");
+// 좋아요 부분
+const likesButtons = document.querySelectorAll(".likes img");
+likesButtons.forEach((likeBtn) => {
+  likeBtn.addEventListener("click", function () {
+    if (likeBtn.classList.contains("heart-on")) {
+      heartCount -= 1;
+      likeBtn.classList.remove("heart-on");
+    } else {
+      heartCount += 1;
+      likeBtn.classList.add("likes-on");
+    }
+  });
+});
+
+const postId = localStorage.getItem("post_id");
+
+//좋아요 받아오는 부분
+async function GetLikes(postId) {
+  const token = localStorage.getItem("Token");
+  const likedata = await fetch(
+    `http://146.56.183.55:5050/post/${postId}/heart`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    }
+  );
+  const likejson = await likedata.json();
+  const heartCount = likejson.post.heartCount;
+  return heartCount;
+}
+
+//좋아요 올리는 부분
+async function UploadLikes(postId) {
+  const token = localStorage.getItem("Token");
+  // const dataform = new FormData();
+  // dataform.append("heartCount", heartState);
+  const likedata = await fetch(
+    `http://146.56.183.55:5050/post/${postId}/heart`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      }
+    }
+  );
+  console.log(likedata);
+}
+
+//좋아요 취소
+async function DeleteLikes(postId) {
+  const token = localStorage.getItem("Token");
+  const likedata = await fetch(
+    `http://146.56.183.55:5050/post/${postId}/unheart`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      }
+    }
+  );
+  console.log(likedata);
+}
 
 // 피드 가져오기 앨범형식
 async function GetAlbum() {
