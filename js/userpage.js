@@ -232,32 +232,9 @@ async function GetList() {
         .querySelector(`.${cls}`)
         .addEventListener("click", () => heartClick(postId, hearted))
       });
-
-    // section.querySelector(".likes").addEventListener("click", () => heartClick(postId));
-  
     listSec.appendChild(feedArt);
     heartedlist.push(hearted);
-    // 문제의 그부분! 1번째 방법
-    // if (feedImg === "") {
-    //   const feedimgdiv = document.querySelector(".feedImg");
-    //   feedimgdiv.style.display = "none";
-    // }
-    // const heartimg = document.querySelector('likes img')
-    
-    // if(hearted){
-    //   heartimg.classList.add("likes-on")
-    // }
   });
-  // 문제의 그부분! 2번째 방법
-  // const feedImgs = document.querySelectorAll(".feedImg");
-  // feedImgs.forEach((feedImg, i) => {
-  //   let img = i.img;
-  //   console.log(img.src);
-  //   if (img.src === "") {
-  //     console.log(img.src);
-  //     i.style.display = "none";
-  //   }
-  // });
 
 
   //좋아요가 있는 부분은 색이 있는 하트 보여주기
@@ -274,12 +251,9 @@ async function GetList() {
     console.log(i);
     likeBtn.addEventListener("click", function () {
       if (likeBtn.classList.contains("likes-on")) {
-        console.log('yes')
         likeBtn.classList.remove("likes-on");
         likeNums[i].innerText = (+(likeNums[i].innerText) - 1);
-        console.log(likeNums[i].innerText)
       } else {
-        console.log('no')
         likeBtn.classList.add("likes-on");
         likeNums[i].innerText = (+(likeNums[i].innerText) + 1);
       }
@@ -294,7 +268,6 @@ function heartClick(postId, hearted) {
   }else{
     UploadLikes(postId)
   }
-  console.log(postId, hearted);
 }
 
 
@@ -314,8 +287,6 @@ async function UploadLikes(postId) {
       }
     }
   );
-  console.log(likedata);
-
 }
 
 //좋아요 취소
@@ -331,7 +302,6 @@ async function DeleteLikes(postId) {
       }
     }
   );
-  console.log(likedata);
 }
 
 // 피드 가져오기 앨범형식
@@ -364,9 +334,6 @@ async function GetAlbum() {
       `;
       const albumImgDiv = document.querySelector(".album-img-con");
       albumPhotoDiv.appendChild(albumDiv);
-      // if (imgsrc === "") {
-      //   albumImgDiv.style.display = "none";
-      // }
     }
   });
 }
