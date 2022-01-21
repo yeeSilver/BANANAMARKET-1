@@ -47,10 +47,10 @@ async function getProfile() {
   const 팔로잉 = document.querySelector(".followingBtn");
 
   팔로워.addEventListener("click", function () {
-    location.href = "./followerlist.html";
+    location.href = "./otherfollowerlist.html";
   });
   팔로잉.addEventListener("click", function () {
-    location.href = "./followinglist.html";
+    location.href = "./otherfollowinglist.html";
   });
 }
 
@@ -71,7 +71,6 @@ async function GetSaleInfo() {
   );
   const salejson = await saleimgdata.json();
   const sale_pro = salejson.product;
-  console.log(salejson);
   sale_pro.forEach((el) => {
     const itemName = el.itemName;
     const itemImg = el.itemImage;
@@ -81,7 +80,7 @@ async function GetSaleInfo() {
     sellArt.classList.add("display-sell");
     sellArt.innerHTML = `
       <a href="${itemLink}">
-        <img src="${itemImg}" alt="">
+        <img src="${itemImg}" alt="" >
         <p>${itemName}</p>
         <small>${itemPrice}원</small>
       </a>
@@ -211,12 +210,24 @@ async function GetList() {
     listSec.appendChild(feedArt);
   });
 
-  const feedImgsrcs = document.querySelectorAll(".feedImg");
-  feedImgsrcs.forEach((feedImgsrc, i) => {
-    if (i.src === "") {
-      feedImgsrc.style.display = "none";
-    }
-  });
+
+
+  // const feedImgsrcs = document.querySelectorAll(".feedImg");
+  // feedImgsrcs.forEach((feedImgsrc, i) => {
+  //   if (i.src === "") {
+  //     feedImgsrc.style.display = "none";
+  //   }
+  // });
+
+  
+  // const moreBtns = document.querySelectorAll("#more");
+  // let modalBg = document.querySelector(".modal_bg")
+  // let modal = document.querySelector(".userpage_modal")
+  // let report = document.querySelector(".user_report")
+  // moreBtns.forEach((moreBtn) => {
+  //   // 모달창여기다 하세요
+  //   })
+  // })
 
   const likesBtns = document.querySelectorAll(".likes svg");
   likesBtns.forEach((likeBtn) => {

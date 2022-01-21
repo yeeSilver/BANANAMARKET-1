@@ -35,43 +35,49 @@ async function getFollow() {
             "Content-type" : "application/json"
         }
     })
-    console.log(res);
     const json = await res.json()
-    console.log(json)
-    console.log("=-=-=-=-=-=-=-이 위는 팔로워리스트 정보입니다.=-=-=-=-=-=-=-=-=-=-=-=")
-    
     //forEach문으로 받아온 데이터 전부 살펴보면서 그려주는 부분
     json.forEach(i => {
         const 팔로우이미지 = i.image
         const 팔로우이름 = i.username
         const 팔로우소개 = i.intro
 
-        document.querySelector(".container").innerHTML+=`
-        <li>
+        const li = document.createElement('li')
+        li.classList.add('follow-list')
+        li.innerHTML = `
+        <li class="follow-list">
             <img class="display-inline" src="${팔로우이미지}"/>
             <div class="follower-desc display-inline">
                 <p>${팔로우이름}</p>
                 <small>${팔로우소개}</small>
             </div>
-            <button type="submit" class="cancel-btn fBtn">취소</button>
+            <button type="submit" class="cancel-btn fBtn">팔로우</button>
         </li>
-        `
+        `;
+        ['fBtn']
+        .forEach(cls => {
+        li
+        .querySelector(`.${cls}`)
+        .addEventListener('click', () => followBtn());
+            });
+        document.querySelector(".container").appendChild(li)
     });
-
-    let fBtn = document.querySelector(".fBtn")
-
-    fBtn.addEventListener("click", function() {
-        if(fBtn.innerText === '팔로우') {
-            fBtn.classList.remove('follow-btn');
-            fBtn.classList.add('cancel-btn');
-            fBtn.innerText = '취소';
-        }else{
-            fBtn.classList.remove('cancel-btn')
-            fBtn.classList.add('follow-btn');
-            fBtn.innerText = '팔로우';
+function followBtn() {
+    let fBtn = document.querySelectorAll(".fBtn")
+    fBtn.forEach((e) => { 
+    e.addEventListener("click", function() {
+        if (e.innerText === '팔로우') {
+            e.classList.remove('follow-btn');
+            e.classList.add('cancel-btn');
+            e.innerText = '취소';
+        } else{
+            e.classList.remove('cancel-btn')
+            e.classList.add('follow-btn');
+            e.innerText = '팔로우';
         }
     });
-
+})
+}
 }
 
 getFollow()
