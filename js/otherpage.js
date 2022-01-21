@@ -1,5 +1,5 @@
 const accountname = localStorage.getItem("accountname");
-const authorAccount = localStorage.getItem("authorAccoutName")
+const authorAccount = localStorage.getItem("authorAccountName")
 const token = localStorage.getItem("Token");
 async function getProfile() {
   const url = `http://146.56.183.55:5050/profile/${authorAccount}`;

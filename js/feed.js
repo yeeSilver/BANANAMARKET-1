@@ -53,6 +53,7 @@ async function getFeed() {
   const post = json.posts;
   if (post.length !== 0) {
     for (let i = 0; i < post.length; i++) {
+      const postId = post[i].id
       const authorImage = post[i].author.image;
       const authorAccount = post[i].author.accountname;
       const authorName = post[i].author.username;
@@ -104,6 +105,11 @@ async function getFeed() {
           .querySelector(`.${cls}`)
           .addEventListener("click", () => GoToPage(authorAccount));
       });
+      ["likes"].forEach((cls) => {
+        section
+          .querySelector(`.${cls}`)
+          .addEventListener("click", () => heartClick(postId));
+      });
       document.querySelector(".home-feed-container").appendChild(section);
     }
   } else {
@@ -123,7 +129,13 @@ async function getFeed() {
   });
 }
 function GoToPage(authorAccount) {
-  localStorage.setItem("authorAccoutName", authorAccount);
+  localStorage.setItem("authorAccountName", authorAccount);
   location.href = "otherpage.html";
 }
+
+function heartClick(postId) {
+  localStorage.setItem("postId", postId);
+  
+}
+
 getFeed();

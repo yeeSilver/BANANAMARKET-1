@@ -282,7 +282,6 @@ likesButtons.forEach((likeBtn) => {
 });
 
 const postId = localStorage.getItem("post_id");
-
 //좋아요 받아오는 부분
 async function GetLikes(postId) {
   const token = localStorage.getItem("Token");

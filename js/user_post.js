@@ -1,8 +1,9 @@
+const profile = document.querySelector(".img-profile");
+console.log(localStorage.getItem("Token"));
 // 상단바 뒤로가기
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
-    window.history.back();
+    location.href = "./feed.html"
 });
-
 // 유저 프로필 사진
 async function getProfile() {
     const accountname = localStorage.getItem("accountname");
@@ -24,15 +25,14 @@ async function getProfile() {
     `;
 }
 getProfile();
-
 // 사진 미리보기
 async function imageDisplay(e) {}
-
-// 게시물 업로드
 const $image = document.querySelector(".textinput_input_file");
 const $content = document.querySelector(".user_post-inp");
 const $uploadBtn = document.querySelector(".upload-btn");
-//여기부터
+$content.addEventListener('keyup', () => {
+
+})
 async function imageUpload(files, index) {
     const formData = new FormData();
     formData.append("image", files[index]); //formData.append("키이름","값")
