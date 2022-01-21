@@ -144,7 +144,7 @@ async function GetList() {
   );
   const list = await feedimgdata.json();
   const listPost = list.post;
-  listPost.forEach((el) => {
+  listPost.forEach((el, i) => {
     const username = el.author.username;
     const userImg = el.author.image;
     const accountname = el.author.accountname;
@@ -152,10 +152,10 @@ async function GetList() {
     const feedImg = el.image;
     let updateAt = el.updatedAt;
     // updateAt = updateAt.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g);
-    const year = updateAt.slice(0, 3);
-    const month = updateAt.slice(5, 6);
-    const date = updateAt.slice(8, 9);
-
+    const year = updateAt.slice(0, 4);
+    const month = updateAt.slice(5, 7);
+    const date = updateAt.slice(8, 10);
+    console.log(i, feedImg);
     let heartCount = 0;
     let commentCount = 0;
 
@@ -190,7 +190,9 @@ async function GetList() {
         <p>
           ${content}
         </p>
-        <img src="${feedImg}" alt="" class="feedImg"/>
+        <div class="feedImg"> 
+        <img src="${feedImg}" alt="" onerror="this.style.display = 'none'"/>
+        </div>
       </div>
       <!-- likes -->
       <div class="con-reaction">
@@ -216,14 +218,22 @@ async function GetList() {
         `
     );
     listSec.appendChild(feedArt);
+    // 문제의 그부분! 1번째 방법
+    // if (feedImg === "") {
+    //   const feedimgdiv = document.querySelector(".feedImg");
+    //   feedimgdiv.style.display = "none";
+    // }
   });
-
-  const feedImgsrcs = document.querySelectorAll(".feedImg");
-  feedImgsrcs.forEach((feedImgsrc, i) => {
-    if (i.src === "") {
-      feedImgsrc.style.display = "none";
-    }
-  });
+  // 문제의 그부분! 2번째 방법
+  // const feedImgs = document.querySelectorAll(".feedImg");
+  // feedImgs.forEach((feedImg, i) => {
+  //   let img = i.img;
+  //   console.log(img.src);
+  //   if (img.src === "-") {
+  //     console.log(img.src);
+  //     i.style.display = "none";
+  //   }
+  // });
 
   const likesBtns = document.querySelectorAll(".likes svg");
   likesBtns.forEach((likeBtn) => {
@@ -258,19 +268,21 @@ async function GetAlbum() {
   const albumPost = album.post;
   albumPost.forEach((el) => {
     const imgsrc = el.image;
-    let albumDiv = document.createElement("div");
-    albumDiv.innerHTML = `
-    <div class="album-img-con">
-      <a href="">
-      <img src="${imgsrc}" alt="">
-      </a>
-    </div>
-    `;
-    const albumImgDiv = document.querySelector(".album-img-con");
-    albumPhotoDiv.appendChild(albumDiv);
-    // if (imgsrc === "") {
-    //   albumImgDiv.style.display = "none";
-    // }
+    if (!(imgsrc === "")) {
+      let albumDiv = document.createElement("div");
+      albumDiv.innerHTML = `
+      <div class="album-img-con">
+        <a href="">
+        <img src="${imgsrc}" alt=""onerror="this.style.display = 'none'">
+        </a>
+      </div>
+      `;
+      const albumImgDiv = document.querySelector(".album-img-con");
+      albumPhotoDiv.appendChild(albumDiv);
+      // if (imgsrc === "") {
+      //   albumImgDiv.style.display = "none";
+      // }
+    }
   });
 }
 

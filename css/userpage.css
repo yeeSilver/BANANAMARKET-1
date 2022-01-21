@@ -387,12 +387,13 @@ button {
   line-height: 18px;
   margin: 16px 0;
 }
-.art-post .post-main .con-post-main img {
-  /* 이미지 크기 지정다시하기 */
-  height: 100%;
-  /* aspect-ratio: auto 9 / 16; */
-}
 
+.post-main .con-post-main .feedImg img {
+  width: 100%;
+  height: 226.4px;
+  object-fit: fill;
+  border-radius: 15px;
+}
 .art-post .post-main .con-reaction {
   padding-left: 54px;
   color: #767676;
