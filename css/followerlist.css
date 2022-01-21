@@ -6,7 +6,10 @@
 }
 
 .followers-nav{
-    height: 48px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
     border-bottom: .5px solid #DBDBDB;
     padding: 12px 277px 12px 16px;
     box-sizing: border-box;
@@ -28,9 +31,8 @@
 .followers-list{
     background: #FFF;
     padding: 24px 16px 0 16px;
-    height: 800px;
-    overflow: scroll;
-    overflow-y:auto; 
+    overflow-y:auto;
+    margin-top: 40px; 
 }
 
 .followers-list li{

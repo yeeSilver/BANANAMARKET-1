@@ -236,14 +236,13 @@ async function GetList() {
   // });
 
   
-  // const moreBtns = document.querySelectorAll("#more");
-  // let modalBg = document.querySelector(".modal_bg")
-  // let modal = document.querySelector(".userpage_modal")
-  // let report = document.querySelector(".user_report")
-  // moreBtns.forEach((moreBtn) => {
-  //   // 모달창여기다 하세요
-  //   })
-  // })
+  const moreBtns = document.querySelectorAll("#more");
+  moreBtns.forEach((moreBtn) => {
+    moreBtn.addEventListener("click", function () {
+      alert('hi')
+      // 이곳에다가 모달창을 해야하는데 외 난 모탐??
+    })
+  })
 
   const likesBtns = document.querySelectorAll(".likes svg");
   likesBtns.forEach((likeBtn) => {
