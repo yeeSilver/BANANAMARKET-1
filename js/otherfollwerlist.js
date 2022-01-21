@@ -5,7 +5,7 @@ const plus = document.querySelector(".img-plus");
 const profile = document.querySelector(".img-profile");
 
 뒤로가기.addEventListener('click', function() {
-    location.href = "./userpage.html"
+    location.href = "./otherpage.html"
 })
 home.addEventListener('click', function() {
     location.href = "./feed.html"
