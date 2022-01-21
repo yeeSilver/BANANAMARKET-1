@@ -116,6 +116,6 @@ body {
     cursor: pointer;
 }
 
-.upload--disabled {
+.upload-btn:disabled {
     background: #eedba5;
 }

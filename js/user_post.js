@@ -5,14 +5,19 @@ const $uploadBtn = document.querySelector(".upload-btn");
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
     location.href = "./feed.html"
 });
-$uploadBtn.disabled = true;
-const form_txt = document.querySelector('.user_post-article-cont');
 
-form_txt.addEventListener('keyup', () => {
-    if($content.value !== none) {
-        $uploadBtn.disabled = false;
+// 버튼 활성화
+const form_txt = document.querySelector('.user_post-article-cont');
+$uploadBtn.disabled = true;
+$content.addEventListener('keyup', listener );
+
+function listener() {
+    switch (!$content.value){
+        case true: $uploadBtn.disabled = true; break;
+        case false: $uploadBtn.disabled = false; break;
     }
-})
+}
+
 async function getProfile() {
     const accountname = localStorage.getItem("accountname");
 
