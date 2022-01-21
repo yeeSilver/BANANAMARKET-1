@@ -80,4 +80,7 @@ async function createPost(e) {
     }
 }
 //여기까지 이미지 여러개 업로드하기.
-$uploadBtn.addEventListener("click", createPost);
+$uploadBtn.addEventListener("click", function() {
+    createPost();
+    location.href = "userpage.html"
+});

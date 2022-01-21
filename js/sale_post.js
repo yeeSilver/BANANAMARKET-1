@@ -29,6 +29,7 @@ saveBtn.addEventListener("click",(e)=>{
   imgFile = (saleImg.files);
   uploadSaleImgName(imgFile);
   UploadSalePost(imgFile);
+  location.href = "userpage.html";
 })
 
 //이미지 등록하면 이미지 url을 보내줌. url을 이미지 

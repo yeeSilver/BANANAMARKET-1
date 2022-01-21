@@ -8,7 +8,7 @@ async function getProfile() {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-type": "application/json",
+      "Content-type" : "application/json",
     },
   });
   const json = await res.json();
@@ -31,8 +31,8 @@ async function getProfile() {
   <p>${소개}</p>
   </div>
   <div class="btn-set">
-    <button type="submit" class="display-inline unfollow-btn">프로필 수정</button>
-    <button type="submit" class="display-inline unfollow-btn">상품 등록</button>
+    <button type="submit" class="display-inline unfollow-btn proEdit">프로필 수정</button>
+    <button type="submit" class="display-inline unfollow-btn register">상품 등록</button>
   </div>
     `;
 
@@ -45,6 +45,18 @@ async function getProfile() {
   <p class="followingBtn">${팔로잉수}</p>
   <small>followeings</small>
 `;
+  // 프로필수정, 상품등록버튼 클릭시 이동
+  const register = document.querySelector(".register")
+  const proEdit = document.querySelector(".proEdit")
+  const moveTo_rg = () => {
+    location.href = "./sale_post.html"
+  }
+  const moveTo_pe = () => {
+    location.href = "./setting.html"
+  }
+  register.addEventListener("click", moveTo_rg); 
+  proEdit.addEventListener("click", moveTo_pe); 
+
 
   const 팔로워 = document.querySelector(".followBtn");
   const 팔로잉 = document.querySelector(".followingBtn");
@@ -394,6 +406,7 @@ const Logout_open = () => {
 }
 const Logout_close = () => {
   location.href = "./login.html"
+  localStorage.clear()
 }
 
 dotBtn.addEventListener("click", open);

@@ -14,10 +14,13 @@
   width: 90px;
   height: 32px;
   margin: 8px 16px;
-  background-color: #EEDBA5;
+  background-color: #F4BC1E;
   border-radius: 32px;
   color: white;
   border: none;
+}
+.sale-save:disabled{
+  background-color: #EEDBA5;
 }
 .click{
   background-color: #F4BC1E;
