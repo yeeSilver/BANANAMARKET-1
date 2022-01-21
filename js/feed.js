@@ -10,11 +10,6 @@ const chat = document.querySelector(".img-chat");
 const plus = document.querySelector(".img-plus");
 const profile = document.querySelector(".img-profile");
 
-// setTimeout(function() {
-//   splash.style.opacity = '0'
-//   splash.style.zIndex = '-1'
-// }, 3000)
-
 home.addEventListener('click', function() {
   location.href = "./feed.html"
 })
@@ -43,7 +38,6 @@ search_btn3.addEventListener("click", function () {
 });
 
 const container = document.querySelector(".feed-main");
-console.log(localStorage.getItem("Token"));
 async function getFeed() {
   const url = "http://146.56.183.55:5050";
   const token = localStorage.getItem("Token");
@@ -54,34 +48,38 @@ async function getFeed() {
       "Content-type": "application/json",
     },
   });
+  let data= []
   const json = await res.json();
-  const posts = json.posts;
-  if(posts.length !== 0) {
-  posts.forEach((post) => {
-    const authorImage = post.author.image;
-    const authorAccount = post.author.accountname;
-    const authorName = post.author.username;
-    const commentCount = post.commentCount;
-    const content = post.content;
-    const image = post.image;
-    const heartCount = post.heartCount;
-    const update = post.updatedAt.slice(0, 10);
-    document.querySelector(".home-feed-container").innerHTML += `
+  const post = json.posts;
+  if(post.length !== 0) {
+    for(let i=0;i<post.length;i++) {
+    const authorImage = post[i].author.image;
+    const authorAccount = post[i].author.accountname;
+    const authorName = post[i].author.username;
+    const commentCount = post[i].commentCount;
+    const content = post[i].content;
+    const image = post[i].image;
+    const heartCount = post[i].heartCount;
+    const num = String.fromCharCode(65+i);
+    const update = post[i].updatedAt.slice(0, 10);
+    const section = document.createElement('section');
+    section.classList.add('home-feed');
+    section.innerHTML = `
     <section class="home-feed">
         <article class="post-art">
             <div class="post-user">
                 <div class="post-con-info">
     <img class="img-mini-profile" src=" ${authorImage}"/>
     <div>
-    <h2 class="post-title" > ${authorName}</h2>
-    <p class="post-user-id" > @${authorAccount}</p>
+    <h2 class="post-title"> ${authorName}</h2>
+    <p class="post-user-id"> @${authorAccount}</p>
     </div>
     </div>
     </div>
     <div class="post-main">
     <div class="post-con-main">
     <p class="content">${content}</p>
-    <img src=" ${image}"/>
+    <img src=" ${image}" onerror="this.style.display='none'" />
     </div>
     <div class="reaction-con">
     <ul class="reaction-list">
@@ -101,12 +99,24 @@ async function getFeed() {
       </section>
             `;
 
-});
-
-} 
+  ['img-mini-profile', 'post-title', 'post-user-id']
+    .forEach(cls => {
+      section
+      .querySelector(`.${cls}`)
+        .addEventListener('click', () => GoToPage(authorAccount));
+            });
+    document.querySelector(".home-feed-container").appendChild(section)
+  }
+}
+   
 else {
     feed_container.style.display = "block";
     home_feed_container.style.display = "none"
 }
 }
+function GoToPage(authorAccount) {
+  localStorage.setItem("authorAccoutName", authorAccount)
+  location.href = "otherpage.html"
+}
 getFeed();
+
