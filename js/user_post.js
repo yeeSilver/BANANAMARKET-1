@@ -1,10 +1,18 @@
 const profile = document.querySelector(".img-profile");
-console.log(localStorage.getItem("Token"));
-// 상단바 뒤로가기
+const $image = document.querySelector(".textinput_input_file");
+const $content = document.querySelector(".user_post-inp");
+const $uploadBtn = document.querySelector(".upload-btn");
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
     location.href = "./feed.html"
 });
-// 유저 프로필 사진
+$uploadBtn.disabled = true;
+const form_txt = document.querySelector('.user_post-article-cont');
+
+form_txt.addEventListener('keyup', () => {
+    if($content.value !== none) {
+        $uploadBtn.disabled = false;
+    }
+})
 async function getProfile() {
     const accountname = localStorage.getItem("accountname");
 
@@ -20,19 +28,16 @@ async function getProfile() {
     const json = await res.json();
     const 이미지 = json.profile.image;
     const 계정 = json.profile.accountname;
-    document.querySelector(".main-img").innerHTML += `
+    document.querySelector(".main-img").innerHTML=`
     <img class="profile-img-small" src="${이미지}" alt="${계정}의 프로필 사진">
     `;
 }
 getProfile();
 // 사진 미리보기
-async function imageDisplay(e) {}
-const $image = document.querySelector(".textinput_input_file");
-const $content = document.querySelector(".user_post-inp");
-const $uploadBtn = document.querySelector(".upload-btn");
-$content.addEventListener('keyup', () => {
+async function imageDisplay() {}
+// $content.addEventListener('keyup', () => {
 
-})
+// })
 async function imageUpload(files, index) {
     const formData = new FormData();
     formData.append("image", files[index]); //formData.append("키이름","값")
@@ -44,7 +49,7 @@ async function imageUpload(files, index) {
     const productImgName = data["filename"];
     return productImgName;
 }
-async function createPost(e) {
+async function createPost() {
     const url = "http://146.56.183.55:5050";
     const token = localStorage.getItem("Token");
     //입력한 텍스트 불러와야함
@@ -74,13 +79,12 @@ async function createPost(e) {
             }),
         });
         const json = await res.json();
-        console.log(json);
+        location.href = "./userpage.html"
     } else {
         alert("아 이미지 갯수가 너무 많소");
     }
 }
-//여기까지 이미지 여러개 업로드하기.
+
 $uploadBtn.addEventListener("click", function() {
     createPost();
-    location.href = "userpage.html"
 });
