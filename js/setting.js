@@ -62,6 +62,7 @@ async function imageUpload(files) {
           }
         }
         if(res.status == 200){
+            localStorage.setItem("accountname", json.user.accountname);
             location.href = "./feed.html"
         }
         else{
