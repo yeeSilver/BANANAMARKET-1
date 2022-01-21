@@ -128,6 +128,7 @@ listBtn.addEventListener("click", () => {
   listSec.classList.remove("hide");
 });
 
+const feedSec = document.querySelector('.home-feed');
 // 피드 가져오기 리스트형식
 async function GetList() {
   const token = localStorage.getItem("Token");
@@ -146,6 +147,7 @@ async function GetList() {
   const listPost = list.post;
   const heartedlist = [];
   listPost.forEach((el, i) => {
+    const postId = el.id;
     const username = el.author.username;
     const userImg = el.author.image;
     const accountname = el.author.accountname;
@@ -313,6 +315,7 @@ async function UploadLikes(postId) {
     }
   );
   console.log(likedata);
+  GetList(); 
 }
 
 //좋아요 취소
