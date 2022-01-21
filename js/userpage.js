@@ -60,6 +60,7 @@ async function getProfile() {
 getProfile();
 
 const sellDiv = document.querySelector(".sell-items");
+
 // 판매 게시글 가져오기
 async function GetSaleInfo() {
   const token = localStorage.getItem("Token");
@@ -101,18 +102,11 @@ const listBtn = document.querySelector(".show-list img");
 const albumSec = document.querySelector(".album");
 const listSec = document.querySelector(".home-feed");
 window.onload = function () {
-  // load();
   GetSaleInfo();
   albumSec.classList.add("hide");
   GetList();
   GetAlbum();
 };
-// async function load(){
-//   GetSaleInfo();
-//   albumSec.classList.add("hide");
-//   GetList();
-//   GetAlbum();
-// }
 
 albumBtn.addEventListener("click", () => {
   albumBtn.src = "./img/icon-post-album-on.png";
@@ -159,7 +153,7 @@ async function GetList() {
     const year = updateAt.slice(0, 4);
     const month = updateAt.slice(5, 7);
     const date = updateAt.slice(8, 10);
-    console.log(i, feedImg);
+ 
     let heartCount = 0;
     let commentCount = 0;
 
@@ -206,8 +200,7 @@ async function GetList() {
           <svg width="18" height="18" viewBox="0 0 18 18" fill="#fff" stroke="#767676" xmlns="http://www.w3.org/2000/svg">
           <path d="M15.9201 3.0132C15.5202 2.60553 15.0455 2.28213 14.523 2.06149C14.0005 1.84085 13.4405 1.72728 12.8749 1.72728C12.3093 1.72728 11.7492 1.84085 11.2267 2.06149C10.7042 2.28213 10.2295 2.60553 9.82965 3.0132L8.99985 3.85888L8.17004 3.0132C7.3624 2.19011 6.267 1.72771 5.12483 1.72771C3.98265 1.72771 2.88725 2.19011 2.07961 3.0132C1.27197 3.83629 0.818237 4.95264 0.818237 6.11667C0.818237 7.28069 1.27197 8.39704 2.07961 9.22013L2.90941 10.0658L8.99985 16.2727L15.0903 10.0658L15.9201 9.22013C16.3201 8.81265 16.6374 8.32884 16.8539 7.79633C17.0704 7.26383 17.1819 6.69307 17.1819 6.11667C17.1819 5.54026 17.0704 4.96951 16.8539 4.437C16.6374 3.9045 16.3201 3.42069 15.9201 3.0132Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          
-            <span class="number">${heartCount}</span>
+            <span class="heartnumber">${heartCount}</span>
           </li>
           <li class="comments">
             <img src="./img/2/footer-icon/chat.svg" alt="" />
@@ -221,6 +214,15 @@ async function GetList() {
     </div>
         `
     );
+    
+    ["likes"].forEach((cls) => {
+      feedArt
+        .querySelector(`.${cls}`)
+        .addEventListener("click", () => heartClick(postId, hearted))
+      });
+
+    // section.querySelector(".likes").addEventListener("click", () => heartClick(postId));
+  
     listSec.appendChild(feedArt);
     heartedlist.push(hearted);
     // 문제의 그부분! 1번째 방법
@@ -247,60 +249,44 @@ async function GetList() {
 
 
   //좋아요가 있는 부분은 색이 있는 하트 보여주기
-  console.log(heartedlist)
-  const likesBtns = document.querySelectorAll(".likes svg");
   
+  const likesBtns = document.querySelectorAll(".likes svg");
+  const likeNums = document.querySelectorAll('.heartnumber');
   heartedlist.forEach((list, i) => {
     if (list === true){
       likesBtns[i].classList.add("likes-on");
     } 
   })
-
-  likesBtns.forEach((likeBtn) => {
+  
+  likesBtns.forEach((likeBtn, i) => {
+    console.log(i);
     likeBtn.addEventListener("click", function () {
+ 
       if (likeBtn.classList.contains("likes-on")) {
-        // GetLikes(postId);
+        console.log('yes')
         likeBtn.classList.remove("likes-on");
+        likeNums[i].innerText = (+(likeNums[i].innerText) - 1);
+        console.log(likeNums[i].innerText)
       } else {
-        // UploadLikes(postId);
+        console.log('no')
         likeBtn.classList.add("likes-on");
+        likeNums[i].innerText = (+(likeNums[i].innerText) + 1);
       }
     });
   });
+
 }
 
-// 좋아요 부분
-const likesButtons = document.querySelectorAll(".likes img");
-likesButtons.forEach((likeBtn) => {
-  likeBtn.addEventListener("click", function () {
-    if (likeBtn.classList.contains("heart-on")) {
-      heartCount -= 1;
-      likeBtn.classList.remove("heart-on");
-    } else {
-      heartCount += 1;
-      likeBtn.classList.add("likes-on");
-    }
-  });
-});
-
-const postId = localStorage.getItem("post_id");
-//좋아요 받아오는 부분
-async function GetLikes(postId) {
-  const token = localStorage.getItem("Token");
-  const likedata = await fetch(
-    `http://146.56.183.55:5050/post/${postId}/heart`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-type": "application/json",
-      },
-    }
-  );
-  const likejson = await likedata.json();
-  const heartCount = likejson.post.heartCount;
-  return heartCount;
+function heartClick(postId, hearted) {
+  if(hearted){
+    DeleteLikes(postId)
+  }else{
+    UploadLikes(postId)
+  }
+  console.log(postId, hearted);
 }
+
+
 
 //좋아요 올리는 부분
 async function UploadLikes(postId) {
@@ -318,7 +304,7 @@ async function UploadLikes(postId) {
     }
   );
   console.log(likedata);
-  GetList(); 
+
 }
 
 //좋아요 취소
