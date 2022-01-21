@@ -230,3 +230,11 @@ img {
 * {
     box-sizing: border-box;
 }
+
+/* 좋아요 하트 */
+
+.likes-on {
+    fill: #F26E22;
+    stroke: #F26E22;
+    cursor: pointer;
+  }

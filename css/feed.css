@@ -84,6 +84,9 @@
   margin: 14px 18.5px 19px 0;
   font-size: 12px;
 }
+.reaction-con .reaction-list li svg{
+  margin-right: 8.5px;
+}
 .reaction-con .reaction-list li img{
   margin-right: 8.5px;
 }
@@ -91,9 +94,6 @@
   font-size: 10px;
 }
 
-.con-reaction .reaction-list li img:hover{
-  fill: tomato;
-}
 
 .home-initial-sec div{
   position: absolute;
@@ -132,4 +132,12 @@
 .footer-nav ul a:nth-child(1) span {
   color: #f4bc1e;
   transform: translateY(-0.5px) scale(1.03);
+}
+
+/* 좋아요 하트 */
+
+.likes-on {
+  fill: #F26E22;
+  stroke: #F26E22;
+  cursor: pointer;
 }

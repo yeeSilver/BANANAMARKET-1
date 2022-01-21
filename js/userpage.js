@@ -235,6 +235,7 @@ async function GetList() {
   //   }
   // });
 
+  //  좋아요 구현
   const likesBtns = document.querySelectorAll(".likes svg");
   likesBtns.forEach((likeBtn) => {
     likeBtn.addEventListener("click", function () {
