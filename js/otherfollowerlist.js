@@ -26,7 +26,7 @@ profile.addEventListener('click', function() {
 async function getFollow() {
     const authorAccount = localStorage.getItem("authorAccoutName")
 
-    const url = `http://146.56.183.55:5050/profile/${authorAccount}/follower`
+    const url = `http://146.56.183.55:5050/profile/${authorAccount}/follower?limit=20&skip=0`
     const token = localStorage.getItem("Token")
     const res = await fetch(url,{
         method:"GET",
