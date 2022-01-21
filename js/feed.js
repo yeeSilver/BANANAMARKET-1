@@ -116,6 +116,7 @@ async function getFeed() {
     feed_container.style.display = "block";
     home_feed_container.style.display = "none";
   }
+  
   //  좋아요 구현
   const likesBtns = document.querySelectorAll(".likes svg");
   likesBtns.forEach((likeBtn) => {

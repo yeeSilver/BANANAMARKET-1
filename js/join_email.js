@@ -103,7 +103,8 @@ async function join(){
         }
       }
       if(res.status == 200){
-          location.href = "./feed.html"
+        alert('회원가입 완료. 로그인 하세요')
+        location.href = "./login.html"
       }
       else{
           console.log(json)
