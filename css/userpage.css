@@ -23,14 +23,13 @@
 }
 
 .follow-btn{
-  width: 56px;
-  height: 25px;
-  border-radius: 26px;
+  width: 120px;
+  height: 34px;
+  border-radius: 30px;
   background: #F4BC1E;
   color: #FFF;
   font-size: 12px;
   text-align: center;
-  margin: 11px 0 11px;
   vertical-align: top;
 }
 

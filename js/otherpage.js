@@ -26,6 +26,11 @@ async function getProfile() {
   <small>@ ${계정}</small>
   <p>${소개}</p>
   </div>
+  <div class="btn-set">
+        <button type="submit" class="display-inline icon-massage"><img src="img/message.png" alt=""></button>
+        <button type="submit" class="display-inline follow-btn">팔로우</button>
+        <button type="submit" class="display-inline icon-share"><img src="img/icon-share.png" alt=""></button>
+  </div>
     `;
 
   document.querySelector(".followers-num").innerHTML += `
