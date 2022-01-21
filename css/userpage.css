@@ -272,6 +272,8 @@ button {
 .sell .sell-items {
   display: flex;
   margin-top: 16px;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 .sell .sell-items .display-sell {
   width: 140px;

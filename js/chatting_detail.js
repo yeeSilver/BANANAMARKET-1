@@ -1,3 +1,8 @@
+// 상단바 뒤로가기
+document.querySelector(".icon-left-arrow").addEventListener("click", () => {
+    window.history.back();
+});
+
 let inputText = document.querySelector(".textinput_input_text")
 let inputImg = document.querySelector(".textinput_input_file")
 let button = document.querySelector(".textinput_button")

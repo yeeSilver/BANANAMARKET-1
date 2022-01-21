@@ -15,6 +15,7 @@
 #wrap{
     width: 100%;
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    overflow: hidden;
     /* background-color: #767676; */
 }
 /* 상단바 */
