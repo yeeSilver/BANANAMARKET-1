@@ -30,6 +30,7 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
+  cursor: pointer;
 }
 .post-con-info{
   display: flex;
@@ -43,11 +44,13 @@
 }
 .post-con-info div .post-title{
   font-size: 14px;
+  cursor: pointer;
 }
-.post-con-info div .post-user-id{
+.post-con-info .post-user-id{
   margin-top: 4px;
   color: #767676;
   font-size: 12px;
+  cursor: pointer;
 }
 
 /* post-art > post-main */
@@ -81,6 +84,9 @@
   margin: 14px 18.5px 19px 0;
   font-size: 12px;
 }
+.reaction-con .reaction-list li svg{
+  margin-right: 8.5px;
+}
 .reaction-con .reaction-list li img{
   margin-right: 8.5px;
 }
@@ -88,9 +94,6 @@
   font-size: 10px;
 }
 
-.con-reaction .reaction-list li img:hover{
-  fill: tomato;
-}
 
 .home-initial-sec div{
   position: absolute;
@@ -121,5 +124,19 @@
 }
 
 .search-header .search-btn {
+  cursor: pointer;
+}
+
+/* 네비바 기타옵션 */
+
+.footer-nav ul a:nth-child(1) span {
+  color: #f4bc1e;
+}
+
+/* 좋아요 하트 */
+
+.likes-on {
+  fill: #F26E22;
+  stroke: #F26E22;
   cursor: pointer;
 }

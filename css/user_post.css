@@ -1,8 +1,7 @@
 @charset "utf-8";
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
-.app {
-    width: 390px;
+body {
     font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
 
@@ -28,26 +27,24 @@
     padding: 8px 16px;
 }
 
-.user_post-sec {
-    position: relative;
-    height: 772px;
+.main {
+    display: flex;
     padding: 20px 16px 16px 16px;
     box-sizing: border-box;
 }
 
-.user_post-sec .user_post-article {
-    display: flex;
-    align-items: flex-start;
-    position: relative;
-}
-
-.user_post-article img {
+/* 프로필 이미지 */
+.profile-img-small {
     width: 42px;
+    height: 42px;
+    border-radius: 50%;
 }
 
+/* 텍스트,이미지 입력 */
 .user_post-article .user_post-article-cont {
     margin-top: 12px;
 }
+
 .user_post-inp {
     margin-left: 13px;
     font-family: Spoqa Han Sans Neo;
@@ -55,6 +52,9 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 18px;
+}
+
+.user_post-inp::placeholder {
     color: #c4c4c4;
 }
 
@@ -65,19 +65,28 @@
     color: black;
 }
 
-.user_post-sec-img {
+.user_post-upload-img {
     width: 50px;
     display: block;
-    position: absolute;
+    position: fixed;
     right: 16px;
     bottom: 16px;
+    z-index: 8;
+}
+
+.textinput_input_file {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 10;
 }
 
 /* button */
-.ms-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.upload-btn {
     background: #f4bc1e;
     color: #fff;
     box-sizing: border-box;
@@ -87,6 +96,6 @@
     border-radius: 32px;
 }
 
-.ms-btn--disabled {
+.upload--disabled {
     background: #eedba5;
 }

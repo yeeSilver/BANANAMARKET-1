@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>chatting</title>
     <link rel="stylesheet" href="css/reset.css" />
+    <link rel="icon" href="img/favi.ico">
     <link rel="stylesheet" href="css/chatting.css" />
   </head>
   <body>
     <!-- 상단바 -->
     <div id="wrap">
       <nav class="top-nav">
-        <a href="" class="icon-left-arrow"
+        <a href="javascript:history.back();" class="icon-left-arrow" 
           ><img src="img/arrow-left.png" alt=""
         /></a>
         <button type="submit" class="icon-more"></button>
@@ -48,33 +49,41 @@
         </li>
       </ul>
 
-      <!-- 하단바 -->
+      <!-- 하단 nav bar -->
       <footer>
         <nav class="footer-nav">
           <ul>
-            <li class="home">
-              <img
-                class="img-home"
-                src="./img/2/footer-icon/home.svg"
-                alt="home-icon"
-              />
-              <span>홈</span>
-            </li>
-            <li class="chat">
-              <img
-                src="./img/2/footer-icon/icon-message-circle.svg"
-                alt="chat-icon"
-              />
-              <span>채팅</span>
-            </li>
-            <li class="plus">
-              <img src="./img/2/footer-icon/icon-edit.svg" alt="write-icon" />
-              <span>게시물작성</span>
-            </li>
-            <li class="home">
-              <img src="./img/2/footer-icon/icon-user.svg" alt="icon-user" />
-              <span>프로필</span>
-            </li>
+            <a href="feed.html">
+              <li class="home">
+                <img
+                  class="img-home"
+                  src="./img/2/footer-icon/home.svg"
+                  alt="home-icon"
+                />
+                <span>홈</span>
+              </li>
+            </a>
+            <a href="chatting.html">
+              <li class="chat">
+                <img
+                  src="./img/2/footer-icon/icon-message-circle_y.svg"
+                  alt="chat-icon"
+                />
+                <span>채팅</span>
+              </li>
+            </a>
+            <a href="user_post.html">
+              <li class="plus">
+                <img src="./img/2/footer-icon/icon-edit.svg" alt="write-icon" />
+                <span>게시물작성</span>
+              </li>
+            </a>
+            <a href="userpage.html">
+              <li class="home">
+                <img src="./img/2/footer-icon/icon-user.svg" alt="icon-user" />
+                <span>프로필</span>
+              </li>
+            </a>
           </ul>
         </nav>
       </footer>

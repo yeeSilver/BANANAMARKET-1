@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>posting</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="icon" href="img/favi.ico">
+    <link rel="stylesheet" href="./css/posting.css">
+    <!-- <link rel="stylesheet" href="./css/userpage.css"> -->
+    <link rel="stylesheet" href="./css/feed.css">
+    <link rel="stylesheet" href="./css/hyunsu.css">
+    <!-- <link rel="stylesheet" href="css/chatting_d.css"> -->
+</head>
+
+<body>
+    <header>
+        <h1 class="sr-only">게시글 상세페이지</h1>
+        <!-- 상단 nav -->
+        <nav class="top-nav">
+            <!-- 이전 페이지로 이동 -->
+            <button type="button" class="icon-left-arrow"><img src="./img/arrow-left.png" alt="뒤로가기 버튼"></button>
+            <!-- 설정,로그아웃 모달창 -->
+            <button type="button" class="icon-more"><img src="img/more-vertical.png" alt="히든 메뉴"></button>
+        </nav>
+    </header>
+    <main class="feed-main">
+        <!-- 게시글 -->
+        <section class="home-feed-container">
+        </section>
+
+        <!-- 하단 댓글 입력 -->
+        <form class="textinput">
+            <img src="img/basic-profile-small.png" alt="내프로필 사진">
+            <input type="text" class="textinput_input_text" placeholder="댓글 입력하기...">
+            <button class="textinput_button">게시</button>
+        </form>
+    </main>
+    <!-- 상단 모달창 -->
+    <section>
+        <h2 class="sr-only">로그아웃 경고 모달창</h2>
+        <div class="modal3">
+            <p>로그아웃 하시겠어요?</p>
+            <button type="submit" class="cancle-btn">취소</button>
+            <button type="submit" class="del-btn">로그아웃</button>
+        </div>
+    </section>
+    <div class="modal_bg">
+        <section class="chatting_modal">
+            <h2 class="sr-only">상단바 모달창</h2>
+            <hr>
+            <a href="#">설정 및 개인정보</a>
+        </section>
+    </div>
+    <section>
+        <h2 class="sr-only">게시글 모달창</h2>
+        <div class="modal1">
+            <p>신고</p>
+        </div>
+    </section>
+    <!-- 댓글 모달창 -->
+    <div class="modal_bg">
+        <section class="chatting_modal">
+            <hr>
+            <button>삭제</button>
+        </section>
+    </div>
+    <script src="js/posting.js"></script>
+</body>
+
+</html>

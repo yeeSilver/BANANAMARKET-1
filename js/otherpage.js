@@ -1,8 +1,8 @@
-// 로그인한 프로필 가져오기
+const accountname = localStorage.getItem("accountname");
+const authorAccount = localStorage.getItem("authorAccountName")
+const token = localStorage.getItem("Token");
 async function getProfile() {
-  const accountname = localStorage.getItem("accountname");
-
-  const url = `http://146.56.183.55:5050/profile/${accountname}`;
+  const url = `http://146.56.183.55:5050/profile/${authorAccount}`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
     method: "GET",
@@ -12,10 +12,6 @@ async function getProfile() {
     },
   });
   const json = await res.json();
-  console.log(json);
-  console.log(
-    "=-=-=-=-=-=-=-이 위는 개인프로필 정보입니다.=-=-=-=-=-=-=-=-=-=-=-="
-  );
   const 이미지 = json.profile.image;
   const 이름 = json.profile.username;
   const 계정 = json.profile.accountname;
@@ -31,8 +27,9 @@ async function getProfile() {
   <p>${소개}</p>
   </div>
   <div class="btn-set">
-    <button type="submit" class="display-inline unfollow-btn">프로필 수정</button>
-    <button type="submit" class="display-inline unfollow-btn">상품 등록</button>
+        <button type="submit" class="display-inline icon-massage"><img src="img/message.png" alt=""></button>
+        <button type="submit" class="display-inline follow-btn">팔로우</button>
+        <button type="submit" class="display-inline icon-share"><img src="img/icon-share.png" alt=""></button>
   </div>
     `;
 
@@ -50,11 +47,27 @@ async function getProfile() {
   const 팔로잉 = document.querySelector(".followingBtn");
 
   팔로워.addEventListener("click", function () {
-    location.href = "./followerlist.html";
+    location.href = "./otherfollowerlist.html";
   });
   팔로잉.addEventListener("click", function () {
-    location.href = "./followinglist.html";
+    location.href = "./otherfollowinglist.html";
   });
+
+  // 팔로우버튼
+
+  const 팔로우버튼토글 = document.querySelector(".follow-btn");
+
+  팔로우버튼토글.addEventListener("click", function() {
+    if (팔로우버튼토글.innerText === '팔로우') {
+        팔로우버튼토글.classList.remove('follow-btn');
+        팔로우버튼토글.classList.add('unfollow-btn');
+        팔로우버튼토글.innerText = '언팔로우';
+    } else{
+        팔로우버튼토글.classList.remove('unfollow-btn')
+        팔로우버튼토글.classList.add('follow-btn');
+        팔로우버튼토글.innerText = '팔로우';
+    }
+});
 }
 
 getProfile();
@@ -62,10 +75,8 @@ getProfile();
 const sellDiv = document.querySelector(".sell-items");
 // 판매 게시글 가져오기
 async function GetSaleInfo() {
-  const token = localStorage.getItem("Token");
-  const accountname = localStorage.getItem("accountname");
   const saleimgdata = await fetch(
-    `http://146.56.183.55:5050/product/${accountname}`,
+    `http://146.56.183.55:5050/product/${authorAccount}`,
     {
       method: "GET",
       headers: {
@@ -76,7 +87,6 @@ async function GetSaleInfo() {
   );
   const salejson = await saleimgdata.json();
   const sale_pro = salejson.product;
-  console.log(salejson);
   sale_pro.forEach((el) => {
     const itemName = el.itemName;
     const itemImg = el.itemImage;
@@ -86,7 +96,7 @@ async function GetSaleInfo() {
     sellArt.classList.add("display-sell");
     sellArt.innerHTML = `
       <a href="${itemLink}">
-        <img src="${itemImg}" alt="">
+        <img src="${itemImg}" alt="" >
         <p>${itemName}</p>
         <small>${itemPrice}원</small>
       </a>
@@ -128,13 +138,10 @@ listBtn.addEventListener("click", () => {
   listSec.classList.remove("hide");
 });
 
-const feedSec = document.querySelector('.home-feed');
 // 피드 가져오기 리스트형식
 async function GetList() {
-  const token = localStorage.getItem("Token");
-  const accountname = localStorage.getItem("accountname");
   const feedimgdata = await fetch(
-    `http://146.56.183.55:5050/post/${accountname}/userpost`,
+    `http://146.56.183.55:5050/post/${authorAccount}/userpost`,
     {
       method: "GET",
       headers: {
@@ -145,25 +152,22 @@ async function GetList() {
   );
   const list = await feedimgdata.json();
   const listPost = list.post;
-  const heartedlist = [];
-  listPost.forEach((el, i) => {
-    const postId = el.id;
+  listPost.forEach((el) => {
     const username = el.author.username;
     const userImg = el.author.image;
     const accountname = el.author.accountname;
     const content = el.content;
     const feedImg = el.image;
-    const hearted = el.hearted;
     let updateAt = el.updatedAt;
     // updateAt = updateAt.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g);
     const year = updateAt.slice(0, 4);
-    const month = updateAt.slice(5, 7);
+    const month = updateAt.slice(5, 6)+1;
     const date = updateAt.slice(8, 10);
-    console.log(i, feedImg);
+
     let heartCount = 0;
     let commentCount = 0;
 
-    if (hearted && el.comments) {
+    if (el.hearted && el.comments) {
       heartCount = el.heartCount;
       commentCount = el.comments.length;
     }
@@ -194,9 +198,7 @@ async function GetList() {
         <p>
           ${content}
         </p>
-        <div class="feedImg"> 
-        <img src="${feedImg}" alt="" onerror="this.style.display = 'none'"/>
-        </div>
+        <img src="${feedImg}" alt="" class="feedImg" onerror="this.style.display='none'" />
       </div>
       <!-- likes -->
       <div class="con-reaction">
@@ -222,128 +224,46 @@ async function GetList() {
         `
     );
     listSec.appendChild(feedArt);
-    heartedlist.push(hearted);
-    // 문제의 그부분! 1번째 방법
-    // if (feedImg === "") {
-    //   const feedimgdiv = document.querySelector(".feedImg");
-    //   feedimgdiv.style.display = "none";
-    // }
-    // const heartimg = document.querySelector('likes img')
-    
-    // if(hearted){
-    //   heartimg.classList.add("likes-on")
-    // }
   });
-  // 문제의 그부분! 2번째 방법
-  // const feedImgs = document.querySelectorAll(".feedImg");
-  // feedImgs.forEach((feedImg, i) => {
-  //   let img = i.img;
-  //   console.log(img.src);
-  //   if (img.src === "") {
-  //     console.log(img.src);
-  //     i.style.display = "none";
+
+
+
+  // const feedImgsrcs = document.querySelectorAll(".feedImg");
+  // feedImgsrcs.forEach((feedImgsrc, i) => {
+  //   if (i.src === "") {
+  //     feedImgsrc.style.display = "none";
   //   }
   // });
 
-
-  //좋아요가 있는 부분은 색이 있는 하트 보여주기
-  console.log(heartedlist)
-  const likesBtns = document.querySelectorAll(".likes svg");
   
-  heartedlist.forEach((list, i) => {
-    if (list === true){
-      likesBtns[i].classList.add("likes-on");
-    } 
-  })
+  // const moreBtns = document.querySelectorAll("#more");
+  // let modalBg = document.querySelector(".modal_bg")
+  // let modal = document.querySelector(".userpage_modal")
+  // let report = document.querySelector(".user_report")
+  // moreBtns.forEach((moreBtn) => {
+  //   // 모달창여기다 하세요
+  //   })
+  // })
 
+  const likesBtns = document.querySelectorAll(".likes svg");
   likesBtns.forEach((likeBtn) => {
     likeBtn.addEventListener("click", function () {
       if (likeBtn.classList.contains("likes-on")) {
-        // GetLikes(postId);
         likeBtn.classList.remove("likes-on");
       } else {
-        // UploadLikes(postId);
         likeBtn.classList.add("likes-on");
       }
     });
   });
 }
 
-// 좋아요 부분
-const likesButtons = document.querySelectorAll(".likes img");
-likesButtons.forEach((likeBtn) => {
-  likeBtn.addEventListener("click", function () {
-    if (likeBtn.classList.contains("heart-on")) {
-      heartCount -= 1;
-      likeBtn.classList.remove("heart-on");
-    } else {
-      heartCount += 1;
-      likeBtn.classList.add("likes-on");
-    }
-  });
-});
-
-const postId = localStorage.getItem("post_id");
-//좋아요 받아오는 부분
-async function GetLikes(postId) {
-  const token = localStorage.getItem("Token");
-  const likedata = await fetch(
-    `http://146.56.183.55:5050/post/${postId}/heart`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-type": "application/json",
-      },
-    }
-  );
-  const likejson = await likedata.json();
-  const heartCount = likejson.post.heartCount;
-  return heartCount;
-}
-
-//좋아요 올리는 부분
-async function UploadLikes(postId) {
-  const token = localStorage.getItem("Token");
-  // const dataform = new FormData();
-  // dataform.append("heartCount", heartState);
-  const likedata = await fetch(
-    `http://146.56.183.55:5050/post/${postId}/heart`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-type": "application/json",
-      }
-    }
-  );
-  console.log(likedata);
-  GetList(); 
-}
-
-//좋아요 취소
-async function DeleteLikes(postId) {
-  const token = localStorage.getItem("Token");
-  const likedata = await fetch(
-    `http://146.56.183.55:5050/post/${postId}/unheart`,
-    {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-type": "application/json",
-      }
-    }
-  );
-  console.log(likedata);
-}
+// const likesBtn = document.querySelector(".likes img");
 
 // 피드 가져오기 앨범형식
 async function GetAlbum() {
-  const token = localStorage.getItem("Token");
-  const accountname = localStorage.getItem("accountname");
   const albumPhotoDiv = document.querySelector(".album-photos");
   const albumimgdata = await fetch(
-    `http://146.56.183.55:5050/post/${accountname}/userpost`,
+    `http://146.56.183.55:5050/post/${authorAccount}/userpost`,
     {
       method: "GET",
       headers: {
@@ -356,21 +276,19 @@ async function GetAlbum() {
   const albumPost = album.post;
   albumPost.forEach((el) => {
     const imgsrc = el.image;
-    if (!(imgsrc === "")) {
-      let albumDiv = document.createElement("div");
-      albumDiv.innerHTML = `
-      <div class="album-img-con">
-        <a href="">
-        <img src="${imgsrc}" alt=""onerror="this.style.display = 'none'">
-        </a>
-      </div>
-      `;
-      const albumImgDiv = document.querySelector(".album-img-con");
-      albumPhotoDiv.appendChild(albumDiv);
-      // if (imgsrc === "") {
-      //   albumImgDiv.style.display = "none";
-      // }
-    }
+    let albumDiv = document.createElement("div");
+    albumDiv.innerHTML = `
+    <div class="album-img-con">
+      <a href="">
+      <img src="${imgsrc}" alt="" onerror="this.style.display='none'" >
+      </a>
+    </div>
+    `;
+    const albumImgDiv = document.querySelector(".album-img-con");
+    albumPhotoDiv.appendChild(albumDiv);
+    // if (imgsrc === "") {
+    //   albumImgDiv.style.display = "none";
+    // }
   });
 }
 

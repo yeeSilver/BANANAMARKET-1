@@ -28,6 +28,9 @@
 .followers-list{
     background: #FFF;
     padding: 24px 16px 0 16px;
+    height: 800px;
+    overflow: scroll;
+    overflow-y:auto; 
 }
 
 .followers-list li{
@@ -84,3 +87,6 @@
     margin: 11px 0 11px;
     vertical-align: top;
 }
+.footer-nav ul a:nth-child(4) span{
+    color: #F4BC1E;
+  }

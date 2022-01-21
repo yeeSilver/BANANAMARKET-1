@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>바나나마켓 피드</title>
   <link rel="stylesheet" href="./css/reset.css">
+  <link rel="icon" href="img/favi.ico">
   <link rel="stylesheet" href="./css/feed.css">
   <link rel="stylesheet" href="./css/hyunsu.css">
 </head>
@@ -26,7 +27,6 @@
 
     <div class="box-search hide">
       <nav>
-        <a href="#"><img src="./img/2/back.svg " alt=""></a>
         <form action="">
           <input class="input-user-search" type="search" name="user-search" placeholder="계정 검색">
         </form>
@@ -53,26 +53,35 @@
     <section class="home-feed-container">
     </section>
   </main>
+
   <!-- 하단 nav bar -->
-  <footer class="footer">
+  <footer>
     <nav class="footer-nav">
       <ul>
-        <li class="home">
-          <img class="img-home" src="./img/2/footer-icon/home.svg" alt="home-icon">
-          <span>홈</span>
-        </li>
-        <li class="chat">
-          <img class="img-chat" src="./img/2/footer-icon/icon-message-circle.svg" alt="chat-icon">
-          <span>채팅</span>
-        </li>
-        <li class="plus">
-          <img class="img-plus" src="./img/2/footer-icon/icon-edit.svg" alt="write-icon">
-          <span>게시물작성</span>
-        </li>
-        <li class="home">
-          <img class="img-profile" src="./img/2/footer-icon/icon-user.svg" alt="icon-user">
-          <span>프로필</span>
-        </li>
+        <a href="feed.html">
+          <li class="home">
+            <img class="img-home" src="./img/2/footer-icon/home_y.svg" alt="home-icon">
+            <span>홈</span>
+          </li>
+        </a>
+        <a href="chatting.html">
+          <li class="chat">
+            <img class="img-chat" src="./img/2/footer-icon/icon-message-circle.svg" alt="chat-icon">
+            <span>채팅</span>
+          </li>
+        </a>
+        <a href="user_post.html">
+          <li class="plus">
+            <img class="img-plus" src="./img/2/footer-icon/icon-edit.svg" alt="write-icon">
+            <span>게시물작성</span>
+          </li>
+        </a>
+        <a href="userpage.html">
+          <li class="home">
+            <img class="img-profile" src="./img/2/footer-icon/icon-user.svg" alt="icon-user">
+            <span>프로필</span>
+          </li>
+        </a>
       </ul>
     </nav>
   </footer>
