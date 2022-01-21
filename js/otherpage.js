@@ -52,6 +52,22 @@ async function getProfile() {
   팔로잉.addEventListener("click", function () {
     location.href = "./otherfollowinglist.html";
   });
+
+  // 팔로우버튼
+
+  const 팔로우버튼토글 = document.querySelector(".follow-btn");
+
+  팔로우버튼토글.addEventListener("click", function() {
+    if (팔로우버튼토글.innerText === '팔로우') {
+        팔로우버튼토글.classList.remove('follow-btn');
+        팔로우버튼토글.classList.add('unfollow-btn');
+        팔로우버튼토글.innerText = '언팔로우';
+    } else{
+        팔로우버튼토글.classList.remove('unfollow-btn')
+        팔로우버튼토글.classList.add('follow-btn');
+        팔로우버튼토글.innerText = '팔로우';
+    }
+});
 }
 
 getProfile();
