@@ -1,12 +1,33 @@
-const profile = document.querySelector(".img-profile");
-console.log(localStorage.getItem("Token"));
 // 상단바 뒤로가기
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
     window.history.back();
 });
+
 // 유저 프로필 사진
+async function getProfile() {
+    const accountname = localStorage.getItem("accountname");
+
+    const url = `http://146.56.183.55:5050/profile/${accountname}`;
+    const token = localStorage.getItem("Token");
+    const res = await fetch(url, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+        },
+    });
+    const json = await res.json();
+    const 이미지 = json.profile.image;
+    const 계정 = json.profile.accountname;
+    document.querySelector(".main-img").innerHTML += `
+    <img class="profile-img-small" src="${이미지}" alt="${계정}의 프로필 사진">
+    `;
+}
+getProfile();
+
 // 사진 미리보기
 async function imageDisplay(e) {}
+
 // 게시물 업로드
 const $image = document.querySelector(".textinput_input_file");
 const $content = document.querySelector(".user_post-inp");
