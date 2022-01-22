@@ -1,40 +1,40 @@
 // 변수 설정
 // 상단바 뒤로가기
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
-    window.history.back();
+  window.history.back();
+});
+// 상단바 모달 설정 및 개인정보, 로그아웃
+// 게시물 불러오기
+
+// console.log(localStorage.getItem("Token"));
+const postId = localStorage.getItem("postId");
+async function getFeed() {
+  const url = "http://146.56.183.55:5050";
+  const token = localStorage.getItem("Token");
+  const res = await fetch(url + `/post/${postId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
   });
-  // 상단바 모달 설정 및 개인정보, 로그아웃
-  // 게시물 불러오기
-  const container = document.querySelector(".feed-main");
-  console.log(localStorage.getItem("Token"));
-  async function getFeed() {
-    const url = "http://146.56.183.55:5050";
-    const token = localStorage.getItem("Token");
-    const res = await fetch(url + "/post/feed", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-type": "application/json",
-      },
-    });
-    const json = await res.json();
-    const posts = json.posts;
-    if (posts.length !== 0) {
-      posts.forEach((post) => {
-        const authorImage = post.author.image;
-        const authorAccount = post.author.accountname;
-        const authorName = post.author.username;
-        const commentCount = post.commentCount;
-        const content = post.content;
-        const image = post.image;
-        const heartCount = post.heartCount;
-        const update = post.updatedAt.slice(0, 10);
-        document.querySelector(".home-feed-container").innerHTML += `
+  const json = await res.json();
+  const post = json.post;
+  console.log(json);
+  const authorImage = post.author.image;
+  const authorAccount = post.author.accountname;
+  const authorName = post.author.username;
+  const commentCount = post.commentCount;
+  const content = post.content;
+  const image = post.image;
+  const heartCount = post.heartCount;
+  const update = post.updatedAt.slice(0, 10);
+  document.querySelector(".home-feed-container").innerHTML = `
       <section class="home-feed">
           <article class="post-art">
               <div class="post-user">
                   <div class="post-con-info">
-      <img class="img-mini-profile" src=" ${authorImage}"/>
+      <img class="img-mini-profile" src="${authorImage}"/>
       <div>
       <h2 class="post-title"> ${authorName}</h2>
       <p class="post-user-id"> @${authorAccount}</p>
@@ -64,57 +64,138 @@ document.querySelector(".icon-left-arrow").addEventListener("click", () => {
           </article>
         </section>
               `;
-      });
+}
+//  좋아요 구현
+const likesBtns = document.querySelectorAll(".likes svg");
+likesBtns.forEach((likeBtn) => {
+  likeBtn.addEventListener("click", function () {
+    if (likeBtn.classList.contains("likes-on")) {
+      likeBtn.classList.remove("likes-on");
     } else {
-      feed_container.style.display = "block";
-      home_feed_container.style.display = "none";
+      likeBtn.classList.add("likes-on");
     }
-      //  좋아요 구현
-  const likesBtns = document.querySelectorAll(".likes svg");
-  likesBtns.forEach((likeBtn) => {
-    likeBtn.addEventListener("click", function () {
-      if (likeBtn.classList.contains("likes-on")) {
-        likeBtn.classList.remove("likes-on");
-      } else {
-        likeBtn.classList.add("likes-on");
-      }
-    });
   });
+  
+});
 
+
+getFeed();
+
+
+// 댓글 리스트업
+async function getComments() {
+  const url = "http://146.56.183.55:5050";
+  const token = localStorage.getItem("Token");
+  const res = await fetch(url + `/post/${postId}/comments`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
+  });
+  const json = await res.json();
+  const jsonComment = json.comments
+  console.log(json);
+  for(let i = 0; i < jsonComment.length; i++) {
+    const image = jsonComment[i].author.image;
+    const username = jsonComment[i].author.username;
+    const createdAt = jsonComment[i].createdAt.slice(0,10);
+    const time = jsonComment[i].createdAt.slice(11,19);
+    const content = jsonComment[i].content;
+    // console.log(createdAt)
+    // console.log(username)
+    const article = document.createElement("article");
+    article.classList.add("comment-element");
+    article.innerHTML =`<div class="comments-innerbox">
+    <img class="comments-profile" src="${image}" alt="프로필이미지" />
+    <h3>${username}</h3>
+    <span class="settime">현수오빠방구</span>
+  </div>
+  <img class="comments-dot" src="img/more-vertical.png" alt="">
+  <p class="comments-contents">${content}</p>
+    `;
+
+
+    ["settime"].forEach((cls) => {
+      article
+        .querySelector(`.${cls}`)
+        .addEventListener("click", () => {
+          let currentTime = new Date();
+          
+          const com_month = Number((createdAt.slice(5, 7) - 1) * 43800);
+          const com_day = Number(createdAt.slice(8, 10) * 1440);
+          const com_hours = Number(time.slice(0, 2) * 60);
+          const com_min = Number(time.slice(3, 5));
+          const allTime =  com_month + com_day + com_hours + com_min;
+        
+          const month = currentTime.getMonth();
+          const date = currentTime.getDate();
+          const hours = currentTime.getHours();
+          const minutes = currentTime.getMinutes();
+          const toallTime = (month * 43800) + ((date + 1) * 1440) + (hours * 60) + minutes
+        
+        
+          console.log(toallTime);
+          console.log(allTime);
+        
+          
+          if(toallTime - allTime <= 1){
+            cls.innerHTML = ("방금 전")
+          } else {
+            cls.innerHTML = ("현수오빠 방구머거")
+          }
+        
+          
+        
+        });
+    });
+
+    document.querySelector(".comments-container").appendChild(article);
   }
-  getFeed();
-  // 게시물 모달 신고 표시
-  // 댓글 모달 삭제 표시
-  // 댓글 입력 게시 활성화
-  let inputText = document.querySelector(".textinput_input_text");
-  let button = document.querySelector(".textinput_button");
-  let dotBtn = document.querySelector(".icon-more");
-  let modalBg = document.querySelector(".modal_bg");
-  let modal = document.querySelector(".chatting_modal");
   
-  button.disabled = true;
-  inputText.addEventListener("keyup", listener);
   
-  function listener() {
-    switch (!inputText.value) {
-      case true:
-        button.disabled = true;
-        break;
-      case false:
-        button.disabled = false;
-        break;
-    }
+
+};
+
+
+
+
+
+getComments();
+
+
+// 게시물 모달 신고 표시
+// 댓글 모달 삭제 표시
+// 댓글 입력 게시 활성화
+
+let inputText = document.querySelector(".textinput_input_text");
+let button = document.querySelector(".textinput_button");
+let dotBtn = document.querySelector(".icon-more");
+let modalBg = document.querySelector(".modal_bg");
+let modal = document.querySelector(".chatting_modal");
+
+button.disabled = true;
+inputText.addEventListener("keyup", listener);
+
+function listener() {
+  switch (!inputText.value) {
+    case true:
+      button.disabled = true;
+      break;
+    case false:
+      button.disabled = false;
+      break;
   }
-  
-  const open = () => {
-    modalBg.classList.add("on");
-    modal.classList.add("on");
-  };
-  const close = () => {
-    modalBg.classList.remove("on");
-    modal.classList.remove("on");
-  };
-  
-  dotBtn.addEventListener("click", open);
-  modalBg.addEventListener("click", close);
-  
+}
+
+const open = () => {
+  modalBg.classList.add("on");
+  modal.classList.add("on");
+};
+const close = () => {
+  modalBg.classList.remove("on");
+  modal.classList.remove("on");
+};
+
+dotBtn.addEventListener("click", open);
+modalBg.addEventListener("click", close);

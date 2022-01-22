@@ -105,10 +105,15 @@ async function getFeed() {
           .querySelector(`.${cls}`)
           .addEventListener("click", () => GoToPage(authorAccount));
       });
-      ["comments"].forEach((cls) => {
+      ["likes"].forEach((cls) => {
         section
           .querySelector(`.${cls}`)
           .addEventListener("click", () => heartClick(postId));
+      });
+      ["comments"].forEach((cls) => {
+        section
+          .querySelector(`.${cls}`)
+          .addEventListener("click", () => commentClick(postId));
       });
       document.querySelector(".home-feed-container").appendChild(section);
     }
@@ -137,6 +142,11 @@ function GoToPage(authorAccount) {
 function heartClick(postId) {
   localStorage.setItem("postId", postId);
   
+}
+
+function commentClick(postId) {
+  localStorage.setItem("postId", postId);
+  location.href = "posting.html";
 }
 
 getFeed();
