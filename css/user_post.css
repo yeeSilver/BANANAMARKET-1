@@ -44,18 +44,18 @@ body {
     height: 42px;
     border-radius: 50%;
 }
-.user_post-sec{
+.user_post-sec {
     width: 80%;
     height: 80vh;
 }
-.user_post-article{
+.user_post-article {
     width: 100%;
     height: 100%;
 }
 /* 텍스트,이미지 입력 */
 .user_post-article .user_post-article-cont {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     margin-top: 12px;
 }
 
@@ -102,6 +102,20 @@ body {
     cursor: pointer;
     opacity: 0;
     z-index: 10;
+}
+
+.art-preview {
+    display: flex;
+}
+
+.art-preview_img {
+    width: 168px;
+    height: 126px;
+    margin-top: 16px;
+    margin-left: 13px;
+    border: 0.5px solid #dbdbdb;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
 /* button */
