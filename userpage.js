@@ -12,10 +12,6 @@ async function getProfile() {
     },
   });
   const json = await res.json();
-  console.log(json);
-  console.log(
-    "=-=-=-=-=-=-=-이 위는 개인프로필 정보입니다.=-=-=-=-=-=-=-=-=-=-=-="
-  );
   const 이미지 = json.profile.image;
   const 이름 = json.profile.username;
   const 계정 = json.profile.accountname;
@@ -89,7 +85,7 @@ async function GetSaleInfo() {
   );
   const salejson = await saleimgdata.json();
   const sale_pro = salejson.product;
-  console.log(salejson);
+  // console.log(salejson);
   sale_pro.forEach((el) => {
     const itemName = el.itemName;
     const itemImg = el.itemImage;
@@ -190,7 +186,7 @@ async function GetList() {
         <p class="post-user-id">@${accountname}</p>
       </div>
       <button>
-        <img id="more" src="./img/more-vertical.png" alt="" />
+        <img id="more" class="more" src="./img/more-vertical.png" alt="" />
       </button>
     </div>
     <!-- 포스트 메인-->
@@ -234,8 +230,13 @@ async function GetList() {
       });
     listSec.appendChild(feedArt);
     heartedlist.push(hearted);
+    
+    ["more"].forEach((cls) => {
+      feedArt
+        .querySelector(`.${cls}`)
+        .addEventListener("click", () => editModal(postId))
+      });
   });
-
 
   //좋아요가 있는 부분은 색이 있는 하트 보여주기
   
@@ -248,7 +249,7 @@ async function GetList() {
   })
   
   likesBtns.forEach((likeBtn, i) => {
-    console.log(i);
+    // console.log(i);
     likeBtn.addEventListener("click", function () {
       if (likeBtn.classList.contains("likes-on")) {
         likeBtn.classList.remove("likes-on");
@@ -337,8 +338,62 @@ async function GetAlbum() {
     }
   });
 }
+// 게시글 삭제 및 수정 모달
+function editModal(postId) {
+  let modalBg = document.querySelector(".modal_bg.post")
+  let modal = document.querySelector(".userpage_modal.post")
+  let user_delete = document.querySelector(".user_delete")
+  let user_edit = document.querySelector(".user_edit")
+  let modalDelete = document.querySelector(".modal_delete")
+  let cancleBtn = document.querySelector(".cancel-button")
+  let deleteBtn = document.querySelector(".delete-btn")
+  
+  const open = () => {
+    modalBg.classList.add("on")
+    modal.classList.add("on")
+  }
+  
+  const close = () => {
+    modalBg.classList.remove("on")
+    modal.classList.remove("on")
+    modalDelete.classList.remove("on")
+  }
 
-// 모달창 구현
+  const user_delete_open = () => {
+    modalDelete.classList.add("on")
+  }
+  
+  const user_delete_close = () => {
+    deletePost(postId)
+  }
+  
+  open();
+  modalBg.addEventListener("click", close);
+  user_delete.addEventListener("click", user_delete_open);
+  user_edit.addEventListener("click", function() {
+    localStorage.setItem("postId",postId)
+    location.href = "./edituser_post.html"
+  });
+  cancleBtn.addEventListener("click", close)
+  deleteBtn.addEventListener("click", user_delete_close);
+}
+
+// 게시글 삭제
+async function deletePost(postId) {
+  const token = localStorage.getItem("Token");
+  const deletePost = await fetch(
+    `http://146.56.183.55:5050/post/${postId}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    }
+  );
+}
+
+// 로그아웃 모달창 구현
 let dotBtn = document.querySelector(".icon-more")
 let modalBg = document.querySelector(".modal_bg")
 let modal = document.querySelector(".userpage_modal")

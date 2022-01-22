@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user_post</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="icon" href="img/favi.ico">
+    <link rel="stylesheet" href="css/user_post.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="sr-only">user_post</h1>
+        <span class="header-cont">
+            <!-- 뒤로가기 -->
+            <button type="button" class="icon-left-arrow"><img src="img/icon-arrow-left.png" alt="뒤로가기"></button>
+            <!-- 게시물 작성시 버튼 활성화 -->
+            <button class="upload-btn">업로드</button>
+        </span>
+    </header>
+    <main class="main">
+        <div class="main-img"></div>
+        <!-- 게시글 작성 -->
+        <section class="user_post-sec">
+            <h2 class="sr-only">write post</h2>
+            <aritcle class="user_post-article">
+                <form class="user_post-article-cont">
+                    <textarea class="user_post-inp" type="text" cols="40" rows="5" placeholder="게시글 입력하기..."></textarea>
+                    <img class="user_post-upload-img" src="img/upload_img_btn.png" alt="이미지 추가">
+                    <label for="textinput_file_img"></label>
+                    <input id="textinput_file_img"type="file" class="textinput_input_file" accept="image/*" >
+                </form>
+                <div class="art-photo-list"></div>
+            </aritcle>
+            <div>
+            </div>
+        </section>
+    </main>
+    <script src="./js/edituser_post.js"></script>
+</body>
+
+</html>
