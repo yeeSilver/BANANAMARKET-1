@@ -18,9 +18,8 @@ form_txt.addEventListener('keyup',()=>{
   if((saleName_val)  && (salePrice_val) && (saleLink_val) &&(saleImg_val)){
     saveBtn.disabled = false;
     saveBtn.classList.add('click');
-    console.log("clear");
   }else{
-    console.log("모두 입력하세요")
+    alert("모두 입력하세요")
   }
 })
 

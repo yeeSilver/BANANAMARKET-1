@@ -121,4 +121,8 @@ async function createPost() {
 
 $uploadBtn.addEventListener("click", function () {
     createPost();
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 5d9f2ce04d8020643dd70f9f8aac347a7a21258e
