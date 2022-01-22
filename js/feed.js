@@ -105,7 +105,7 @@ async function getFeed() {
           .querySelector(`.${cls}`)
           .addEventListener("click", () => GoToPage(authorAccount));
       });
-      ["likes"].forEach((cls) => {
+      ["comments"].forEach((cls) => {
         section
           .querySelector(`.${cls}`)
           .addEventListener("click", () => heartClick(postId));

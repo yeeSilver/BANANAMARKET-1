@@ -1,10 +1,28 @@
 const profile = document.querySelector(".img-profile");
-console.log(localStorage.getItem("Token"));
-// 상단바 뒤로가기
+const $image = document.querySelector(".textinput_input_file");
+const $content = document.querySelector(".user_post-inp");
+const $uploadBtn = document.querySelector(".upload-btn");
+const $preview = document.querySelector(".art-preview");
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
-    location.href = "./feed.html"
+    location.href = "./feed.html";
 });
-// 유저 프로필 사진
+
+// 버튼 활성화
+const form_txt = document.querySelector(".user_post-article-cont");
+$uploadBtn.disabled = true;
+$content.addEventListener("keyup", listener);
+
+function listener() {
+    switch (!$content.value) {
+        case true:
+            $uploadBtn.disabled = true;
+            break;
+        case false:
+            $uploadBtn.disabled = false;
+            break;
+    }
+}
+// 프로필 사진 불러오기
 async function getProfile() {
     const accountname = localStorage.getItem("accountname");
 
@@ -20,19 +38,40 @@ async function getProfile() {
     const json = await res.json();
     const 이미지 = json.profile.image;
     const 계정 = json.profile.accountname;
-    document.querySelector(".main-img").innerHTML += `
+    document.querySelector(".main-img").innerHTML = `
     <img class="profile-img-small" src="${이미지}" alt="${계정}의 프로필 사진">
     `;
 }
 getProfile();
-// 사진 미리보기
-async function imageDisplay(e) {}
-const $image = document.querySelector(".textinput_input_file");
-const $content = document.querySelector(".user_post-inp");
-const $uploadBtn = document.querySelector(".upload-btn");
-$content.addEventListener('keyup', () => {
 
-})
+// 선택한 사진 미리보기
+function handleFiles(files) {
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        if (!file.type.startsWith("image/")) {
+            continue;
+        }
+
+        const img = document.createElement("img");
+        img.classList.add("art-preview_img");
+        img.file = file;
+        $preview.appendChild(img); // "preview"가 결과를 보여줄 div 출력이라 가정.
+
+        const reader = new FileReader();
+        reader.onload = (function (aImg) {
+            return function (e) {
+                aImg.src = e.target.result;
+            };
+        })(img);
+        reader.readAsDataURL(file);
+    }
+}
+$image.addEventListener("change", function () {
+    handleFiles($image.files);
+});
+
+// 이미지 서버 올리기
 async function imageUpload(files, index) {
     const formData = new FormData();
     formData.append("image", files[index]); //formData.append("키이름","값")
@@ -44,7 +83,7 @@ async function imageUpload(files, index) {
     const productImgName = data["filename"];
     return productImgName;
 }
-async function createPost(e) {
+async function createPost() {
     const url = "http://146.56.183.55:5050";
     const token = localStorage.getItem("Token");
     //입력한 텍스트 불러와야함
@@ -74,13 +113,12 @@ async function createPost(e) {
             }),
         });
         const json = await res.json();
-        console.log(json);
+        location.href = "./userpage.html";
     } else {
         alert("아 이미지 갯수가 너무 많소");
     }
 }
-//여기까지 이미지 여러개 업로드하기.
-$uploadBtn.addEventListener("click", function() {
+
+$uploadBtn.addEventListener("click", function () {
     createPost();
-    location.href = "userpage.html"
 });
