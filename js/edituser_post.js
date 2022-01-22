@@ -3,6 +3,7 @@ const profile = document.querySelector(".img-profile");
 const $image = document.querySelector(".textinput_input_file");
 const $content = document.querySelector(".user_post-inp");
 const $uploadBtn = document.querySelector(".upload-btn");
+const $preview = document.querySelector(".art-preview");
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
     location.href = "./feed.html"
 });
@@ -37,7 +38,7 @@ async function getProfile() {
     `;
 }
 getProfile();
-async function imageDisplay() {}
+
 async function imageUpload(files, index) {
     const formData = new FormData();
     formData.append("image", files[index]);
@@ -49,12 +50,39 @@ async function imageUpload(files, index) {
     const productImgName = data["filename"];
     return productImgName;
 }
+
+function handleFiles(files) {
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        if (!file.type.startsWith("image/")) {
+            continue;
+        }
+
+        const img = document.createElement("img");
+        img.classList.add("art-preview_img");
+        img.file = file;
+        $preview.appendChild(img); 
+        const reader = new FileReader();
+        reader.onload = (function (aImg) {
+            return function (e) {
+                aImg.src = e.target.result;
+            };
+        })(img);
+        reader.readAsDataURL(file);
+    }
+}
+$image.addEventListener("change", function () {
+    handleFiles($image.files);
+});
+
 async function createPost() {
     const url = "http://146.56.183.55:5050";
     const token = localStorage.getItem("Token");
     const contentText = $content.value;
     const imageUrls = [];
     const files = $image.files;
+    console.log(files);
     if (files.length <= 3) {
         for (let index = 0; index < files.length; index++) {
             const imgurl = await imageUpload(files, index);

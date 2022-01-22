@@ -20,7 +20,6 @@ async function getFeed() {
   });
   const json = await res.json();
   const post = json.post;
-  console.log(json);
   const authorImage = post.author.image;
   const authorAccount = post.author.accountname;
   const authorName = post.author.username;
@@ -95,13 +94,13 @@ async function getComments() {
   });
   const json = await res.json();
   const jsonComment = json.comments
-  console.log(json);
   for(let i = 0; i < jsonComment.length; i++) {
     const image = jsonComment[i].author.image;
     const username = jsonComment[i].author.username;
     const createdAt = jsonComment[i].createdAt.slice(0,10);
     const time = jsonComment[i].createdAt.slice(11,19);
     const content = jsonComment[i].content;
+    const spareDate = checkDate(createdAt, time);
     // console.log(createdAt)
     // console.log(username)
     const article = document.createElement("article");
@@ -109,53 +108,42 @@ async function getComments() {
     article.innerHTML =`<div class="comments-innerbox">
     <img class="comments-profile" src="${image}" alt="프로필이미지" />
     <h3>${username}</h3>
-    <span class="settime">현수오빠방구</span>
+    <span class="settime">${spareDate}</span>
   </div>
   <img class="comments-dot" src="img/more-vertical.png" alt="">
   <p class="comments-contents">${content}</p>
     `;
-
-
-    ["settime"].forEach((cls) => {
-      article
-        .querySelector(`.${cls}`)
-        .addEventListener("click", () => {
-          let currentTime = new Date();
-          
-          const com_month = Number((createdAt.slice(5, 7) - 1) * 43800);
-          const com_day = Number(createdAt.slice(8, 10) * 1440);
-          const com_hours = Number(time.slice(0, 2) * 60);
-          const com_min = Number(time.slice(3, 5));
-          const allTime =  com_month + com_day + com_hours + com_min;
-        
-          const month = currentTime.getMonth();
-          const date = currentTime.getDate();
-          const hours = currentTime.getHours();
-          const minutes = currentTime.getMinutes();
-          const toallTime = (month * 43800) + ((date + 1) * 1440) + (hours * 60) + minutes
-        
-        
-          console.log(toallTime);
-          console.log(allTime);
-        
-          
-          if(toallTime - allTime <= 1){
-            cls.innerHTML = ("방금 전")
-          } else {
-            cls.innerHTML = ("현수오빠 방구머거")
-          }
-        
-          
-        
-        });
-    });
-
+    ["settime"].forEach((cls) => checkDate(createdAt, time));
+    console.log(createdAt, time)
     document.querySelector(".comments-container").appendChild(article);
-  }
-  
-  
+    };
+}
+  function checkDate(createdAt, time) {
+    let currentTime = new Date();
+    console.log(currentTime);         
+    const com_month = Number((createdAt.slice(5, 7) - 1) * 43800);
+    const com_day = Number(createdAt.slice(8, 10) * 1440);
+    const com_hours = Number(time.slice(0, 2) * 60);
+    const com_min = Number(time.slice(3, 5));
+    const allTime =  com_month + com_day + com_hours + com_min;
 
-};
+    const month = currentTime.getMonth();
+    const date = currentTime.getDate();
+    const hours = currentTime.getHours();
+    const minutes = currentTime.getMinutes();
+    const toallTime = (month * 43800) + (date * 1440) + (hours * 60) + minutes
+    const spareTime = toallTime - allTime;
+    // console.log(spareTime)
+    if(spareTime <= 1)  {
+      return "방금";
+    } else if(spareTime < 60) {
+      return `${spareTime}분전` 
+    } else if(spareTime < 1440 ) {
+    return `${Math.floor(spareTime / 60)}시간전`
+    } else if(spareTime < 43800) {
+      return `${Math.floor(spareTime / 1440)}일전`
+    }
+  }
 
 
 

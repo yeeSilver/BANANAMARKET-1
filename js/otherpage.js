@@ -40,7 +40,7 @@ async function getProfile() {
 
   document.querySelector(".followings-num").innerHTML += `
   <p class="followingBtn">${팔로잉수}</p>
-  <small>followeings</small>
+  <small>followings</small>
 `;
 
   const 팔로워 = document.querySelector(".followBtn");
@@ -158,20 +158,13 @@ async function GetList() {
     const accountname = el.author.accountname;
     const content = el.content;
     const feedImg = el.image;
+    const heartCount = el.heartCount;
+    const commentCount = el.commentCount;
     let updateAt = el.updatedAt;
     // updateAt = updateAt.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g);
     const year = updateAt.slice(0, 4);
     const month = updateAt.slice(5, 6)+1;
     const date = updateAt.slice(8, 10);
-
-    let heartCount = 0;
-    let commentCount = 0;
-
-    if (el.hearted && el.comments) {
-      heartCount = el.heartCount;
-      commentCount = el.comments.length;
-    }
-
     let feedArt = document.createElement("article");
     feedArt.classList.add("art-post");
     feedArt.insertAdjacentHTML(

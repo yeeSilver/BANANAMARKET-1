@@ -15,15 +15,12 @@
     <header class="header">
         <h1 class="sr-only">user_post</h1>
         <span class="header-cont">
-            <!-- 뒤로가기 -->
             <button type="button" class="icon-left-arrow"><img src="img/icon-arrow-left.png" alt="뒤로가기"></button>
-            <!-- 게시물 작성시 버튼 활성화 -->
             <button class="upload-btn">업로드</button>
         </span>
     </header>
     <main class="main">
         <div class="main-img"></div>
-        <!-- 게시글 작성 -->
         <section class="user_post-sec">
             <h2 class="sr-only">write post</h2>
             <aritcle class="user_post-article">
@@ -31,9 +28,9 @@
                     <textarea class="user_post-inp" type="text" cols="40" rows="5" placeholder="게시글 입력하기..."></textarea>
                     <img class="user_post-upload-img" src="img/upload_img_btn.png" alt="이미지 추가">
                     <label for="textinput_file_img"></label>
-                    <input id="textinput_file_img"type="file" class="textinput_input_file" accept="image/*" >
+                    <input id="textinput_file_img"type="file" class="textinput_input_file" accept="image/*" multiple>
                 </form>
-                <div class="art-photo-list"></div>
+                <div class="art-preview"></div>
             </aritcle>
             <div>
             </div>

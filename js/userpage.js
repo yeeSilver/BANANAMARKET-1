@@ -1,4 +1,5 @@
 // 로그인한 프로필 가져오기
+const token = localStorage.getItem("Token");
 async function getProfile() {
   const accountname = localStorage.getItem("accountname");
 
@@ -365,6 +366,7 @@ function editModal(postId) {
   
   const user_delete_close = () => {
     deletePost(postId)
+    location.href = "./userpage.html"
   }
   
   open();

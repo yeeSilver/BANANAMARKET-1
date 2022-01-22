@@ -52,11 +52,11 @@ function handleFiles(files) {
         if (!file.type.startsWith("image/")) {
             continue;
         }
-
+        
         const img = document.createElement("img");
         img.classList.add("art-preview_img");
         img.file = file;
-        $preview.appendChild(img); // "preview"가 결과를 보여줄 div 출력이라 가정.
+        $preview.appendChild(img);
 
         const reader = new FileReader();
         reader.onload = (function (aImg) {
@@ -121,8 +121,5 @@ async function createPost() {
 
 $uploadBtn.addEventListener("click", function () {
     createPost();
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> 5d9f2ce04d8020643dd70f9f8aac347a7a21258e
+
