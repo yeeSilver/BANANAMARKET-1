@@ -36,9 +36,11 @@
 .unfollow-btn{
   width: 120px;
   height: 34px;
-  background: #FFF;
   border-radius: 30px;
-  border: 1px solid #DBDBDB;
+  background: #FFF;
+  font-size: 12px;
+  text-align: center;
+  vertical-align: top;
 }
 
 .cancel-btn{
