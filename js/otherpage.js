@@ -18,6 +18,7 @@ async function getProfile() {
   const 소개 = json.profile.intro;
   const 팔로워수 = json.profile.followerCount;
   const 팔로잉수 = json.profile.followingCount;
+  console.log(json)
 
   document.querySelector(".profile").innerHTML += `
   <a href="" class="display-inline basic-profile"><img src="${이미지}" alt=""></a>
@@ -28,7 +29,7 @@ async function getProfile() {
   </div>
   <div class="btn-set">
         <button type="submit" class="display-inline icon-massage"><img src="img/message.png" alt=""></button>
-        <button type="submit" class="display-inline follow-btn">팔로우</button>
+        <button type="submit" class="display-inline unfollow-btn">언팔로우</button>
         <button type="submit" class="display-inline icon-share"><img src="img/icon-share.png" alt=""></button>
   </div>
     `;
@@ -54,23 +55,57 @@ async function getProfile() {
   });
 
   // 팔로우버튼
-
-  const 팔로우버튼토글 = document.querySelector(".follow-btn");
-
+  const 팔로우버튼토글 = document.querySelector(".unfollow-btn");
   팔로우버튼토글.addEventListener("click", function() {
     if (팔로우버튼토글.innerText === '팔로우') {
         팔로우버튼토글.classList.remove('follow-btn');
         팔로우버튼토글.classList.add('unfollow-btn');
+        팔로우취소();
         팔로우버튼토글.innerText = '언팔로우';
+        팔로워.innerText = (+(팔로워.innerText) + 1);
+
     } else{
         팔로우버튼토글.classList.remove('unfollow-btn')
         팔로우버튼토글.classList.add('follow-btn');
+        팔로우업로드();
         팔로우버튼토글.innerText = '팔로우';
+        팔로워.innerText = (+(팔로워.innerText) - 1);
     }
 });
 }
 
 getProfile();
+
+//팔로우 반영 하기
+async function 팔로우업로드() {
+  const 팔로우데이터 = await fetch(
+    `http://146.56.183.55:5050/profile/${authorAccount}/follow`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      }
+    }
+  );
+  const data = await 팔로우데이터.json();
+}
+
+//팔로우 취소 하기
+async function 팔로우취소() {
+  const token = localStorage.getItem("Token");
+  const 팔로우취소데이터 = await fetch(
+    `http://146.56.183.55:5050/profile/${authorAccount}/unfollow`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      }
+    }
+  );
+  const data = await 팔로우취소데이터.json();
+}
 
 const sellDiv = document.querySelector(".sell-items");
 // 판매 게시글 가져오기
@@ -117,12 +152,6 @@ window.onload = function () {
   GetList();
   GetAlbum();
 };
-// async function load(){
-//   GetSaleInfo();
-//   albumSec.classList.add("hide");
-//   GetList();
-//   GetAlbum();
-// }
 
 albumBtn.addEventListener("click", () => {
   albumBtn.src = "./img/icon-post-album-on.png";
@@ -152,19 +181,37 @@ async function GetList() {
   );
   const list = await feedimgdata.json();
   const listPost = list.post;
+  const heartedlist = [];
   listPost.forEach((el) => {
+    const postId = el.id;
     const username = el.author.username;
     const userImg = el.author.image;
     const accountname = el.author.accountname;
     const content = el.content;
     const feedImg = el.image;
+<<<<<<< HEAD
     const heartCount = el.heartCount;
     const commentCount = el.commentCount;
+=======
+    const hearted = el.hearted;
+>>>>>>> 4ffc1e673df1328e9e6cfbf0df515e83128d5fd5
     let updateAt = el.updatedAt;
     // updateAt = updateAt.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g);
     const year = updateAt.slice(0, 4);
     const month = updateAt.slice(5, 6)+1;
     const date = updateAt.slice(8, 10);
+<<<<<<< HEAD
+=======
+ 
+    let heartCount = 0;
+    let commentCount = 0;
+
+    if (hearted && el.comments) {
+      heartCount = el.heartCount;
+      commentCount = el.comments.length;
+    }
+
+>>>>>>> 4ffc1e673df1328e9e6cfbf0df515e83128d5fd5
     let feedArt = document.createElement("article");
     feedArt.classList.add("art-post");
     feedArt.insertAdjacentHTML(
@@ -181,7 +228,7 @@ async function GetList() {
         <p class="post-user-id">@${accountname}</p>
       </div>
       <button>
-        <img id="more" src="./img/more-vertical.png" alt="" />
+        <img id="more" class="more" src="./img/more-vertical.png" alt="" />
       </button>
     </div>
     <!-- 포스트 메인-->
@@ -191,7 +238,9 @@ async function GetList() {
         <p>
           ${content}
         </p>
-        <img src="${feedImg}" alt="" class="feedImg" onerror="this.style.display='none'" />
+        <div class="feedImg"> 
+        <img src="${feedImg}" alt="" onerror="this.style.display = 'none'"/>
+        </div>
       </div>
       <!-- likes -->
       <div class="con-reaction">
@@ -201,8 +250,7 @@ async function GetList() {
           <svg width="18" height="18" viewBox="0 0 18 18" fill="#fff" stroke="#767676" xmlns="http://www.w3.org/2000/svg">
           <path d="M15.9201 3.0132C15.5202 2.60553 15.0455 2.28213 14.523 2.06149C14.0005 1.84085 13.4405 1.72728 12.8749 1.72728C12.3093 1.72728 11.7492 1.84085 11.2267 2.06149C10.7042 2.28213 10.2295 2.60553 9.82965 3.0132L8.99985 3.85888L8.17004 3.0132C7.3624 2.19011 6.267 1.72771 5.12483 1.72771C3.98265 1.72771 2.88725 2.19011 2.07961 3.0132C1.27197 3.83629 0.818237 4.95264 0.818237 6.11667C0.818237 7.28069 1.27197 8.39704 2.07961 9.22013L2.90941 10.0658L8.99985 16.2727L15.0903 10.0658L15.9201 9.22013C16.3201 8.81265 16.6374 8.32884 16.8539 7.79633C17.0704 7.26383 17.1819 6.69307 17.1819 6.11667C17.1819 5.54026 17.0704 4.96951 16.8539 4.437C16.6374 3.9045 16.3201 3.42069 15.9201 3.0132Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          
-            <span class="number">${heartCount}</span>
+            <span class="heartnumber">${heartCount}</span>
           </li>
           <li class="comments">
             <img src="./img/2/footer-icon/chat.svg" alt="" />
@@ -216,19 +264,44 @@ async function GetList() {
     </div>
         `
     );
+    ["likes"].forEach((cls) => {
+      feedArt
+        .querySelector(`.${cls}`)
+        .addEventListener("click", () => heartClick(postId, hearted))
+      });
     listSec.appendChild(feedArt);
+    heartedlist.push(hearted);
+    
+    ["more"].forEach((cls) => {
+      feedArt
+        .querySelector(`.${cls}`)
+        .addEventListener("click", () => editModal(postId))
+      });
   });
 
-
-
-  // const feedImgsrcs = document.querySelectorAll(".feedImg");
-  // feedImgsrcs.forEach((feedImgsrc, i) => {
-  //   if (i.src === "") {
-  //     feedImgsrc.style.display = "none";
-  //   }
-  // });
-
+  //좋아요가 있는 부분은 색이 있는 하트 보여주기
   
+  const likesBtns = document.querySelectorAll(".likes svg");
+  const likeNums = document.querySelectorAll('.heartnumber');
+  heartedlist.forEach((list, i) => {
+    if (list === true){
+      likesBtns[i].classList.add("likes-on");
+    } 
+  })
+  
+  likesBtns.forEach((likeBtn, i) => {
+    // console.log(i);
+    likeBtn.addEventListener("click", function () {
+      if (likeBtn.classList.contains("likes-on")) {
+        likeBtn.classList.remove("likes-on");
+        likeNums[i].innerText = (+(likeNums[i].innerText) - 1);
+      } else {
+        likeBtn.classList.add("likes-on");
+        likeNums[i].innerText = (+(likeNums[i].innerText) + 1);
+      }
+    });
+  });
+
   const moreBtns = document.querySelectorAll("#more");
   moreBtns.forEach((moreBtn) => {
     moreBtn.addEventListener("click", function () {
@@ -237,25 +310,55 @@ async function GetList() {
     })
   })
 
-  const likesBtns = document.querySelectorAll(".likes svg");
-  likesBtns.forEach((likeBtn) => {
-    likeBtn.addEventListener("click", function () {
-      if (likeBtn.classList.contains("likes-on")) {
-        likeBtn.classList.remove("likes-on");
-      } else {
-        likeBtn.classList.add("likes-on");
-      }
-    });
-  });
 }
 
-// const likesBtn = document.querySelector(".likes img");
+
+function heartClick(postId, hearted) {
+  if(hearted){
+    DeleteLikes(postId)
+  }else{
+    UploadLikes(postId)
+  }
+}
+//좋아요 올리는 부분
+async function UploadLikes(postId) {
+  const token = localStorage.getItem("Token");
+  // const dataform = new FormData();
+  // dataform.append("heartCount", heartState);
+  const likedata = await fetch(
+    `http://146.56.183.55:5050/post/${postId}/heart`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      }
+    }
+  );
+}
+
+//좋아요 취소
+async function DeleteLikes(postId) {
+  const token = localStorage.getItem("Token");
+  const likedata = await fetch(
+    `http://146.56.183.55:5050/post/${postId}/unheart`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      }
+    }
+  );
+}
 
 // 피드 가져오기 앨범형식
 async function GetAlbum() {
+  const token = localStorage.getItem("Token");
+  const accountname = localStorage.getItem("accountname");
   const albumPhotoDiv = document.querySelector(".album-photos");
   const albumimgdata = await fetch(
-    `http://146.56.183.55:5050/post/${authorAccount}/userpost`,
+    `http://146.56.183.55:5050/post/${accountname}/userpost`,
     {
       method: "GET",
       headers: {
@@ -268,19 +371,18 @@ async function GetAlbum() {
   const albumPost = album.post;
   albumPost.forEach((el) => {
     const imgsrc = el.image;
-    let albumDiv = document.createElement("div");
-    albumDiv.innerHTML = `
-    <div class="album-img-con">
-      <a href="">
-      <img src="${imgsrc}" alt="" onerror="this.style.display='none'" >
-      </a>
-    </div>
-    `;
-    const albumImgDiv = document.querySelector(".album-img-con");
-    albumPhotoDiv.appendChild(albumDiv);
-    // if (imgsrc === "") {
-    //   albumImgDiv.style.display = "none";
-    // }
+    if (!(imgsrc === "")) {
+      let albumDiv = document.createElement("div");
+      albumDiv.innerHTML = `
+      <div class="album-img-con">
+        <a href="">
+        <img src="${imgsrc}" alt=""onerror="this.style.display = 'none'">
+        </a>
+      </div>
+      `;
+      const albumImgDiv = document.querySelector(".album-img-con");
+      albumPhotoDiv.appendChild(albumDiv);
+    }
   });
 }
 
@@ -290,7 +392,7 @@ let modalBg = document.querySelector(".modal_bg")
 let modal = document.querySelector(".userpage_modal")
 let logout = document.querySelector(".user_logout")
 let modalLogout = document.querySelector(".modal_logout")
-let cancleBtn = document.querySelector(".cancle-btn")
+// let cancleBtn = document.querySelector(".cancle-btn")
 let logoutBtn = document.querySelector(".logout-btn")
 
 const open = () => {
@@ -313,5 +415,5 @@ const Logout_close = () => {
 dotBtn.addEventListener("click", open);
 modalBg.addEventListener("click", close);
 logout.addEventListener("click", Logout_open);
-cancleBtn.addEventListener("click", close);
-logoutBtn.addEventListener("click", Logout_close)
+// cancleBtn.addEventListener("click", close);
+// logoutBtn.addEventListener("click", Logout_close);
