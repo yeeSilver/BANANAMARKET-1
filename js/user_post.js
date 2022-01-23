@@ -83,6 +83,7 @@ async function imageUpload(files, index) {
     const productImgName = data["filename"];
     return productImgName;
 }
+
 async function createPost() {
     const url = "http://146.56.183.55:5050";
     const token = localStorage.getItem("Token");

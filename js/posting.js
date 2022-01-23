@@ -1,4 +1,6 @@
-// 변수 설정
+const textInput = document.querySelector(".textinput_input_text");
+const textButton = document.querySelector(".textinput_button");
+
 // 상단바 뒤로가기
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
   window.history.back();
@@ -18,8 +20,9 @@ async function getFeed() {
       "Content-type": "application/json",
     },
   });
-  
+
   const json = await res.json();
+  console.log(json);
   const post = json.post;
   const authorImage = post.author.image;
   const authorAccount = post.author.accountname;
@@ -64,23 +67,21 @@ async function getFeed() {
           </article>
         </section>
               `;
+  //  좋아요 구현
+  const likesBtns = document.querySelectorAll(".likes svg");
+  likesBtns.forEach((likeBtn) => {
+    likeBtn.addEventListener("click", function () {
+      if (likeBtn.classList.contains("likes-on")) {
+        likeBtn.classList.remove("likes-on");
+      } else {
+        likeBtn.classList.add("likes-on");
+      }
+    });
 }
-//  좋아요 구현
-const likesBtns = document.querySelectorAll(".likes svg");
-likesBtns.forEach((likeBtn) => {
-  likeBtn.addEventListener("click", function () {
-    if (likeBtn.classList.contains("likes-on")) {
-      likeBtn.classList.remove("likes-on");
-    } else {
-      likeBtn.classList.add("likes-on");
-    }
-  });
-  
-});
-
+  );
+}
 
 getFeed();
-
 
 // 댓글 리스트업
 async function getComments() {
@@ -94,19 +95,19 @@ async function getComments() {
     },
   });
   const json = await res.json();
-  const jsonComment = json.comments
-  for(let i = 0; i < jsonComment.length; i++) {
+  const jsonComment = json.comments;
+  for (let i = 0; i < jsonComment.length; i++) {
     const image = jsonComment[i].author.image;
     const username = jsonComment[i].author.username;
-    const createdAt = jsonComment[i].createdAt.slice(0,10);
-    const time = jsonComment[i].createdAt.slice(11,19);
+    const createdAt = jsonComment[i].createdAt.slice(0, 10);
+    const time = jsonComment[i].createdAt.slice(11, 19);
     const content = jsonComment[i].content;
     const spareDate = checkDate(createdAt, time);
     // console.log(createdAt)
     // console.log(username)
     const article = document.createElement("article");
     article.classList.add("comment-element");
-    article.innerHTML =`<div class="comments-innerbox">
+    article.innerHTML = `<div class="comments-innerbox">
     <img class="comments-profile" src="${image}" alt="프로필이미지" />
     <h3>${username}</h3>
     <span class="settime">${spareDate}</span>
@@ -114,10 +115,8 @@ async function getComments() {
   <img class="comments-dot" src="img/more-vertical.png" alt="">
   <p class="comments-contents">${content}</p>
     `;
-    ["settime"].forEach((cls) => checkDate(createdAt, time));
-    // console.log(createdAt, time)
     document.querySelector(".comments-container").appendChild(article);
-    };
+  }
 }
   function checkDate(createdAt, time) {
     let currentTime = new Date();
@@ -135,7 +134,6 @@ async function getComments() {
     const minutes = currentTime.getMinutes();
     const toallTime = (month * 43800) + (date * 1440) + (hours * 60) + minutes;
     const spareTime = toallTime - allTime;
-    console.log(spareTime)
     // console.log(spareTime)
     if(spareTime <= 1)  {
       return "방금";
@@ -145,25 +143,66 @@ async function getComments() {
     return `${Math.floor(spareTime / 60)}시간전`
     } else if(spareTime < 43800) {
       return `${Math.floor(spareTime / 1440)}일전`
+    } else {
+      return `${Math.floor(spareTime / 43800)}개월전`
     }
   }
+getComments()
+// 댓글 작성
 
+async function writeComments() {
+  const url = `http://146.56.183.55:5050/post/${postId}/comments`;
+  const contentText = textInput.value;
+  const token = localStorage.getItem("Token");
+  const res = await fetch(url, {
+      method: "POST",
+      headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        "comment": {
+            "content" : contentText
+        },
+    })
+  });
+  const json = await res.json();
+}
+textButton.addEventListener('click', function (){
+  writeComments()
+})
 
+// 댓글 프로필 사진
 
+async function getProfile() {
+  const accountname = localStorage.getItem("accountname");
+  const url = `http://146.56.183.55:5050/profile/${accountname}`;
+  const token = localStorage.getItem("Token");
+  const res = await fetch(url, {
+      method: "GET",
+      headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-type": "application/json",
+      },
+  });
+  const json = await res.json();
+  const 이미지 = json.profile.image;
+  const img = document.createElement('img')
+  img.src = `${이미지}`
+  document.querySelector('.textinput').appendChild(img);
+}
 
-
-getComments();
-
+getProfile();
 
 // 게시물 모달 신고 표시
 // 댓글 모달 삭제 표시
 // 댓글 입력 게시 활성화
 
+const dotBtn = document.querySelector(".icon-more");
+const modalBg = document.querySelector(".modal_bg");
+const modal = document.querySelector(".chatting_modal");
 let inputText = document.querySelector(".textinput_input_text");
 let button = document.querySelector(".textinput_button");
-let dotBtn = document.querySelector(".icon-more");
-let modalBg = document.querySelector(".modal_bg");
-let modal = document.querySelector(".chatting_modal");
 
 button.disabled = true;
 inputText.addEventListener("keyup", listener);
