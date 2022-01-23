@@ -82,8 +82,13 @@ async function getFollowing() {
 }
 
 function GoToPage(accountName) {
-    localStorage.setItem("authorAccountName", accountName)
-    location.href = "./otherpage.html"
+  const myAccountname = localStorage.getItem("accountname");
+  if(myAccountname == accountName) {
+    location.href = "./userpage.html"
+  } else  {
+  localStorage.setItem("authorAccountName", accountName)
+  location.href = "./otherpage.html"
+  }
 }
 
 getFollowing();
