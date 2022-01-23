@@ -2,9 +2,7 @@ const saveBtn = document.querySelector('.sale-save');
 const saleImg = document.querySelector('#product-img');
 saveBtn.disabled = true;
 const userToken = localStorage.getItem("Token");
-// const useraccount = localStorage.getItem("useraccount");
 const useraccount = userToken.useraccount;
-// console.log(useraccount)
 //입력하면 버튼 활성화
 const form_txt = document.querySelector('.product-sale-form');
 const saleName = document.querySelector('#product');
@@ -18,17 +16,14 @@ form_txt.addEventListener('keyup',()=>{
   if((saleName_val)  && (salePrice_val) && (saleLink_val) &&(saleImg_val)){
     saveBtn.disabled = false;
     saveBtn.classList.add('click');
-  }else{
-    alert("모두 입력하세요")
   }
 })
 
-saveBtn.addEventListener("click",(e)=>{
+saveBtn.addEventListener("click",()=>{
   console.log('click');
   imgFile = (saleImg.files);
   uploadSaleImgName(imgFile);
   UploadSalePost(imgFile);
-  location.href = "userpage.html";
 })
 
 //이미지 등록하면 이미지 url을 보내줌. url을 이미지 
@@ -84,17 +79,8 @@ async function UploadSalePost(files){
     console.log(saleData);
     const message =  saleData.message    
     if(res.status==200){
-      console.log('완료')
-      }
-      else{
-          console.log(saleData)
-      }
+      location.href = "userpage.html"; }
 
   }catch(err){
-    alert('오류가 났습니다.')
+    console.log('오류가 났습니다.')
 }}
-
-
-
-
-

@@ -18,7 +18,7 @@ async function getProfile() {
   const 소개 = json.profile.intro;
   const 팔로워수 = json.profile.followerCount;
   const 팔로잉수 = json.profile.followingCount;
-  console.log(json)
+  console.log(json.profile)
 
   document.querySelector(".profile").innerHTML += `
   <a href="" class="display-inline basic-profile"><img src="${이미지}" alt=""></a>
@@ -89,6 +89,7 @@ async function 팔로우업로드() {
     }
   );
   const data = await 팔로우데이터.json();
+  console.log(data);
 }
 
 //팔로우 취소 하기
@@ -105,6 +106,7 @@ async function 팔로우취소() {
     }
   );
   const data = await 팔로우취소데이터.json();
+  console.log(data);
 }
 
 const sellDiv = document.querySelector(".sell-items");
