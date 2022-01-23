@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 const textInput = document.querySelector(".textinput_input_text");
 const textButton = document.querySelector(".textinput_button");
+=======
+const textinput = document.querySelector(".textinput_input_text");
+const textinput_button = document.querySelector(".textinput_button");
+>>>>>>> Stashed changes
 
 // 상단바 뒤로가기
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
@@ -77,9 +82,14 @@ async function getFeed() {
         likeBtn.classList.add("likes-on");
       }
     });
+<<<<<<< Updated upstream
 }
   );
 }
+=======
+  });
+}
+>>>>>>> Stashed changes
 
 getFeed();
 
@@ -94,6 +104,7 @@ async function getComments() {
       "Content-type": "application/json",
     },
   });
+
   const json = await res.json();
   const jsonComment = json.comments;
   for (let i = 0; i < jsonComment.length; i++) {
@@ -118,36 +129,41 @@ async function getComments() {
     document.querySelector(".comments-container").appendChild(article);
   }
 }
-  function checkDate(createdAt, time) {
-    let currentTime = new Date();
-    // console.log(currentTime);         
-    const com_month = Number((createdAt.slice(5, 7) - 1) * 43800);
-    const com_day = Number(createdAt.slice(8, 10) * 1440);
-    const com_hours = (Number(time.slice(0, 2)) + 9) * 60 ;
-    const com_min = Number(time.slice(3, 5));
-    // console.log(com_min)
-    const allTime =  com_month + com_day + com_hours + com_min;
+function checkDate(createdAt, time) {
+  let currentTime = new Date();
+  // console.log(currentTime);
+  const com_month = Number((createdAt.slice(5, 7) - 1) * 43800);
+  const com_day = Number(createdAt.slice(8, 10) * 1440);
+  const com_hours = (Number(time.slice(0, 2)) + 9) * 60;
+  const com_min = Number(time.slice(3, 5));
+  // console.log(com_min)
+  const allTime = com_month + com_day + com_hours + com_min;
 
-    const month = currentTime.getMonth();
-    const date = currentTime.getDate();
-    const hours = currentTime.getHours();
-    const minutes = currentTime.getMinutes();
-    const toallTime = (month * 43800) + (date * 1440) + (hours * 60) + minutes;
-    const spareTime = toallTime - allTime;
-    // console.log(spareTime)
-    if(spareTime <= 1)  {
-      return "방금";
-    } else if(spareTime < 60) {
-      return `${spareTime}분전` 
-    } else if(spareTime < 1440 ) {
-    return `${Math.floor(spareTime / 60)}시간전`
-    } else if(spareTime < 43800) {
-      return `${Math.floor(spareTime / 1440)}일전`
-    } else {
-      return `${Math.floor(spareTime / 43800)}개월전`
-    }
+  const month = currentTime.getMonth();
+  const date = currentTime.getDate();
+  const hours = currentTime.getHours();
+  const minutes = currentTime.getMinutes();
+  const toallTime = month * 43800 + date * 1440 + hours * 60 + minutes;
+  const spareTime = toallTime - allTime;
+  // console.log(spareTime)
+  if (spareTime <= 1) {
+    return "방금";
+  } else if (spareTime < 60) {
+    return `${spareTime}분전`;
+  } else if (spareTime < 1440) {
+    return `${Math.floor(spareTime / 60)}시간전`;
+  } else if (spareTime < 43800) {
+    return `${Math.floor(spareTime / 1440)}일전`;
+  } else {
+    return `${Math.floor(spareTime / 43800)}개월전`;
   }
+<<<<<<< Updated upstream
 getComments()
+=======
+}
+getComments();
+
+>>>>>>> Stashed changes
 // 댓글 작성
 
 async function writeComments() {
@@ -155,23 +171,31 @@ async function writeComments() {
   const contentText = textInput.value;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
-      method: "POST",
-      headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-type": "application/json",
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({
+      comment: {
+        content: contentText,
       },
-      body: JSON.stringify({
-        "comment": {
-            "content" : contentText
-        },
-    })
+    }),
   });
   const json = await res.json();
+<<<<<<< Updated upstream
 }
 textButton.addEventListener('click', function (){
   writeComments()
 })
 
+=======
+  console.log(json);
+}
+textinput_button.addEventListener("click", function () {
+  writeComments();
+});
+>>>>>>> Stashed changes
 // 댓글 프로필 사진
 
 async function getProfile() {
@@ -179,11 +203,11 @@ async function getProfile() {
   const url = `http://146.56.183.55:5050/profile/${accountname}`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
-      method: "GET",
-      headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-type": "application/json",
-      },
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
   });
   const json = await res.json();
   const 이미지 = json.profile.image;
@@ -191,11 +215,16 @@ async function getProfile() {
   img.src = `${이미지}`
   document.querySelector('.textinput').appendChild(img);
 }
+<<<<<<< Updated upstream
 
 getProfile();
 
 // 게시물 모달 신고 표시
 // 댓글 모달 삭제 표시
+=======
+getProfile();
+
+>>>>>>> Stashed changes
 // 댓글 입력 게시 활성화
 
 const dotBtn = document.querySelector(".icon-more");
