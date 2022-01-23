@@ -18,6 +18,7 @@ async function getFeed() {
       "Content-type": "application/json",
     },
   });
+  
   const json = await res.json();
   const post = json.post;
   const authorImage = post.author.image;
@@ -114,25 +115,27 @@ async function getComments() {
   <p class="comments-contents">${content}</p>
     `;
     ["settime"].forEach((cls) => checkDate(createdAt, time));
-    console.log(createdAt, time)
+    // console.log(createdAt, time)
     document.querySelector(".comments-container").appendChild(article);
     };
 }
   function checkDate(createdAt, time) {
     let currentTime = new Date();
-    console.log(currentTime);         
+    // console.log(currentTime);         
     const com_month = Number((createdAt.slice(5, 7) - 1) * 43800);
     const com_day = Number(createdAt.slice(8, 10) * 1440);
-    const com_hours = Number(time.slice(0, 2) * 60);
+    const com_hours = (Number(time.slice(0, 2)) + 9) * 60 ;
     const com_min = Number(time.slice(3, 5));
+    // console.log(com_min)
     const allTime =  com_month + com_day + com_hours + com_min;
 
     const month = currentTime.getMonth();
     const date = currentTime.getDate();
     const hours = currentTime.getHours();
     const minutes = currentTime.getMinutes();
-    const toallTime = (month * 43800) + (date * 1440) + (hours * 60) + minutes
+    const toallTime = (month * 43800) + (date * 1440) + (hours * 60) + minutes;
     const spareTime = toallTime - allTime;
+    console.log(spareTime)
     // console.log(spareTime)
     if(spareTime <= 1)  {
       return "방금";
