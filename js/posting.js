@@ -1,5 +1,5 @@
-const textinput = document.querySelector('.textinput_input_text')
-const textinput_button = document.querySelector('.textinput_button')
+let textInput = document.querySelector(".textinput_input_text");
+let textButton = document.querySelector(".textinput_button");
 
 // 상단바 뒤로가기
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
@@ -76,10 +76,9 @@ async function getFeed() {
         likeBtn.classList.add("likes-on");
       }
     });
-   }
-  )
 }
-
+  );
+}
 
 getFeed();
 
@@ -150,9 +149,10 @@ async function getComments() {
 getComments();
 
 // 댓글 작성
+
 async function writeComments() {
   const url = `http://146.56.183.55:5050/post/${postId}/comments`;
-  const contentText = textinput.value;
+  const contentText = textInput.value;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
       method: "POST",
@@ -169,45 +169,42 @@ async function writeComments() {
   const json = await res.json();
   console.log(json);  
 }
-textinput_button.addEventListener('click', function (){
+textButton.addEventListener('click', function (){
   writeComments()
 })
+
 // 댓글 프로필 사진
-async function getProfile() {
-  const accountname = localStorage.getItem("accountname");
 
-  const url = `http://146.56.183.55:5050/profile/${accountname}`;
-  const token = localStorage.getItem("Token");
-  const res = await fetch(url, {
-      method: "GET",
-      headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-type": "application/json",
-      },
-  });
-  const json = await res.json();
-  const 이미지 = json.profile.image;
-  const 계정 = json.profile.accountname;
-  document.querySelector(".textinput").innerHTML = `
-  <img src="${이미지}" alt="${계정}의 프로필 사진"><input
-  type="text"
-  class="textinput_input_text"
-  placeholder="댓글 입력하기..."
-/>
-<button class="textinput_button">게시</button>
-  `;
-}
-getProfile();
+// async function getProfile() {
+//   const accountname = localStorage.getItem("accountname");
 
+//   const url = `http://146.56.183.55:5050/profile/${accountname}`;
+//   const token = localStorage.getItem("Token");
+//   const res = await fetch(url, {
+//       method: "GET",
+//       headers: {
+//           Authorization: `Bearer ${token}`,
+//           "Content-type": "application/json",
+//       },
+//   });
+//   const json = await res.json();
+//   const 이미지 = json.profile.image;
+//   const 계정 = json.profile.accountname;
+//   document.querySelector(".profile_input").innerHTML = `<img class="myprofile_img" src="${이미지}" alt="${계정}의 프로필 사진">
+//   `
+// }
 
+// getProfile();
 
+// 게시물 모달 신고 표시
+// 댓글 모달 삭제 표시
 // 댓글 입력 게시 활성화
 
-const inputText = document.querySelector(".textinput_input_text");
-const button = document.querySelector(".textinput_button");
 const dotBtn = document.querySelector(".icon-more");
 const modalBg = document.querySelector(".modal_bg");
 const modal = document.querySelector(".chatting_modal");
+let inputText = document.querySelector(".textinput_input_text");
+let button = document.querySelector(".textinput_button");
 
 button.disabled = true;
 inputText.addEventListener("keyup", listener);
@@ -222,9 +219,6 @@ function listener() {
       break;
   }
 }
-
-// 게시물 모달 신고 표시
-// 댓글 모달 삭제 표시
 
 const open = () => {
   modalBg.classList.add("on");
