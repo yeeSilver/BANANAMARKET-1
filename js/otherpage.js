@@ -92,14 +92,14 @@ async function getProfile() {
       
       팔로우버튼 = '언팔로우';
       팔로우버튼토글.innerText = '언팔로우';
-      팔로워.innerText = (+(팔로워.innerText) - 1);
+      팔로워.innerText = (+(팔로워.innerText) + 1);
     }else{
       팔로우버튼토글.classList.remove('unfollow-btn')
       팔로우버튼토글.classList.add('follow-btn');
       팔로우취소();
       팔로우버튼 = '팔로우';
       팔로우버튼토글.innerText = '팔로우';
-      팔로워.innerText = (+(팔로워.innerText) + 1);
+      팔로워.innerText = (+(팔로워.innerText) - 1);
     }
   })
 }
