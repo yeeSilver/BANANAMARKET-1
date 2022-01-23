@@ -62,7 +62,6 @@ async function getFeed() {
       const content = post[i].content;
       const image = post[i].image;
       const heartCount = post[i].heartCount;
-      const num = String.fromCharCode(65 + i);
       const update = post[i].updatedAt.slice(0, 10);
       const section = document.createElement("section");
       section.classList.add("home-feed");
