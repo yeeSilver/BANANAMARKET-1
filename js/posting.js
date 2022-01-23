@@ -114,8 +114,6 @@ async function getComments() {
   <img class="comments-dot" src="img/more-vertical.png" alt="">
   <p class="comments-contents">${content}</p>
     `;
-    ["settime"].forEach((cls) => checkDate(createdAt, time));
-    // console.log(createdAt, time)
     document.querySelector(".comments-container").appendChild(article);
     };
 }
@@ -145,6 +143,8 @@ async function getComments() {
     return `${Math.floor(spareTime / 60)}시간전`
     } else if(spareTime < 43800) {
       return `${Math.floor(spareTime / 1440)}일전`
+    } else {
+      return `${Math.floor(spareTime / 43800)}개월전`
     }
   }
 
