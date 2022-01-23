@@ -2,7 +2,6 @@
 const token = localStorage.getItem("Token");
 async function getProfile() {
   const accountname = localStorage.getItem("accountname");
-
   const url = `http://146.56.183.55:5050/profile/${accountname}`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
@@ -13,13 +12,16 @@ async function getProfile() {
     },
   });
   const json = await res.json();
+  console.log(json)
+  const userid = json.profile._id;
+  localStorage.setItem('userid', `${userid}`);
   const 이미지 = json.profile.image;
   const 이름 = json.profile.username;
   const 계정 = json.profile.accountname;
   const 소개 = json.profile.intro;
   const 팔로워수 = json.profile.followerCount;
   const 팔로잉수 = json.profile.followingCount;
-
+  console.log(userid)
   document.querySelector(".profile").innerHTML += `
   <a href="" class="display-inline basic-profile"><img src="${이미지}" alt=""></a>
   <div class="profile-desc">

@@ -1,6 +1,7 @@
 const accountname = localStorage.getItem("accountname");
 const authorAccount = localStorage.getItem("authorAccountName")
 const token = localStorage.getItem("Token");
+const userid = localStorage.getItem("userid");
 async function getProfile() {
   const url = `http://146.56.183.55:5050/profile/${authorAccount}`;
   const token = localStorage.getItem("Token");
@@ -18,8 +19,18 @@ async function getProfile() {
   const 소개 = json.profile.intro;
   const 팔로워수 = json.profile.followerCount;
   const 팔로잉수 = json.profile.followingCount;
-  console.log(json.profile)
-
+  let 팔로우버튼 = '언팔로우';
+  let 팔로우클래스 = 'unfollow-btn'
+  const 팔로워리스트 = json.profile.follower;
+  팔로워리스트.forEach((팔로워)=> {
+    if (!(팔로워 === userid)){
+      팔로우버튼 = '팔로우'
+      팔로우클래스 = 'follow-btn'
+    }else{
+      팔로우버튼 = '언팔로우';
+      팔로우클래스 = 'unfollow-btn'
+    }
+  })
   document.querySelector(".profile").innerHTML += `
   <a href="" class="display-inline basic-profile"><img src="${이미지}" alt=""></a>
   <div class="profile-desc">
@@ -29,7 +40,7 @@ async function getProfile() {
   </div>
   <div class="btn-set">
         <button type="submit" class="display-inline icon-massage"><img src="img/message.png" alt=""></button>
-        <button type="submit" class="display-inline unfollow-btn">언팔로우</button>
+        <button type="submit" class="display-inline ${팔로우클래스}">${팔로우버튼}</button>
         <button type="submit" class="display-inline icon-share"><img src="img/icon-share.png" alt=""></button>
   </div>
     `;
@@ -55,23 +66,42 @@ async function getProfile() {
   });
 
   // 팔로우버튼
-  const 팔로우버튼토글 = document.querySelector(".unfollow-btn");
-  팔로우버튼토글.addEventListener("click", function() {
-    if (팔로우버튼토글.innerText === '팔로우') {
-        팔로우버튼토글.classList.remove('follow-btn');
-        팔로우버튼토글.classList.add('unfollow-btn');
-        팔로우취소();
-        팔로우버튼토글.innerText = '언팔로우';
-        팔로워.innerText = (+(팔로워.innerText) + 1);
+  const 팔로우버튼토글 = document.querySelector(`.${팔로우클래스}`);
+//   팔로우버튼토글.addEventListener("click", function() {
+//     if (팔로우버튼토글.innerText === '팔로우') {
+//         팔로우버튼토글.classList.remove('follow-btn');
+//         팔로우버튼토글.classList.add('unfollow-btn');
+//         팔로우취소();
+//         팔로우버튼토글.innerText = '언팔로우';
+//         팔로워.innerText = (+(팔로워.innerText) + 1);
 
-    } else{
-        팔로우버튼토글.classList.remove('unfollow-btn')
-        팔로우버튼토글.classList.add('follow-btn');
-        팔로우업로드();
-        팔로우버튼토글.innerText = '팔로우';
-        팔로워.innerText = (+(팔로워.innerText) - 1);
+//     } else{
+//         팔로우버튼토글.classList.remove('unfollow-btn')
+//         팔로우버튼토글.classList.add('follow-btn');
+//         팔로우업로드();
+//         팔로우버튼토글.innerText = '팔로우';
+//         팔로워.innerText = (+(팔로워.innerText) - 1);
+//     }
+// });
+  팔로우버튼토글.addEventListener('click', function() {
+    console.log (팔로우버튼);
+    if (팔로우버튼 === '팔로우'){
+      팔로우버튼토글.classList.remove('follow-btn');
+      팔로우버튼토글.classList.add('unfollow-btn');
+      팔로우업로드();
+      
+      팔로우버튼 = '언팔로우';
+      팔로우버튼토글.innerText = '언팔로우';
+      팔로워.innerText = (+(팔로워.innerText) - 1);
+    }else{
+      팔로우버튼토글.classList.remove('unfollow-btn')
+      팔로우버튼토글.classList.add('follow-btn');
+      팔로우취소();
+      팔로우버튼 = '팔로우';
+      팔로우버튼토글.innerText = '팔로우';
+      팔로워.innerText = (+(팔로워.innerText) + 1);
     }
-});
+  })
 }
 
 getProfile();
