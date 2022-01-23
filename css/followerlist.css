@@ -3,6 +3,7 @@
 
 .display-inline{
     display: inline-block;
+    cursor: pointer;
 }
 
 .followers-nav{

@@ -40,7 +40,7 @@ async function getProfile() {
 
   document.querySelector(".followings-num").innerHTML += `
   <p class="followingBtn">${팔로잉수}</p>
-  <small>followeings</small>
+  <small>followings</small>
 `;
   // 프로필수정, 상품등록버튼 클릭시 이동
   const register = document.querySelector(".register")
@@ -403,6 +403,7 @@ let logout = document.querySelector(".user_logout")
 let modalLogout = document.querySelector(".modal_logout")
 let cancleBtn = document.querySelector(".cancle-btn")
 let logoutBtn = document.querySelector(".logout-btn")
+let userSetting = document.querySelector(".user_setting")
 
 const open = () => {
   modalBg.classList.add("on")
@@ -422,8 +423,13 @@ const Logout_close = () => {
   localStorage.clear()
 }
 
+const Setting = () => {
+  location.href = "./userpage.html"
+}
+
 dotBtn.addEventListener("click", open);
 modalBg.addEventListener("click", close);
 logout.addEventListener("click", Logout_open);
 cancleBtn.addEventListener("click", close);
 logoutBtn.addEventListener("click", Logout_close)
+userSetting.addEventListener("click", Setting)

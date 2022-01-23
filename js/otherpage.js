@@ -189,29 +189,14 @@ async function GetList() {
     const accountname = el.author.accountname;
     const content = el.content;
     const feedImg = el.image;
-<<<<<<< HEAD
     const heartCount = el.heartCount;
     const commentCount = el.commentCount;
-=======
     const hearted = el.hearted;
->>>>>>> 4ffc1e673df1328e9e6cfbf0df515e83128d5fd5
     let updateAt = el.updatedAt;
     // updateAt = updateAt.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g);
     const year = updateAt.slice(0, 4);
     const month = updateAt.slice(5, 6)+1;
     const date = updateAt.slice(8, 10);
-<<<<<<< HEAD
-=======
- 
-    let heartCount = 0;
-    let commentCount = 0;
-
-    if (hearted && el.comments) {
-      heartCount = el.heartCount;
-      commentCount = el.comments.length;
-    }
-
->>>>>>> 4ffc1e673df1328e9e6cfbf0df515e83128d5fd5
     let feedArt = document.createElement("article");
     feedArt.classList.add("art-post");
     feedArt.insertAdjacentHTML(
@@ -392,8 +377,9 @@ let modalBg = document.querySelector(".modal_bg")
 let modal = document.querySelector(".userpage_modal")
 let logout = document.querySelector(".user_logout")
 let modalLogout = document.querySelector(".modal_logout")
-// let cancleBtn = document.querySelector(".cancle-btn")
+let cancleBtn = document.querySelector(".cancle-btn")
 let logoutBtn = document.querySelector(".logout-btn")
+let userSetting = document.querySelector(".user_setting")
 
 const open = () => {
   modalBg.classList.add("on")
@@ -412,8 +398,13 @@ const Logout_close = () => {
   location.href = "./login.html"
 }
 
+const Setting = () => {
+  location.href = "./otherpage.html"
+}
+
 dotBtn.addEventListener("click", open);
 modalBg.addEventListener("click", close);
 logout.addEventListener("click", Logout_open);
-// cancleBtn.addEventListener("click", close);
-// logoutBtn.addEventListener("click", Logout_close);
+cancleBtn.addEventListener("click", close);
+logoutBtn.addEventListener("click", Logout_close);
+userSetting.addEventListener("click", Setting)
