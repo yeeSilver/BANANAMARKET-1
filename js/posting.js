@@ -76,9 +76,10 @@ async function getFeed() {
         likeBtn.classList.add("likes-on");
       }
     });
+   }
+  )
 }
-  );
-}
+
 
 getFeed();
 
@@ -149,7 +150,6 @@ async function getComments() {
 getComments();
 
 // 댓글 작성
-
 async function writeComments() {
   const url = `http://146.56.183.55:5050/post/${postId}/comments`;
   const contentText = textinput.value;
@@ -199,15 +199,15 @@ async function getProfile() {
 }
 getProfile();
 
-// 게시물 모달 신고 표시
-// 댓글 모달 삭제 표시
+
+
 // 댓글 입력 게시 활성화
 
-let inputText = document.querySelector(".textinput_input_text");
-let button = document.querySelector(".textinput_button");
-let dotBtn = document.querySelector(".icon-more");
-let modalBg = document.querySelector(".modal_bg");
-let modal = document.querySelector(".chatting_modal");
+const inputText = document.querySelector(".textinput_input_text");
+const button = document.querySelector(".textinput_button");
+const dotBtn = document.querySelector(".icon-more");
+const modalBg = document.querySelector(".modal_bg");
+const modal = document.querySelector(".chatting_modal");
 
 button.disabled = true;
 inputText.addEventListener("keyup", listener);
@@ -222,6 +222,9 @@ function listener() {
       break;
   }
 }
+
+// 게시물 모달 신고 표시
+// 댓글 모달 삭제 표시
 
 const open = () => {
   modalBg.classList.add("on");

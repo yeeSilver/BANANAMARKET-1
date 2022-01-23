@@ -237,6 +237,11 @@ async function GetList() {
         .querySelector(`.${cls}`)
         .addEventListener("click", () => editModal(postId))
       });
+
+      const chatting_icon = document.querySelector(".comments img");
+      chatting_icon.addEventListener("click", () => {
+        location.href = "./posting.html"
+      })
   });
 
   //좋아요가 있는 부분은 색이 있는 하트 보여주기
