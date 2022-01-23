@@ -110,6 +110,8 @@ body {
     top: 12px;
     left: 10px;
     width: 36px;
+    height: 36px;
+    border-radius: 50%;
 }
 /* .textinput_input_file{
     left: -80px;

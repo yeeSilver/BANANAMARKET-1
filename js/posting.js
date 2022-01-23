@@ -1,5 +1,5 @@
-let textInput = document.querySelector(".textinput_input_text");
-let textButton = document.querySelector(".textinput_button");
+const textInput = document.querySelector(".textinput_input_text");
+const textButton = document.querySelector(".textinput_button");
 
 // 상단바 뒤로가기
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
@@ -167,7 +167,6 @@ async function writeComments() {
     })
   });
   const json = await res.json();
-  console.log(json);  
 }
 textButton.addEventListener('click', function (){
   writeComments()
@@ -175,26 +174,25 @@ textButton.addEventListener('click', function (){
 
 // 댓글 프로필 사진
 
-// async function getProfile() {
-//   const accountname = localStorage.getItem("accountname");
+async function getProfile() {
+  const accountname = localStorage.getItem("accountname");
+  const url = `http://146.56.183.55:5050/profile/${accountname}`;
+  const token = localStorage.getItem("Token");
+  const res = await fetch(url, {
+      method: "GET",
+      headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-type": "application/json",
+      },
+  });
+  const json = await res.json();
+  const 이미지 = json.profile.image;
+  const img = document.createElement('img')
+  img.src = `${이미지}`
+  document.querySelector('.textinput').appendChild(img);
+}
 
-//   const url = `http://146.56.183.55:5050/profile/${accountname}`;
-//   const token = localStorage.getItem("Token");
-//   const res = await fetch(url, {
-//       method: "GET",
-//       headers: {
-//           Authorization: `Bearer ${token}`,
-//           "Content-type": "application/json",
-//       },
-//   });
-//   const json = await res.json();
-//   const 이미지 = json.profile.image;
-//   const 계정 = json.profile.accountname;
-//   document.querySelector(".profile_input").innerHTML = `<img class="myprofile_img" src="${이미지}" alt="${계정}의 프로필 사진">
-//   `
-// }
-
-// getProfile();
+getProfile();
 
 // 게시물 모달 신고 표시
 // 댓글 모달 삭제 표시
