@@ -3,6 +3,7 @@ const home = document.querySelector(".img-home");
 const chat = document.querySelector(".img-chat");
 const plus = document.querySelector(".img-plus");
 const profile = document.querySelector(".img-profile");
+const myAccountname = localStorage.getItem("accountname");
 
 뒤로가기.addEventListener("click", function () {
   location.href = "./otherpage.html";
@@ -53,6 +54,11 @@ async function getFollow() {
             <button type="submit" class="cancel-btn fBtn">취소</button>
         </li>
         `;
+    // if(myAccountname == accountName) {
+    //   const cancel_btn = document.querySelector('.cancel-btn')
+    //   cancel_btn.style.display = 'none';
+    // }
+
     ["fBtn"].forEach((cls) => {
       li.querySelector(`.${cls}`).addEventListener("click", () => followBtn());
     });
@@ -82,7 +88,6 @@ async function getFollow() {
 }
 
 function GoToPage(accountName) {
-    const myAccountname = localStorage.getItem("accountname");
     if(myAccountname == accountName) {
       location.href = "./userpage.html"
     } else  {
