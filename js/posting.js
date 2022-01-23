@@ -22,6 +22,7 @@ async function getFeed() {
   });
 
   const json = await res.json();
+  console.log(json);
   const post = json.post;
   const authorImage = post.author.image;
   const authorAccount = post.author.accountname;
@@ -146,8 +147,7 @@ async function getComments() {
       return `${Math.floor(spareTime / 43800)}개월전`
     }
   }
-getComments();
-
+getComments()
 // 댓글 작성
 
 async function writeComments() {
