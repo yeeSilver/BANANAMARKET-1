@@ -1,30 +1,22 @@
-// 뒤로 가기 버튼
-// const prevBtn = document.querySelector(".prev-btn");
-// prevBtn.addEventListener("click", () => {
-//   history.back();
-// });
-
-
 // 검색 기능 구현
-const TOKEN = localStorage.getItem("Token");
+const token = localStorage.getItem("Token");
 const userList = document.querySelector(".search-result-list");
 const searchInput = document.querySelector(".user-search-input");
+const url = "http://146.56.183.55:5050";
+const search_result_list = document.querySelector('.search-result-list')
+const accountname = localStorage.getItem("accountname");
 
-async function searchId(search) {
-  const url = "http://146.56.183.55:5050/user";
-  const reqData = await fetch(url, {
+async function searchId(search) {  
+  const res = await fetch(`${url}/user/searchuser/?keyword=${search}`, {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${TOKEN}`,
-      "Content-type": "application/json",
-    },    
+    "Authorization" : `Bearer ${token}`,
+    "Content-type" : "application/json"
+    }
   });
+
+  const data = await res.json();
   
-  const data = await reqData.json();
-  const SEARCH_API = await fetch(`${url}/user/searchuser/?keyword=${search}`);
-  localStorage.setItem("SEARCH_API", SEARCH_API);
-  localStorage.setItem("reqData", reqData);
-  console.log(data)
   data.forEach(user => {
     const authorName = user.username;
     const authorAccount = user.accountname;
@@ -43,6 +35,7 @@ async function searchId(search) {
     <div class="post-con-info">
       <img
         src="${profileImg}"
+        onError="javascript:this.src='img/basic-profile.png'"
         alt=""
         class="img-mini-profile"
       />
@@ -52,7 +45,12 @@ async function searchId(search) {
       </div>
     </div>
     `;
-    searchInput.appendChild(li);
+    ["img-mini-profile", "post-title", "post-user-id"].forEach((cls) => {
+      li
+        .querySelector(`.${cls}`)
+        .addEventListener("click", () => GoToPage(authorAccount));
+    });
+    search_result_list.appendChild(li);
   });
 }
 searchId();
@@ -63,7 +61,7 @@ searchInput.addEventListener('keyup', (e) => {
     removeAllList(userList);
   } else {
     removeAllList(userList);
-    getUser(e.target.value);
+    searchId(e.target.value);
   }
 })
 
@@ -73,44 +71,11 @@ function removeAllList(ele){
   }
 }
 
-
-async function getUser(searchQuery) {
-  const SEARCH_API = localStorage.getItem("SEARCH_API");
-  const reqData = localStorage.getItem("reqData");
-  const response = fetch(`${SEARCH_API}${searchQuery}`, reqData);
-  return response;
+function GoToPage(authorAccount) {
+  if(accountname == authorAccount) {
+    location.href = "./userpage.html"
+  } else {
+    localStorage.setItem("authorAccountName", authorAccount);
+    location.href = "./otherpage.html"
+  }
 }
-
-// function removeAllChilden(parentNode) {
-//   while (parentNode.hasChildNodes()) {
-//     parentNode.removeChild(parentNode.firstChild);
-//   }
-// }
-
-// document.querySelector("form").addEventListener("keyup", (event) => {
-//   const userList = document.querySelector("main .search-user-cont");
-//   removeAllChilden(userList);
-
-//   getUser(event.target.value)
-//     .then((res) => res.json())
-//     .then((datas) => {
-//       if (datas[0]) {
-//         const frag = document.createDocumentFragment("ul");
-//         datas.forEach((user) => {
-//           const li = document.createElement("li");
-//           li.className = "user-search";
-//           li.innerHTML = `
-//           <a href="#none">
-//             <img src=${user.image} alt="프로필 사진" class="avatar-img">
-//             <p class="user-info">
-//               <strong class="market-name">${user.username}</strong>
-//               <span class="user-name">@ ${user.accountname}</span>
-//             </p>
-//           </a>
-//         `;
-//           frag.appendChild(li);
-//         });
-//         userList.appendChild(frag);
-//       }
-//     });
-// });
