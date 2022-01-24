@@ -210,6 +210,7 @@ getProfile();
 // 게시물 모달 신고 표시
 // 댓글 모달 삭제 표시
 
+
 // 댓글 삭제 모달
 function editModal(postId, commentId) {
   let modalBg = document.querySelector(".modal_bg")
