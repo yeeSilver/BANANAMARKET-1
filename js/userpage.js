@@ -418,7 +418,7 @@ const open = () => {
   modalBg.classList.add("on")
   modal.classList.add("on")
 }
-const close = () => {
+const close = () => { 
   modalBg.classList.remove("on")
   modal.classList.remove("on")
   modalLogout.classList.remove("on")
