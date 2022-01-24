@@ -1,6 +1,8 @@
 
 const textInput = document.querySelector(".textinput_input_text");
 const textButton = document.querySelector(".textinput_button");
+const token = localStorage.getItem("Token");
+const accountname = localStorage.getItem("accountname");
 
 // 상단바 뒤로가기
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
@@ -12,7 +14,6 @@ document.querySelector(".icon-left-arrow").addEventListener("click", () => {
 const postId = localStorage.getItem("postId");
 async function getFeed() {
   const url = "http://146.56.183.55:5050";
-  const token = localStorage.getItem("Token");
   const res = await fetch(url + `/post/${postId}`, {
     method: "GET",
     headers: {
@@ -22,7 +23,6 @@ async function getFeed() {
   });
 
   const json = await res.json();
-  console.log(json);
   const post = json.post;
   const authorImage = post.author.image;
   const authorAccount = post.author.accountname;
@@ -87,7 +87,6 @@ getFeed();
 // 댓글 리스트업
 async function getComments() {
   const url = "http://146.56.183.55:5050";
-  const token = localStorage.getItem("Token");
   const res = await fetch(url + `/post/${postId}/comments`, {
     method: "GET",
     headers: {
@@ -97,8 +96,8 @@ async function getComments() {
   });
 
   const json = await res.json();
+  console.log(json);
   const jsonComment = json.comments;
-  console.log(jsonComment)
   for (let i = 0; i < jsonComment.length; i++) {
     const postId = localStorage.getItem("postId");
     const image = jsonComment[i].author.image;
@@ -108,8 +107,9 @@ async function getComments() {
     const content = jsonComment[i].content;
     const spareDate = checkDate(createdAt, time);
     const commentId = jsonComment[i].id;
-    // console.log(createdAt)
-    // console.log(username)
+    const useraccountName = jsonComment[i].author.accountname;
+    console.log(useraccountName);
+    console.log(accountname)
     const article = document.createElement("article");
     article.classList.add("comment-element");
     article.innerHTML = `<div class="comments-innerbox">
@@ -123,12 +123,18 @@ async function getComments() {
     ["comments-dot"].forEach((cls) => {
       article
         .querySelector(`.${cls}`)
-        .addEventListener("click", () => editModal(postId,commentId))
-      });
-
+        .addEventListener("click", function() {
+          if(accountname !== useraccountName) {
+            reportModal(postId, commentId)
+          } else {
+            deleteModal(postId, commentId)
+          }
+        }
+      );
+      })
     document.querySelector(".comments-container").appendChild(article);
   }
-}
+}  
 function checkDate(createdAt, time) {
   let currentTime = new Date();
   // console.log(currentTime);
@@ -165,7 +171,6 @@ getComments()
 async function writeComments() {
   const url = `http://146.56.183.55:5050/post/${postId}/comments`;
   const contentText = textInput.value;
-  const token = localStorage.getItem("Token");
   const res = await fetch(url, {
     method: "POST",
     headers: {
@@ -188,9 +193,7 @@ textButton.addEventListener('click', function (){
 // 댓글 프로필 사진
 
 async function getProfile() {
-  const accountname = localStorage.getItem("accountname");
   const url = `http://146.56.183.55:5050/profile/${accountname}`;
-  const token = localStorage.getItem("Token");
   const res = await fetch(url, {
     method: "GET",
     headers: {
@@ -207,12 +210,26 @@ async function getProfile() {
 
 getProfile();
 
-// 게시물 모달 신고 표시
-// 댓글 모달 삭제 표시
+// 게시물 모달 신고
 
+async function reportComment (postId, commentId) {
+  const url =  `http://146.56.183.55:5050/post/${postId}/comments/${commentId}/report`
+  const report = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({
+      report: {
+        comment: commentId,
+      },
+    }),
+  });
+}
 
 // 댓글 삭제 모달
-function editModal(postId, commentId) {
+function deleteModal(postId, commentId) {
   let modalBg = document.querySelector(".modal_bg")
   let modal = document.querySelector(".posting_modal")
   let user_delete = document.querySelector(".user_delete")
@@ -247,9 +264,45 @@ function editModal(postId, commentId) {
   deleteBtn.addEventListener("click", user_delete_close);
 }
 
+// 댓글 신고 모달
+function reportModal(postId, commentId) {
+  let modalBgReport = document.querySelector(".modal_bg.report")
+  let modal_Report = document.querySelector(".posting_modal.report")
+  let user_report = document.querySelector(".user_report")
+  let modalReport = document.querySelector(".modal_report")
+  let cancleBtn = document.querySelector(".cancel-button.report")
+  let reportBtn = document.querySelector(".report-btn")
+  
+  const open = () => {
+    modalBgReport.classList.add("on")
+    modal_Report.classList.add("on")
+  }
+  
+  const close = () => {
+    modalBgReport.classList.remove("on")
+    modal_Report.classList.remove("on")
+    modalReport.classList.remove("on")
+  }
+
+  const user_delete_open = () => {
+    modalReport.classList.add("on")
+  }
+  
+  const user_delete_close = () => {
+    reportComment (postId, commentId)
+    location.href = "./posting.html"
+  }
+  
+  open();
+  modalBgReport.addEventListener("click", close);
+  user_report.addEventListener("click", user_delete_open);
+  cancleBtn.addEventListener("click", close)
+  reportBtn.addEventListener("click", user_delete_close);
+}
+
+
 // 댓글 삭제
 async function deleteComment(postId, commentId) {
-  const token = localStorage.getItem("Token");
   const deleteComment = await fetch(
     `http://146.56.183.55:5050/post/${postId}/comments/${commentId}`,
     {
@@ -261,6 +314,7 @@ async function deleteComment(postId, commentId) {
     }
   );
 }
+
 const dotBtn = document.querySelector(".icon-more");
 const modalBg = document.querySelector(".modal_bg");
 const modal = document.querySelector(".chatting_modal");
