@@ -1,6 +1,9 @@
 @charset "utf-8";
 @import "./components/navbar.css";
 
+.hide{
+    display: none;
+}
 .display-inline{
     display: inline-block;
     cursor: pointer;
@@ -67,7 +70,7 @@
     color: #767676;
 }
 
-.followers-list .follow-btn{
+.follow-btn{
     width: 56px;
     height: 25px;
     border-radius: 26px;
@@ -77,9 +80,10 @@
     text-align: center;
     margin: 11px 0 11px;
     vertical-align: top;
+    cursor: pointer;
 }
 
-.followers-list .cancel-btn{
+.cancel-btn{
     width: 56px;
     height: 25px;
     border-radius: 26px;
@@ -89,6 +93,7 @@
     text-align: center;
     margin: 11px 0 11px;
     vertical-align: top;
+    cursor: pointer;
 }
 .footer-nav ul a:nth-child(4) span{
     color: #F4BC1E;

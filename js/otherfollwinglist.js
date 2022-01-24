@@ -7,25 +7,10 @@ const profile = document.querySelector(".img-profile");
 뒤로가기.addEventListener("click", function () {
   location.href = "./otherpage.html";
 });
-// home.addEventListener("click", function () {
-//   location.href = "./feed.html";
-// });
-
-// chat.addEventListener("click", function () {
-//   location.href = "./chatting.html";
-// });
-
-// plus.addEventListener("click", function () {
-//   location.href = "./sale_post.html";
-// });
-
-// profile.addEventListener("click", function () {
-//   location.href = "./userpage.html";
-// });
 
 async function getFollowing() {
   const authorAccount = localStorage.getItem("authorAccountName");
-
+  const userid = localStorage.getItem("userid");
   const url = `http://146.56.183.55:5050/profile/${authorAccount}/following?limit=100&skip=0`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
@@ -36,11 +21,19 @@ async function getFollowing() {
     },
   });
   const json = await res.json();
+  
   json.forEach((i) => {
     const 팔로우이미지 = i.image;
     const 팔로우이름 = i.username;
     const 팔로우소개 = i.intro;
     const accountName = i.accountname;
+    let 팔로우여부 = '취소';
+    let fBtn = 'fBtn';
+    if(i._id === userid){
+      console.log(i._id);
+      console.log(userid);
+      fBtn = 'hide';
+    }
     const li = document.createElement("li");
     li.classList.add("follow-list");
     li.innerHTML = `
@@ -50,12 +43,9 @@ async function getFollowing() {
                 <p class="followName">${팔로우이름}</p>
                 <small class="followIntro">${팔로우소개}</small>
             </div>
-            <button type="submit" class="cancel-btn fBtn">취소</button>
+            <button type="submit" class="cancel-btn ${fBtn}">${팔로우여부}</button>
         </li>
         `;
-    ["fBtn"].forEach((cls) => {
-      li.querySelector(`.${cls}`).addEventListener("click", () => followBtn());
-    });
     ["display-inline", "followName", "followIntro"].forEach((cls) => {
       li.querySelector(`.${cls}`).addEventListener("click", () =>
         GoToPage(accountName)
@@ -63,10 +53,11 @@ async function getFollowing() {
     });
     document.querySelector(".container").appendChild(li);
   });
-  function followBtn() {
+
+  
     let fBtn = document.querySelectorAll(".fBtn");
     fBtn.forEach((e) => {
-      e.addEventListener("click", function () {
+      e.addEventListener("click", function() {
         if (e.innerText === "팔로우") {
           e.classList.remove("follow-btn");
           e.classList.add("cancel-btn");
@@ -78,14 +69,13 @@ async function getFollowing() {
         }
       });
     });
-  }
 }
 
 function GoToPage(accountName) {
   const myAccountname = localStorage.getItem("accountname");
   if(myAccountname == accountName) {
     location.href = "./userpage.html"
-  } else  {
+  } else{
   localStorage.setItem("authorAccountName", accountName)
   location.href = "./otherpage.html"
   }
