@@ -403,7 +403,6 @@ async function deletePost(postId) {
 }
 
 // 로그아웃 모달창 구현
-let dotBtn = document.querySelector(".icon-more")
 let modalBg = document.querySelector(".modal_bg")
 let modal = document.querySelector(".userpage_modal")
 let logout = document.querySelector(".user_logout")

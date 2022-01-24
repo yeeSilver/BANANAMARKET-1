@@ -8,7 +8,6 @@ document.querySelector(".icon-left-arrow").addEventListener("click", () => {
 // 상단바 모달 설정 및 개인정보, 로그아웃
 // 게시물 불러오기
 
-// console.log(localStorage.getItem("Token"));
 const postId = localStorage.getItem("postId");
 async function getFeed() {
   const url = "http://146.56.183.55:5050";
@@ -96,13 +95,16 @@ async function getComments() {
   });
   const json = await res.json();
   const jsonComment = json.comments;
+  console.log(jsonComment)
   for (let i = 0; i < jsonComment.length; i++) {
+    const postId = localStorage.getItem("postId");
     const image = jsonComment[i].author.image;
     const username = jsonComment[i].author.username;
     const createdAt = jsonComment[i].createdAt.slice(0, 10);
     const time = jsonComment[i].createdAt.slice(11, 19);
     const content = jsonComment[i].content;
     const spareDate = checkDate(createdAt, time);
+    const commentId = jsonComment[i].id;
     // console.log(createdAt)
     // console.log(username)
     const article = document.createElement("article");
@@ -115,9 +117,16 @@ async function getComments() {
   <img class="comments-dot" src="img/more-vertical.png" alt="">
   <p class="comments-contents">${content}</p>
     `;
+    ["comments-dot"].forEach((cls) => {
+      article
+        .querySelector(`.${cls}`)
+        .addEventListener("click", () => editModal(postId,commentId))
+      });
+
     document.querySelector(".comments-container").appendChild(article);
   }
 }
+
   function checkDate(createdAt, time) {
     let currentTime = new Date();
     // console.log(currentTime);         
@@ -197,6 +206,55 @@ getProfile();
 // 게시물 모달 신고 표시
 // 댓글 모달 삭제 표시
 // 댓글 입력 게시 활성화
+function editModal(postId, commentId) {
+  let modalBg = document.querySelector(".modal_bg")
+  let modal = document.querySelector(".posting_modal")
+  let user_delete = document.querySelector(".user_delete")
+  let modalDelete = document.querySelector(".modal_delete")
+  let cancleBtn = document.querySelector(".cancel-button")
+  let deleteBtn = document.querySelector(".delete-btn")
+  
+  const open = () => {
+    modalBg.classList.add("on")
+    modal.classList.add("on")
+  }
+  
+  const close = () => {
+    modalBg.classList.remove("on")
+    modal.classList.remove("on")
+    modalDelete.classList.remove("on")
+  }
+
+  const user_delete_open = () => {
+    modalDelete.classList.add("on")
+  }
+  
+  const user_delete_close = () => {
+    deleteComment(postId, commentId)
+    location.href = "./posting.html"
+  }
+  
+  open();
+  modalBg.addEventListener("click", close);
+  user_delete.addEventListener("click", user_delete_open);
+  cancleBtn.addEventListener("click", close)
+  deleteBtn.addEventListener("click", user_delete_close);
+}
+
+// 댓글 삭제
+async function deleteComment(postId, commentId) {
+  const token = localStorage.getItem("Token");
+  const deleteComment = await fetch(
+    `http://146.56.183.55:5050/post/${postId}/comments/${commentId}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    }
+  );
+}
 
 const dotBtn = document.querySelector(".icon-more");
 const modalBg = document.querySelector(".modal_bg");

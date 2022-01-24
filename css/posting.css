@@ -287,3 +287,107 @@ img {
     stroke: #F26E22;
     cursor: pointer;
   }
+
+/* 댓글 삭제 모달창 */
+
+.modal_bg {
+    position: fixed;
+    width: 100%;
+    min-width: 390px;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  
+  .modal_bg.on {
+    background-color: #00000041;
+    z-index: 99;
+  }
+  
+  .posting_modal {
+    /* display: none; */
+    position: fixed;
+    bottom: -120px;
+    left: 0;
+    width: 100%;
+    min-width: 390px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 10px 10px 0 0;
+    z-index: 99;
+    text-align: left;
+    cursor: pointer;
+    transition: all .3s linear;
+  }
+  
+  .posting_modal.on {
+    bottom: 0;
+  }
+  
+  .posting_modal hr {
+    width: 50px;
+    height: 5px;
+    background-color: #DBDBDB;
+    border: none;
+  }
+  
+  .posting_modal button {
+    display: block;
+    text-align: left;
+    width: 100%;
+    padding: 25px 0 0 20px;
+    font-size: 14px;
+  }
+  
+  .modal_logout, .modal_delete {
+    position: fixed;
+    right: 50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+    width: 252px;
+    height: 110px;
+    border-radius: 10px;
+    background: #FFF;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 999;
+    display: none;
+   
+  }
+  
+  .modal_logout.on, .modal_delete.on{
+    display: block;
+  }
+  
+  .modal_logout p, .modal_delete p {
+    width: 100%;
+    height: 64px;
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom: .5px solid #DBDBDB;
+    line-height: 64px;
+  }
+  
+  .modal_logout .cancle-btn, .modal_delete .cancel-button {
+    width: 125px;
+    height: 45px;
+    float: left;
+    font-size: 14px;
+    color: #000;
+    border-right: .5px solid #DBDBDB;
+    border-radius: 0 0 0 10px;
+  
+  }
+  .modal_logout .cancle-btn.on , .modal_delete .cancel-button.on {
+    display: block;
+  }
+  
+  .modal_logout .logout-btn, .modal_delete .delete-btn{
+    width: 125px;
+    height: 45px;
+    float: right;
+    font-size: 14px;
+    color: #F4BC1E;
+    border-radius: 10px;
+}
