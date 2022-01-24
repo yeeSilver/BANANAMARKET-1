@@ -388,6 +388,7 @@ function editModal(postId) {
 }
 
 // 게시글 삭제
+
 async function deletePost(postId) {
   const token = localStorage.getItem("Token");
   const deletePost = await fetch(
@@ -403,6 +404,7 @@ async function deletePost(postId) {
 }
 
 // 로그아웃 모달창 구현
+
 let modalBg = document.querySelector(".modal_bg")
 let modal = document.querySelector(".userpage_modal")
 let logout = document.querySelector(".user_logout")
@@ -410,6 +412,7 @@ let modalLogout = document.querySelector(".modal_logout")
 let cancleBtn = document.querySelector(".cancle-btn")
 let logoutBtn = document.querySelector(".logout-btn")
 let userSetting = document.querySelector(".user_setting")
+let dotBtn = document.querySelector(".icon-more")
 
 const open = () => {
   modalBg.classList.add("on")
