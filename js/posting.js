@@ -210,7 +210,6 @@ getProfile();
 // 게시물 모달 신고 표시
 // 댓글 모달 삭제 표시
 
-<<<<<<< HEAD
 
 // 댓글 삭제 모달
 function editModal(postId, commentId) {
@@ -262,10 +261,6 @@ async function deleteComment(postId, commentId) {
     }
   );
 }
-=======
-// 댓글 입력 게시 활성화
->>>>>>> b44ca448b5297ad4aa568affd90e4db41875e24b
-
 const dotBtn = document.querySelector(".icon-more");
 const modalBg = document.querySelector(".modal_bg");
 const modal = document.querySelector(".chatting_modal");
