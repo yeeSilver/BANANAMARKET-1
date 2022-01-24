@@ -46,15 +46,17 @@ body {
 
 .comments-container{
     width: 100%;
-    height: 50vh;
     /* background-color: #c4c4c4; */
     border-top: 1px solid #c4c4c4;
 }
 .comments-container .comment-element{
     position: relative;
     width: 380px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
+/* .comment-element:last-child{
+    margin-bottom: 100px;
+} */
 .comments-innerbox {
     width: 230px;
     display: flex;
@@ -75,6 +77,7 @@ body {
 }
 
 .comments-container > p{
+    display: block;
     font-size: 14px;
 }
 .comments-innerbox > span{
