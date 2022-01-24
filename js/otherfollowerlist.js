@@ -8,25 +8,10 @@ const myAccountname = localStorage.getItem("accountname");
 뒤로가기.addEventListener("click", function () {
   location.href = "./otherpage.html";
 });
-// home.addEventListener("click", function () {
-//   location.href = "./feed.html";
-// });
-
-// chat.addEventListener("click", function () {
-//   location.href = "./chatting.html";
-// });
-
-// plus.addEventListener("click", function () {
-//   location.href = "./sale_post.html";
-// });
-
-// profile.addEventListener("click", function () {
-//   location.href = "./userpage.html";
-// });
 
 async function getFollow() {
   const authorAccount = localStorage.getItem("authorAccountName");
-
+  const userid = localStorage.getItem("userid");
   const url = `http://146.56.183.55:5050/profile/${authorAccount}/follower?limit=100&skip=0`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
@@ -37,29 +22,35 @@ async function getFollow() {
     },
   });
   const json = await res.json();
+  let 팔로우버튼 = '취소';
+  console.log(json);
   json.forEach((i) => {
+    console.log(i);
     const 팔로우이미지 = i.image;
     const 팔로우이름 = i.username;
     const 팔로우소개 = i.intro;
     const accountName = i.accountname;
+    let fBtn = 'fBtn';
+    if(i._id === userid){
+      console.log(i._id);
+      console.log(userid);
+      fBtn = 'hide';
+    }
+    let 팔로우버튼 = '취소';
     const li = document.createElement("li");
     li.classList.add("follow-list");
-    li.innerHTML = `
+    li.insertAdjacentHTML (
+      "afterbegin",`
         <li class="follow-list">
             <img class="display-inline" src="${팔로우이미지}"/>
             <div class="follower-desc display-inline">
                 <p class="followName">${팔로우이름}</p>
                 <small class="followIntro">${팔로우소개}</small>
             </div>
-            <button type="submit" class="cancel-btn fBtn">취소</button>
+            <button type="submit" class="cancel-btn ${fBtn}">${팔로우버튼}</button>
         </li>
-        `;
-    // if(myAccountname == accountName) {
-    //   const cancel_btn = document.querySelector('.cancel-btn')
-    //   cancel_btn.style.display = 'none';
-    // }
-
-    ["fBtn"].forEach((cls) => {
+        `);
+    [`${fBtn}`].forEach((cls) => {
       li.querySelector(`.${cls}`).addEventListener("click", () => followBtn());
     });
     ["display-inline", "followName", "followIntro"].forEach((cls) => {
@@ -69,10 +60,10 @@ async function getFollow() {
     });
     document.querySelector(".container").appendChild(li);
   });
-  function followBtn() {
-    let fBtn = document.querySelectorAll(".fBtn");
+  
+  let fBtn = document.querySelectorAll(".fBtn");
     fBtn.forEach((e) => {
-      e.addEventListener("click", function () {
+      e.addEventListener("click", function() {
         if (e.innerText === "팔로우") {
           e.classList.remove("follow-btn");
           e.classList.add("cancel-btn");
@@ -84,7 +75,6 @@ async function getFollow() {
         }
       });
     });
-  }
 }
 
 function GoToPage(accountName) {
