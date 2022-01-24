@@ -39,9 +39,9 @@ async function searchId(search) {
         alt=""
         class="img-mini-profile"
       />
-      <div>
+      <div class="search-title">
         <h2 class="post-title">${copyAuthorName}</h2>
-        <p class="post-user-id">${copyauthorAccount}</p>
+        <p class="post-user-id">@${copyauthorAccount}</p>
       </div>
     </div>
     `;
