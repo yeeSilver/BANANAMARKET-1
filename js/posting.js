@@ -47,7 +47,7 @@ async function getFeed() {
       <div class="post-main">
       <div class="post-con-main">
       <p class="content">${content}</p>
-      <img src=" ${image}"/>
+      <img src=" ${image}" onerror="this.style.display='none'" />
       </div>
       <div class="reaction-con">
       <ul class="reaction-list">
