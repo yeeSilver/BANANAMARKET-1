@@ -556,18 +556,34 @@ button {
   transition: all .3s linear;
 }
 
-.userpage_modal.on {
+.posting_modal {
+  /* display: none; */
+  position: fixed;
+  bottom: -120px;
+  left: 0;
+  width: 100%;
+  min-width: 390px;
+  height: 100px;
+  background-color: #fff;
+  border-radius: 10px 10px 0 0;
+  z-index: 99;
+  text-align: left;
+  cursor: pointer;
+  transition: all .3s linear;
+}
+
+.userpage_modal.on, .posting_modal.on{
   bottom: 0;
 }
 
-.userpage_modal hr {
+.userpage_modal hr, .posting_modal hr{
   width: 50px;
   height: 5px;
   background-color: #DBDBDB;
   border: none;
 }
 
-.userpage_modal button {
+.userpage_modal button, .posting_modal button {
   display: block;
   text-align: left;
   width: 100%;
@@ -575,7 +591,7 @@ button {
   font-size: 14px;
 }
 
-.modal_logout, .modal_delete {
+.modal_logout, .modal_report {
   position: fixed;
   right: 50%;
   top: 50%;
@@ -591,11 +607,11 @@ button {
  
 }
 
-.modal_logout.on, .modal_delete.on{
+.modal_logout.on, .modal_report.on{
   display: block;
 }
 
-.modal_logout p, .modal_delete p {
+.modal_logout p, .modal_report p{
   width: 100%;
   height: 64px;
   font-size: 15px;
@@ -604,7 +620,7 @@ button {
   line-height: 64px;
 }
 
-.modal_logout .cancle-btn, .modal_delete .cancel-button {
+.modal_logout .cancle-btn,.modal_report .cancel-button {
   width: 125px;
   height: 45px;
   float: left;
@@ -614,11 +630,11 @@ button {
   border-radius: 0 0 0 10px;
 
 }
-.modal_logout .cancle-btn.on , .modal_delete .cancel-button.on {
+.modal_logout .cancle-btn.on , .modal_report .cancel-button.on {
   display: block;
 }
 
-.modal_logout .logout-btn, .modal_delete .delete-btn{
+.modal_logout .logout-btn, .modal_report .report-btn{
   width: 125px;
   height: 45px;
   float: right;

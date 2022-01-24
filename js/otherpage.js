@@ -1,5 +1,5 @@
 const accountname = localStorage.getItem("accountname");
-const authorAccount = localStorage.getItem("authorAccountName")
+const authorAccount = localStorage.getItem("authorAccountName");
 const token = localStorage.getItem("Token");
 const userid = localStorage.getItem("userid");
 async function getProfile() {
@@ -19,18 +19,18 @@ async function getProfile() {
   const 소개 = json.profile.intro;
   const 팔로워수 = json.profile.followerCount;
   const 팔로잉수 = json.profile.followingCount;
-  let 팔로우버튼 = '언팔로우';
-  let 팔로우클래스 = 'unfollow-btn'
+  let 팔로우버튼 = "언팔로우";
+  let 팔로우클래스 = "unfollow-btn";
   const 팔로워리스트 = json.profile.follower;
-  팔로워리스트.forEach((팔로워)=> {
-    if (!(팔로워 === userid)){
-      팔로우버튼 = '팔로우'
-      팔로우클래스 = 'follow-btn'
-    }else{
-      팔로우버튼 = '언팔로우';
-      팔로우클래스 = 'unfollow-btn'
+  팔로워리스트.forEach((팔로워) => {
+    if (!(팔로워 === userid)) {
+      팔로우버튼 = "팔로우";
+      팔로우클래스 = "follow-btn";
+    } else {
+      팔로우버튼 = "언팔로우";
+      팔로우클래스 = "unfollow-btn";
     }
-  })
+  });
   document.querySelector(".profile").innerHTML += `
   <a href="" class="display-inline basic-profile"><img src="${이미지}" alt=""></a>
   <div class="profile-desc">
@@ -67,41 +67,25 @@ async function getProfile() {
 
   // 팔로우버튼
   const 팔로우버튼토글 = document.querySelector(`.${팔로우클래스}`);
-//   팔로우버튼토글.addEventListener("click", function() {
-//     if (팔로우버튼토글.innerText === '팔로우') {
-//         팔로우버튼토글.classList.remove('follow-btn');
-//         팔로우버튼토글.classList.add('unfollow-btn');
-//         팔로우취소();
-//         팔로우버튼토글.innerText = '언팔로우';
-//         팔로워.innerText = (+(팔로워.innerText) + 1);
-
-//     } else{
-//         팔로우버튼토글.classList.remove('unfollow-btn')
-//         팔로우버튼토글.classList.add('follow-btn');
-//         팔로우업로드();
-//         팔로우버튼토글.innerText = '팔로우';
-//         팔로워.innerText = (+(팔로워.innerText) - 1);
-//     }
-// });
-  팔로우버튼토글.addEventListener('click', function() {
-    console.log (팔로우버튼);
-    if (팔로우버튼 === '팔로우'){
-      팔로우버튼토글.classList.remove('follow-btn');
-      팔로우버튼토글.classList.add('unfollow-btn');
+  팔로우버튼토글.addEventListener("click", function () {
+    console.log(팔로우버튼);
+    if (팔로우버튼 === "팔로우") {
+      팔로우버튼토글.classList.remove("follow-btn");
+      팔로우버튼토글.classList.add("unfollow-btn");
       팔로우업로드();
-      
-      팔로우버튼 = '언팔로우';
-      팔로우버튼토글.innerText = '언팔로우';
-      팔로워.innerText = (+(팔로워.innerText) + 1);
-    }else{
-      팔로우버튼토글.classList.remove('unfollow-btn')
-      팔로우버튼토글.classList.add('follow-btn');
+
+      팔로우버튼 = "언팔로우";
+      팔로우버튼토글.innerText = "언팔로우";
+      팔로워.innerText = +팔로워.innerText + 1;
+    } else {
+      팔로우버튼토글.classList.remove("unfollow-btn");
+      팔로우버튼토글.classList.add("follow-btn");
       팔로우취소();
-      팔로우버튼 = '팔로우';
-      팔로우버튼토글.innerText = '팔로우';
-      팔로워.innerText = (+(팔로워.innerText) - 1);
+      팔로우버튼 = "팔로우";
+      팔로우버튼토글.innerText = "팔로우";
+      팔로워.innerText = +팔로워.innerText - 1;
     }
-  })
+  });
 }
 
 getProfile();
@@ -115,7 +99,7 @@ async function 팔로우업로드() {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-type": "application/json",
-      }
+      },
     }
   );
   const data = await 팔로우데이터.json();
@@ -132,7 +116,7 @@ async function 팔로우취소() {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-type": "application/json",
-      }
+      },
     }
   );
   const data = await 팔로우취소데이터.json();
@@ -227,7 +211,7 @@ async function GetList() {
     let updateAt = el.updatedAt;
     // updateAt = updateAt.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g);
     const year = updateAt.slice(0, 4);
-    const month = updateAt.slice(5, 6)+1;
+    const month = updateAt.slice(5, 6) + 1;
     const date = updateAt.slice(8, 10);
     let feedArt = document.createElement("article");
     feedArt.classList.add("art-post");
@@ -284,37 +268,31 @@ async function GetList() {
     ["likes"].forEach((cls) => {
       feedArt
         .querySelector(`.${cls}`)
-        .addEventListener("click", () => heartClick(postId, hearted))
-      });
+        .addEventListener("click", () => heartClick(postId, hearted));
+    });
     listSec.appendChild(feedArt);
     heartedlist.push(hearted);
-    
-    ["more"].forEach((cls) => {
-      feedArt
-        .querySelector(`.${cls}`)
-        .addEventListener("click", () => editModal(postId))
-      });
   });
 
   //좋아요가 있는 부분은 색이 있는 하트 보여주기
-  
+
   const likesBtns = document.querySelectorAll(".likes svg");
-  const likeNums = document.querySelectorAll('.heartnumber');
+  const likeNums = document.querySelectorAll(".heartnumber");
   heartedlist.forEach((list, i) => {
-    if (list === true){
+    if (list === true) {
       likesBtns[i].classList.add("likes-on");
-    } 
-  })
-  
+    }
+  });
+
   likesBtns.forEach((likeBtn, i) => {
     // console.log(i);
     likeBtn.addEventListener("click", function () {
       if (likeBtn.classList.contains("likes-on")) {
         likeBtn.classList.remove("likes-on");
-        likeNums[i].innerText = (+(likeNums[i].innerText) - 1);
+        likeNums[i].innerText = +likeNums[i].innerText - 1;
       } else {
         likeBtn.classList.add("likes-on");
-        likeNums[i].innerText = (+(likeNums[i].innerText) + 1);
+        likeNums[i].innerText = +likeNums[i].innerText + 1;
       }
     });
   });
@@ -322,19 +300,16 @@ async function GetList() {
   const moreBtns = document.querySelectorAll("#more");
   moreBtns.forEach((moreBtn) => {
     moreBtn.addEventListener("click", function () {
-      alert('hi')
-      // 이곳에다가 모달창을 해야하는데 외 난 모탐??
-    })
-  })
-
+      reportModal(userid)
+    });
+  });
 }
 
-
 function heartClick(postId, hearted) {
-  if(hearted){
-    DeleteLikes(postId)
-  }else{
-    UploadLikes(postId)
+  if (hearted) {
+    DeleteLikes(postId);
+  } else {
+    UploadLikes(postId);
   }
 }
 //좋아요 올리는 부분
@@ -349,7 +324,7 @@ async function UploadLikes(postId) {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-type": "application/json",
-      }
+      },
     }
   );
 }
@@ -364,7 +339,7 @@ async function DeleteLikes(postId) {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-type": "application/json",
-      }
+      },
     }
   );
 }
@@ -403,40 +378,92 @@ async function GetAlbum() {
   });
 }
 
+async function reportPost(userid) {
+  const url = `http://146.56.183.55:5050/post/${userid}report`;
+  const report = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({
+      report: {
+        post: userid,
+      },
+    }),
+  });
+}
+
 // 모달창 구현
-let dotBtn = document.querySelector(".icon-more")
-let modalBg = document.querySelector(".modal_bg")
-let modal = document.querySelector(".userpage_modal")
-let logout = document.querySelector(".user_logout")
-let modalLogout = document.querySelector(".modal_logout")
-let cancleBtn = document.querySelector(".cancle-btn")
-let logoutBtn = document.querySelector(".logout-btn")
-let userSetting = document.querySelector(".user_setting")
+let dotBtn = document.querySelector(".icon-more");
+let modalBg = document.querySelector(".modal_bg");
+let modal = document.querySelector(".userpage_modal");
+let logout = document.querySelector(".user_logout");
+let modalLogout = document.querySelector(".modal_logout");
+let cancleBtn = document.querySelector(".cancle-btn");
+let logoutBtn = document.querySelector(".logout-btn");
+let userSetting = document.querySelector(".user_setting");
 
 const open = () => {
-  modalBg.classList.add("on")
-  modal.classList.add("on")
-}
+  modalBg.classList.add("on");
+  modal.classList.add("on");
+};
 const close = () => {
-  modalBg.classList.remove("on")
-  modal.classList.remove("on")
-  modalLogout.classList.remove("on")
-}
+  modalBg.classList.remove("on");
+  modal.classList.remove("on");
+  modalLogout.classList.remove("on");
+};
 
 const Logout_open = () => {
-  modalLogout.classList.add("on")
-}
+  modalLogout.classList.add("on");
+};
 const Logout_close = () => {
-  location.href = "./login.html"
-}
+  location.href = "./login.html";
+};
 
 const Setting = () => {
-  location.href = "./otherpage.html"
-}
+  location.href = "./otherpage.html";
+};
 
 dotBtn.addEventListener("click", open);
 modalBg.addEventListener("click", close);
 logout.addEventListener("click", Logout_open);
 cancleBtn.addEventListener("click", close);
 logoutBtn.addEventListener("click", Logout_close);
-userSetting.addEventListener("click", Setting)
+userSetting.addEventListener("click", Setting);
+
+// 신고버튼 모달창
+function reportModal(userid) {
+  let modalBgReport = document.querySelector(".modal_bg.report");
+  let modal_Report = document.querySelector(".posting_modal.report");
+  let user_report = document.querySelector(".user_report");
+  let modalReport = document.querySelector(".modal_report");
+  let cancleBtn = document.querySelector(".cancel-button.report");
+  let reportBtn = document.querySelector(".report-btn");
+
+  const open = () => {
+    modalBgReport.classList.add("on");
+    modal_Report.classList.add("on");
+  };
+
+  const close = () => {
+    modalBgReport.classList.remove("on");
+    modal_Report.classList.remove("on");
+    modalReport.classList.remove("on");
+  };
+
+  const user_delete_open = () => {
+    modalReport.classList.add("on");
+  };
+
+  const user_delete_close = () => {
+    reportPost(userid)
+    location.href = "./otherpage.html";
+  };
+
+  open();
+  modalBgReport.addEventListener("click", close);
+  user_report.addEventListener("click", user_delete_open);
+  cancleBtn.addEventListener("click", close);
+  reportBtn.addEventListener("click", user_delete_close);
+}
