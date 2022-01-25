@@ -8,6 +8,7 @@ const form_txt = document.querySelector('.product-sale-form');
 const saleName = document.querySelector('#product');
 const salePrice = document.querySelector('#price');
 const saleLink = document.querySelector('#sale-link');
+
 form_txt.addEventListener('keyup',()=>{
   let saleName_val = saleName.value;
   let salePrice_val = salePrice.value;
