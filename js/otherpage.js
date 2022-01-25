@@ -1,9 +1,11 @@
 const accountname = localStorage.getItem("accountname");
 const authorAccount = localStorage.getItem("authorAccountName");
 const token = localStorage.getItem("Token");
-const userid = localStorage.getItem("userid");
+const myId = localStorage.getItem("myId")
+const postId = localStorage.getItem("postId");
+console.log(postId);
 async function getProfile() {
-  const url = `http://146.56.183.55:5050/profile/${authorAccount}`;
+  const url = `https://api.mandarin.cf/profile/${authorAccount}`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
     method: "GET",
@@ -19,11 +21,12 @@ async function getProfile() {
   const 소개 = json.profile.intro;
   const 팔로워수 = json.profile.followerCount;
   const 팔로잉수 = json.profile.followingCount;
-  let 팔로우버튼 = "언팔로우";
-  let 팔로우클래스 = "unfollow-btn";
+  let 팔로우버튼 = "팔로우";
+  let 팔로우클래스 = "follow-btn";
   const 팔로워리스트 = json.profile.follower;
+  console.log(팔로워리스트);
   팔로워리스트.forEach((팔로워) => {
-    if (!(팔로워 === userid)) {
+    if (!(팔로워 === myId)) {
       팔로우버튼 = "팔로우";
       팔로우클래스 = "follow-btn";
     } else {
@@ -59,10 +62,10 @@ async function getProfile() {
   const 팔로잉 = document.querySelector(".followingBtn");
 
   팔로워.addEventListener("click", function () {
-    location.href = "./otherfollowerlist.html";
+    location.href = "otherfollowerlist.html";
   });
   팔로잉.addEventListener("click", function () {
-    location.href = "./otherfollowinglist.html";
+    location.href = "otherfollowinglist.html";
   });
 
   // 팔로우버튼
@@ -93,7 +96,7 @@ getProfile();
 //팔로우 반영 하기
 async function 팔로우업로드() {
   const 팔로우데이터 = await fetch(
-    `http://146.56.183.55:5050/profile/${authorAccount}/follow`,
+    `https://api.mandarin.cf/profile/${authorAccount}/follow`,
     {
       method: "POST",
       headers: {
@@ -110,7 +113,7 @@ async function 팔로우업로드() {
 async function 팔로우취소() {
   const token = localStorage.getItem("Token");
   const 팔로우취소데이터 = await fetch(
-    `http://146.56.183.55:5050/profile/${authorAccount}/unfollow`,
+    `https://api.mandarin.cf/profile/${authorAccount}/unfollow`,
     {
       method: "DELETE",
       headers: {
@@ -127,7 +130,7 @@ const sellDiv = document.querySelector(".sell-items");
 // 판매 게시글 가져오기
 async function GetSaleInfo() {
   const saleimgdata = await fetch(
-    `http://146.56.183.55:5050/product/${authorAccount}`,
+    `https://api.mandarin.cf/product/${authorAccount}`,
     {
       method: "GET",
       headers: {
@@ -170,15 +173,15 @@ window.onload = function () {
 };
 
 albumBtn.addEventListener("click", () => {
-  albumBtn.src = "./img/icon-post-album-on.png";
-  listBtn.src = "./img/icon-post-list-off.png";
+  albumBtn.src = "img/icon-post-album-on.png";
+  listBtn.src = "img/icon-post-list-off.png";
   listSec.classList.add("hide");
   albumSec.classList.remove("hide");
 });
 
 listBtn.addEventListener("click", () => {
-  albumBtn.src = "./img/icon-post-album-off.png";
-  listBtn.src = "./img/icon-post-list-on.png";
+  albumBtn.src = "img/icon-post-album-off.png";
+  listBtn.src = "img/icon-post-list-on.png";
   albumSec.classList.add("hide");
   listSec.classList.remove("hide");
 });
@@ -186,7 +189,7 @@ listBtn.addEventListener("click", () => {
 // 피드 가져오기 리스트형식
 async function GetList() {
   const feedimgdata = await fetch(
-    `http://146.56.183.55:5050/post/${authorAccount}/userpost`,
+    `https://api.mandarin.cf/post/${authorAccount}/userpost`,
     {
       method: "GET",
       headers: {
@@ -229,7 +232,7 @@ async function GetList() {
         <p class="post-user-id">@${accountname}</p>
       </div>
       <button>
-        <img id="more" class="more" src="./img/more-vertical.png" alt="" />
+        <img id="more" class="more" src="img/more-vertical.png" alt="" />
       </button>
     </div>
     <!-- 포스트 메인-->
@@ -254,7 +257,7 @@ async function GetList() {
             <span class="heartnumber">${heartCount}</span>
           </li>
           <li class="comments">
-            <img src="./img/2/footer-icon/chat.svg" alt="" />
+            <img class="comments-img" src="img/2/footer-icon/chat.svg" alt="" />
             <span class="number">${commentCount}</span>
           </li>
         </ul>
@@ -270,6 +273,11 @@ async function GetList() {
         .querySelector(`.${cls}`)
         .addEventListener("click", () => heartClick(postId, hearted));
     });
+    ["comments-img"].forEach((cls) => {
+      feedArt
+        .querySelector(`.${cls}`)
+        .addEventListener("click", () => GoToComment(postId))
+      });
     listSec.appendChild(feedArt);
     heartedlist.push(hearted);
   });
@@ -300,9 +308,14 @@ async function GetList() {
   const moreBtns = document.querySelectorAll("#more");
   moreBtns.forEach((moreBtn) => {
     moreBtn.addEventListener("click", function () {
-      reportModal(userid)
+      reportModal(postId)
     });
   });
+}
+
+function GoToComment(postId) {
+  localStorage.setItem("postId", postId);
+  location.href = "posting.html"
 }
 
 function heartClick(postId, hearted) {
@@ -318,7 +331,7 @@ async function UploadLikes(postId) {
   // const dataform = new FormData();
   // dataform.append("heartCount", heartState);
   const likedata = await fetch(
-    `http://146.56.183.55:5050/post/${postId}/heart`,
+    `https://api.mandarin.cf/post/${postId}/heart`,
     {
       method: "POST",
       headers: {
@@ -333,7 +346,7 @@ async function UploadLikes(postId) {
 async function DeleteLikes(postId) {
   const token = localStorage.getItem("Token");
   const likedata = await fetch(
-    `http://146.56.183.55:5050/post/${postId}/unheart`,
+    `https://api.mandarin.cf/${postId}/unheart`,
     {
       method: "DELETE",
       headers: {
@@ -350,7 +363,7 @@ async function GetAlbum() {
   const accountname = localStorage.getItem("accountname");
   const albumPhotoDiv = document.querySelector(".album-photos");
   const albumimgdata = await fetch(
-    `http://146.56.183.55:5050/post/${accountname}/userpost`,
+    `https://api.mandarin.cf/post/${accountname}/userpost`,
     {
       method: "GET",
       headers: {
@@ -378,8 +391,8 @@ async function GetAlbum() {
   });
 }
 
-async function reportPost(userid) {
-  const url = `http://146.56.183.55:5050/post/${userid}report`;
+async function reportPost(postId) {
+  const url = `https://api.mandarin.cf/post/${postId}/report`;
   const report = await fetch(url, {
     method: "POST",
     headers: {
@@ -388,7 +401,7 @@ async function reportPost(userid) {
     },
     body: JSON.stringify({
       report: {
-        post: userid,
+        post: postId,
       },
     }),
   });
@@ -418,11 +431,11 @@ const Logout_open = () => {
   modalLogout.classList.add("on");
 };
 const Logout_close = () => {
-  location.href = "./login.html";
+  location.href = "index.html";
 };
 
 const Setting = () => {
-  location.href = "./otherpage.html";
+  location.href = "otherpage.html";
 };
 
 dotBtn.addEventListener("click", open);
@@ -433,7 +446,7 @@ logoutBtn.addEventListener("click", Logout_close);
 userSetting.addEventListener("click", Setting);
 
 // 신고버튼 모달창
-function reportModal(userid) {
+function reportModal(postId) {
   let modalBgReport = document.querySelector(".modal_bg.report");
   let modal_Report = document.querySelector(".posting_modal.report");
   let user_report = document.querySelector(".user_report");
@@ -457,8 +470,8 @@ function reportModal(userid) {
   };
 
   const user_delete_close = () => {
-    reportPost(userid)
-    location.href = "./otherpage.html";
+    reportPost(postId)
+    location.href = "otherpage.html";
   };
 
   open();
