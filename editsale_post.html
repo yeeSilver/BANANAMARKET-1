@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>판매 상품 등록 페이지</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="icon" href="img/favi.ico">
+  <link rel="stylesheet" href="./css/salePost.css">
+</head>
+<body>
+  <header>
+    <h1 class="hide">판매 상품 등록 페이지</h1>
+    <!-- top-upload-nav  -->
+    <nav class="top-upload-nav">
+      <div class="arrow">
+        <img src="./img/icon-arrow-left.png" onclick="history.back();" alt="">
+      </div>
+      <button type="button" class="sale-save">저장</button>
+    </nav>
+  </header>
+  <!-- write -->
+  <main>
+    <section class="write-sec">
+      <p>이미지 등록</p>
+      <div class="img-upload-con">
+        <div class="sale-img-bg">
+          <form method="post" class="product-img-form">
+            <label for="product-img">
+              <input type="file" accept="image/*" enctype="multipart/form-data" name="itemImage" id="product-img" required>
+              <img src="./img/2/write/img-button.png" alt="">
+          </label>
+          </form>
+        </div>
+    </div>
+    
+    <div class="list-write-input">
+      <form name="write" method="post" class="product-sale-form">
+        <ul>
+          <li>
+            <label for="product">상품명</label>
+            <input type="text" name="itemName" id="product" placeholder="2-15자 이내여야 합니다." pattern=".{2,16}" required>
+            <input type="submit" class="hide">
+          </li>
+          <li>
+            <label for="price">가격</label>
+            <input type="number" name="price" id="price" placeholder="숫자만 입력 가능합니다." required>
+            <input type="submit" class="hide">
+          </li>
+          <li>
+            <label for="sale link">판매 링크</label>
+            <input type="url" name="link" id="sale-link" placeholder="URL을 입력해주세요." required>
+            <input type="submit" class="hide">
+          </li>
+        </ul>
+      </form>
+    </div>
+  </section>
+  </main>
+  <script src="js/editsale_post.js"></script>
+</body>
+</html>

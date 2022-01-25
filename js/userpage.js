@@ -500,7 +500,7 @@ function saleModal(itemId) {
   user_delete.addEventListener("click", user_delete_open);
   user_edit.addEventListener("click", function() {
     localStorage.setItem("itemId",itemId)
-    location.href = "./edituser_post.html"
+    location.href = "./editsale_post.html"
   });
   cancleBtn.addEventListener("click", close)
   deleteBtn.addEventListener("click", user_delete_close);
