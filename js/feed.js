@@ -11,30 +11,30 @@ const plus = document.querySelector(".img-plus");
 const profile = document.querySelector(".img-profile");
 
 home.addEventListener("click", function () {
-  location.href = "./feed.html";
+  location.href = "feed.html";
 });
 
 chat.addEventListener("click", function () {
-  location.href = "./chatting.html";
+  location.href = "chatting.html";
 });
 
 plus.addEventListener("click", function () {
-  location.href = "./sale_post.html";
+  location.href = "sale_post.html";
 });
 
 profile.addEventListener("click", function () {
-  location.href = "./userpage.html";
+  location.href = "userpage.html";
 });
 
 search_btn1.addEventListener("click", function () {
-  location.href = "./search.html";
+  location.href = "search.html";
 });
 
 search_btn2.addEventListener("click", function () {
-  location.href = "./search.html";
+  location.href = "search.html";
 });
 search_btn3.addEventListener("click", function () {
-  location.href = "./search.html";
+  location.href = "search.html";
 });
 
 const container = document.querySelector(".feed-main");
@@ -91,7 +91,7 @@ async function getFeed() {
     <span class="heartnumber">${heartCount}</span>
     </li>
     <li class="comments">
-    <img src="./img/2/footer-icon/chat.svg">
+    <img src="img/2/footer-icon/chat.svg">
     <span class="number">${commentCount}</span>
     </li>
     <ul>

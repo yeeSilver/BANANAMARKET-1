@@ -9,9 +9,9 @@ setTimeout(function() {
 
 
 login.addEventListener('click', function() {
-    location.href = "./login_email.html"
+    location.href = "login_email.html"
 })
 
 join.addEventListener('click', function() {
-    location.href = "./join_email.html"
+    location.href = "join_email.html"
 })

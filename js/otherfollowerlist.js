@@ -6,7 +6,7 @@ const profile = document.querySelector(".img-profile");
 const myAccountname = localStorage.getItem("accountname");
 
 뒤로가기.addEventListener("click", function () {
-  location.href = "./otherpage.html";
+  location.href = "otherpage.html";
 });
 
 async function getFollow() {
@@ -79,10 +79,10 @@ async function getFollow() {
 
 function GoToPage(accountName) {
     if(myAccountname == accountName) {
-      location.href = "./userpage.html"
+      location.href = "userpage.html"
     } else  {
     localStorage.setItem("authorAccountName", accountName)
-    location.href = "./otherpage.html"
+    location.href = "otherpage.html"
     }
 }
 

@@ -59,10 +59,10 @@ async function getProfile() {
   const 팔로잉 = document.querySelector(".followingBtn");
 
   팔로워.addEventListener("click", function () {
-    location.href = "./otherfollowerlist.html";
+    location.href = "otherfollowerlist.html";
   });
   팔로잉.addEventListener("click", function () {
-    location.href = "./otherfollowinglist.html";
+    location.href = "otherfollowinglist.html";
   });
 
   // 팔로우버튼
@@ -170,15 +170,15 @@ window.onload = function () {
 };
 
 albumBtn.addEventListener("click", () => {
-  albumBtn.src = "./img/icon-post-album-on.png";
-  listBtn.src = "./img/icon-post-list-off.png";
+  albumBtn.src = "img/icon-post-album-on.png";
+  listBtn.src = "img/icon-post-list-off.png";
   listSec.classList.add("hide");
   albumSec.classList.remove("hide");
 });
 
 listBtn.addEventListener("click", () => {
-  albumBtn.src = "./img/icon-post-album-off.png";
-  listBtn.src = "./img/icon-post-list-on.png";
+  albumBtn.src = "img/icon-post-album-off.png";
+  listBtn.src = "img/icon-post-list-on.png";
   albumSec.classList.add("hide");
   listSec.classList.remove("hide");
 });
@@ -229,7 +229,7 @@ async function GetList() {
         <p class="post-user-id">@${accountname}</p>
       </div>
       <button>
-        <img id="more" class="more" src="./img/more-vertical.png" alt="" />
+        <img id="more" class="more" src="img/more-vertical.png" alt="" />
       </button>
     </div>
     <!-- 포스트 메인-->
@@ -254,7 +254,7 @@ async function GetList() {
             <span class="heartnumber">${heartCount}</span>
           </li>
           <li class="comments">
-            <img class="comments-img" src="./img/2/footer-icon/chat.svg" alt="" />
+            <img class="comments-img" src="img/2/footer-icon/chat.svg" alt="" />
             <span class="number">${commentCount}</span>
           </li>
         </ul>
@@ -312,7 +312,7 @@ async function GetList() {
 
 function GoToComment(postId) {
   localStorage.setItem("postId", postId);
-  location.href = "./posting.html"
+  location.href = "posting.html"
 }
 
 function heartClick(postId, hearted) {
@@ -428,11 +428,11 @@ const Logout_open = () => {
   modalLogout.classList.add("on");
 };
 const Logout_close = () => {
-  location.href = "./index.html";
+  location.href = "index.html";
 };
 
 const Setting = () => {
-  location.href = "./otherpage.html";
+  location.href = "otherpage.html";
 };
 
 dotBtn.addEventListener("click", open);
@@ -468,7 +468,7 @@ function reportModal(userid) {
 
   const user_delete_close = () => {
     reportPost(userid)
-    location.href = "./otherpage.html";
+    location.href = "otherpage.html";
   };
 
   open();

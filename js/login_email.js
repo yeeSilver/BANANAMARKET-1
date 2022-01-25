@@ -30,11 +30,11 @@ async function login() {
   }
   localStorage.setItem("Token", json.user.token);
   localStorage.setItem("accountname", json.user.accountname);
-  location.href = "./feed.html";
+  location.href = "feed.html";
 }
 const $loginBtn = document.querySelector(".login-button");
 $loginBtn.addEventListener("click", login);
 
 join.addEventListener("click", function () {
-  location.href = "./join_email.html";
+  location.href = "join_email.html";
 });

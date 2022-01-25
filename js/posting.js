@@ -5,7 +5,7 @@ const accountname = localStorage.getItem("accountname");
 
 // 상단바 뒤로가기
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
-  location.href = "./feed.html"
+  location.href = "feed.html"
 });
 // 상단바 모달 설정 및 개인정보, 로그아웃
 // 게시물 불러오기
@@ -56,7 +56,7 @@ async function getFeed() {
       <span class="number">${heartCount}</span>
       </li>
       <li class="comments">
-      <img src="./img/2/footer-icon/chat.svg">
+      <img src="img/2/footer-icon/chat.svg">
       <span class="number">${commentCount}</span>
       </li>
       <ul>
@@ -138,9 +138,9 @@ async function getComments() {
 function GoToPage(useraccountName) {
   if (accountname !== useraccountName) {
     localStorage.setItem("authorAccountName", useraccountName);
-    location.href = "./otherpage.html";
+    location.href = "otherpage.html";
   } else {
-    location.href = "./userpage.html";
+    location.href = "userpage.html";
   }
 } 
 
@@ -262,7 +262,7 @@ function deleteModal(postId, commentId) {
 
   const user_delete_close = () => {
     deleteComment(postId, commentId);
-    location.href = "./posting.html";
+    location.href = "posting.html";
   };
 
   open();
@@ -298,7 +298,7 @@ function reportModal(postId, commentId) {
 
   const user_delete_close = () => {
     reportComment(postId, commentId);
-    location.href = "./posting.html";
+    location.href = "posting.html";
   };
 
   open();

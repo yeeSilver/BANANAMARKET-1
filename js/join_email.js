@@ -104,7 +104,7 @@ async function join(){
       }
       if(res.status == 200){
         alert('회원가입 완료. 로그인 하세요')
-        location.href = "./index.html"
+        location.href = "index.html"
       }
       else{
           console.log(json)

@@ -5,7 +5,7 @@ const plus = document.querySelector(".img-plus");
 const profile = document.querySelector(".img-profile");
 
 뒤로가기.addEventListener("click", function () {
-  location.href = "./otherpage.html";
+  location.href = "otherpage.html";
 });
 
 async function getFollowing() {
@@ -74,10 +74,10 @@ async function getFollowing() {
 function GoToPage(accountName) {
   const myAccountname = localStorage.getItem("accountname");
   if(myAccountname == accountName) {
-    location.href = "./userpage.html"
+    location.href = "userpage.html"
   } else{
   localStorage.setItem("authorAccountName", accountName)
-  location.href = "./otherpage.html"
+  location.href = "otherpage.html"
   }
 }
 

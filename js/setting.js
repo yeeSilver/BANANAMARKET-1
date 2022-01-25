@@ -63,7 +63,7 @@ async function imageUpload(files) {
         }
         if(res.status == 200){
             localStorage.setItem("accountname", json.user.accountname);
-            location.href = "./feed.html"
+            location.href = "feed.html"
         }
         else{
             console.log(json)

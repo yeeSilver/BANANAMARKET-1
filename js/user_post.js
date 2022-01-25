@@ -4,7 +4,7 @@ const $content = document.querySelector(".user_post-inp");
 const $uploadBtn = document.querySelector(".upload-btn");
 const $preview = document.querySelector(".art-preview");
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
-    location.href = "./feed.html";
+    location.href = "feed.html";
 });
 
 // 버튼 활성화
@@ -114,7 +114,7 @@ async function createPost() {
             }),
         });
         const json = await res.json();
-        location.href = "./userpage.html";
+        location.href = "userpage.html";
     } else {
         alert("아 이미지 갯수가 너무 많소");
     }

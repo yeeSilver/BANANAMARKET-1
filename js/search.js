@@ -73,9 +73,9 @@ function removeAllList(ele){
 
 function GoToPage(authorAccount) {
   if(accountname == authorAccount) {
-    location.href = "./userpage.html"
+    location.href = "userpage.html"
   } else {
     localStorage.setItem("authorAccountName", authorAccount);
-    location.href = "./otherpage.html"
+    location.href = "otherpage.html"
   }
 }

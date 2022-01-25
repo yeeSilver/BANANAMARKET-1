@@ -46,10 +46,10 @@ async function getProfile() {
   const register = document.querySelector(".register")
   const proEdit = document.querySelector(".proEdit")
   const moveTo_rg = () => {
-    location.href = "./sale_post.html"
+    location.href = "sale_post.html"
   }
   const moveTo_pe = () => {
-    location.href = "./setting.html"
+    location.href = "setting.html"
   }
   register.addEventListener("click", moveTo_rg); 
   proEdit.addEventListener("click", moveTo_pe); 
@@ -59,10 +59,10 @@ async function getProfile() {
   const 팔로잉 = document.querySelector(".followingBtn");
 
   팔로워.addEventListener("click", function () {
-    location.href = "./followerlist.html";
+    location.href = "followerlist.html";
   });
   팔로잉.addEventListener("click", function () {
-    location.href = "./followinglist.html";
+    location.href = "followinglist.html";
   });
 }
 
@@ -139,15 +139,15 @@ window.onload = function () {
 };
 
 albumBtn.addEventListener("click", () => {
-  albumBtn.src = "./img/icon-post-album-on.png";
-  listBtn.src = "./img/icon-post-list-off.png";
+  albumBtn.src = "img/icon-post-album-on.png";
+  listBtn.src = "img/icon-post-list-off.png";
   listSec.classList.add("hide");
   albumSec.classList.remove("hide");
 });
 
 listBtn.addEventListener("click", () => {
-  albumBtn.src = "./img/icon-post-album-off.png";
-  listBtn.src = "./img/icon-post-list-on.png";
+  albumBtn.src = "img/icon-post-album-off.png";
+  listBtn.src = "img/icon-post-list-on.png";
   albumSec.classList.add("hide");
   listSec.classList.remove("hide");
 });
@@ -208,7 +208,7 @@ async function GetList() {
         <p class="post-user-id">@${accountname}</p>
       </div>
       <button>
-        <img id="more" class="more" src="./img/more-vertical.png" alt="" />
+        <img id="more" class="more" src="img/more-vertical.png" alt="" />
       </button>
     </div>
     <!-- 포스트 메인-->
@@ -233,7 +233,7 @@ async function GetList() {
             <span class="heartnumber">${heartCount}</span>
           </li>
           <li class="comments">
-            <img class="comments-img" src="./img/2/footer-icon/chat.svg" alt="" />
+            <img class="comments-img" src="img/2/footer-icon/chat.svg" alt="" />
             <span class="number">${commentCount}</span>
           </li>
         </ul>
@@ -291,7 +291,7 @@ async function GetList() {
 }
 function GoToComment(postId) {
   localStorage.setItem("postId", postId);
-  location.href = "./posting.html"
+  location.href = "posting.html"
 }
 
 function heartClick(postId, hearted) {

@@ -5,22 +5,22 @@ const plus = document.querySelector(".img-plus");
 const profile = document.querySelector(".img-profile");
 
 뒤로가기.addEventListener("click", function () {
-  location.href = "./userpage.html";
+  location.href = "userpage.html";
 });
 // home.addEventListener("click", function () {
-//   location.href = "./feed.html";
+//   location.href = "feed.html";
 // });
 
 // chat.addEventListener("click", function () {
-//   location.href = "./chatting.html";
+//   location.href = "chatting.html";
 // });
 
 // plus.addEventListener("click", function () {
-//   location.href = "./sale_post.html";
+//   location.href = "sale_post.html";
 // });
 
 // profile.addEventListener("click", function () {
-//   location.href = "./userpage.html";
+//   location.href = "userpage.html";
 // });
 
 async function getFollow() {
@@ -84,6 +84,6 @@ async function getFollow() {
 
 function GoToPage(accountName) {
     localStorage.setItem("authorAccountName", accountName)
-    location.href = "./otherpage.html"
+    location.href = "otherpage.html"
 }
 getFollow();
