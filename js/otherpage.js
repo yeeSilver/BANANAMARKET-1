@@ -428,7 +428,7 @@ const Logout_open = () => {
   modalLogout.classList.add("on");
 };
 const Logout_close = () => {
-  location.href = "./login.html";
+  location.href = "./index.html";
 };
 
 const Setting = () => {
