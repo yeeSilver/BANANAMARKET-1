@@ -39,7 +39,7 @@ async function getFollow() {
   });
   const json = await res.json();
   // console.log(json);
-  let 팔로우버튼 = '팔로우';
+  // let 팔로우버튼 = '팔로우';
   json.forEach((i) => {
     const 유저어카운트네임 = i.accountname;
     const 팔로우이미지 = i.image;
@@ -84,11 +84,11 @@ async function getFollow() {
                   <p class="followName">${팔로우이름}</p>
                   <small class="followIntro">${팔로우소개}</small>
               </div>
-              <button type="submit" class="fBtn ${btnclass}">${팔로우버튼}</button>
+              <button type="submit" class="${fBtn} ${btnclass}">${팔로우버튼}</button>
           </li>
           `);
 
-          [`fBtn`].forEach((cls) => {
+          [`${fBtn}`].forEach((cls) => {
             const btn = li.querySelector(`.${cls}`);
 
             li.querySelector(`.${cls}`).addEventListener("click", () => {
