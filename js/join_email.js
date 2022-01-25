@@ -93,6 +93,7 @@ async function join(){
       })
       const json = await res.json()
       const message = json.message
+      console.log(message);
       if(res.status === 422) {
         if(message == "이미 사용중인 계정 ID입니다.")
         {
