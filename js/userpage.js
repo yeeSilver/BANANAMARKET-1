@@ -214,7 +214,7 @@ async function GetList() {
             <span class="heartnumber">${heartCount}</span>
           </li>
           <li class="comments">
-            <img src="./img/2/footer-icon/chat.svg" alt="" />
+            <img class="comments-img" src="./img/2/footer-icon/chat.svg" alt="" />
             <span class="number">${commentCount}</span>
           </li>
         </ul>
@@ -239,13 +239,13 @@ async function GetList() {
         .querySelector(`.${cls}`)
         .addEventListener("click", () => editModal(postId))
       });
-
-      const chatting_icon = document.querySelector(".comments img");
-      chatting_icon.addEventListener("click", () => {
-        location.href = "./posting.html"
-      })
+    ["comments-img"].forEach((cls) => {
+        feedArt
+          .querySelector(`.${cls}`)
+          .addEventListener("click", () => GoToComment(postId))
+        });
   });
-
+  
   //좋아요가 있는 부분은 색이 있는 하트 보여주기
   
   const likesBtns = document.querySelectorAll(".likes svg");
@@ -269,6 +269,10 @@ async function GetList() {
     });
   });
 
+}
+function GoToComment(postId) {
+  localStorage.setItem("postId", postId);
+  location.href = "./posting.html"
 }
 
 function heartClick(postId, hearted) {

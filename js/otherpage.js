@@ -254,7 +254,7 @@ async function GetList() {
             <span class="heartnumber">${heartCount}</span>
           </li>
           <li class="comments">
-            <img src="./img/2/footer-icon/chat.svg" alt="" />
+            <img class="comments-img" src="./img/2/footer-icon/chat.svg" alt="" />
             <span class="number">${commentCount}</span>
           </li>
         </ul>
@@ -270,6 +270,11 @@ async function GetList() {
         .querySelector(`.${cls}`)
         .addEventListener("click", () => heartClick(postId, hearted));
     });
+    ["comments-img"].forEach((cls) => {
+      feedArt
+        .querySelector(`.${cls}`)
+        .addEventListener("click", () => GoToComment(postId))
+      });
     listSec.appendChild(feedArt);
     heartedlist.push(hearted);
   });
@@ -303,6 +308,11 @@ async function GetList() {
       reportModal(userid)
     });
   });
+}
+
+function GoToComment(postId) {
+  localStorage.setItem("postId", postId);
+  location.href = "./posting.html"
 }
 
 function heartClick(postId, hearted) {
