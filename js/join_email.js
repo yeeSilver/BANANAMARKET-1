@@ -5,6 +5,7 @@ const $profile = document.querySelector(".profile");
 const $profileImg = document.querySelector(".profile-img");
 
 // 회원가입 메인창
+const idPwForm = document.querySelector('.cont-banana.email-pw');
 const inputId = document.querySelector("#join-id");
 const inputPw = document.querySelector("#join-pw");
 const $loginBtn = document.querySelector(".login-button.next");
@@ -15,39 +16,37 @@ const $loginBtn_b = document.querySelector(".login-button.submit");
 const userName = document.querySelector("#userNameInput");
 const userId = document.querySelector("#userIdInput");
 const intro = document.querySelector("#userIntroInput");
+const emailPwForm = document.querySelector('.cont-banana.profile');
 
 $loginBtn.disabled = true;
 $loginBtn_b.disabled = true;
 
-inputId.addEventListener("keyup", listener1);
-inputPw.addEventListener("keyup", listener1);
-
-function listener1() {
-  switch (inputId.value && !inputPw.value) {
-    case true:
-      $loginBtn.disabled = true;
-      break;
-    case false:
-      $loginBtn.disabled = false;
-      break;
+idPwForm.addEventListener("keyup", function () {
+  if(inputId.value && inputPw.value) {
+    $loginBtn.disabled = false;
+  } else {
+    $loginBtn.disabled = true;
   }
-}
+})
 
-userName.addEventListener("keyup", listener2);
-userId.addEventListener("keyup", listener2);
-intro.addEventListener("keyup", listener2);
+// function listener1() {
+//   switch (inputId.value && !inputPw.value) {
+//     case true:
+//       $loginBtn.disabled = true;
+//       break;
+//     case false:
+//       $loginBtn.disabled = false;
+//       break;
+//   }
+// }
 
-function listener2() {
-  switch (!userName.value || (userId.value && !intro.value)) {
-    case true:
-      $loginBtn_b.disabled = true;
-      break;
-    case false:
-      $loginBtn_b.disabled = false;
-      break;
+emailPwForm.addEventListener("keyup", function () {
+  if(userName.value && userId.value && intro.value) {
+    $loginBtn_b.disabled = false;
+  } else {
+    $loginBtn_b.disabled = true;
   }
-}
-
+})
 
 async function checkEmailValid(email) {
   const url = "https://api.mandarin.cf";
