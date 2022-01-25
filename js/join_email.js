@@ -75,7 +75,7 @@ async function join(){
   const intro = document.querySelector("#userIntroInput").value;
   const imageUrl = document.querySelector(".profile-user-image").src
   try{
-      const res = await fetch("https://api.mandarin.cf", {
+      const res = await fetch("https://api.mandarin.cf/user", {
           method: "POST",
           headers: {
               "Content-Type": "application/json",
