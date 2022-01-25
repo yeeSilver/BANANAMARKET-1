@@ -12,7 +12,6 @@ async function getProfile() {
     },
   });
   const json = await res.json();
-  console.log(json)
   const userid = json.profile._id;
   localStorage.setItem('userid', `${userid}`);
   const 이미지 = json.profile.image;
@@ -21,7 +20,6 @@ async function getProfile() {
   const 소개 = json.profile.intro;
   const 팔로워수 = json.profile.followerCount;
   const 팔로잉수 = json.profile.followingCount;
-  console.log(userid)
   document.querySelector(".profile").innerHTML += `
   <a href="" class="display-inline basic-profile"><img src="${이미지}" alt=""></a>
   <div class="profile-desc">
@@ -88,23 +86,43 @@ async function GetSaleInfo() {
   );
   const salejson = await saleimgdata.json();
   const sale_pro = salejson.product;
-  // console.log(salejson);
+  console.log(sale_pro);
   sale_pro.forEach((el) => {
     const itemName = el.itemName;
     const itemImg = el.itemImage;
-    const itemLink = el.link;
     const itemPrice = el.price;
+    const itemId = el.id;
+    console.log(itemId);
     let sellArt = document.createElement("article");
     sellArt.classList.add("display-sell");
     sellArt.innerHTML = `
-      <a href="${itemLink}">
-        <img src="${itemImg}" alt="">
-        <p>${itemName}</p>
-        <small>${itemPrice}원</small>
+        <img class="saleImg" src="${itemImg}" alt="">
+        <p class="saleName">${itemName}</p>
+        <small class="salePrice">${itemPrice}원</small>
       </a>
     `;
+    ["saleImg", "saleName", "salePrice"].forEach((cls) => {
+      sellArt
+        .querySelector(`.${cls}`)
+        .addEventListener("click", () => saleModal(itemId));
+    });
     sellDiv.appendChild(sellArt);
   });
+}
+
+// 판매 상품 삭제
+async function deleteItem(itemId) {
+  const token = localStorage.getItem("Token");
+  const deleteSale = await fetch(
+    `http://146.56.183.55:5050/product/${itemId}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    }
+  );
 }
 
 // 피드 보여주는 버튼 부분
@@ -446,3 +464,44 @@ logout.addEventListener("click", Logout_open);
 cancleBtn.addEventListener("click", close);
 logoutBtn.addEventListener("click", Logout_close)
 userSetting.addEventListener("click", Setting)
+
+// 판매 상품 모달
+function saleModal(itemId) {
+  let modalBg = document.querySelector(".modal_bg.sale_post")
+  let modal = document.querySelector(".userpage_modal.sale_post")
+  let user_delete = document.querySelector(".user_delete.sale_post")
+  let user_edit = document.querySelector(".user_edit.sale_post")
+  let modalDelete = document.querySelector(".modal_salepost_delete")
+  let cancleBtn = document.querySelector(".cancel-btn")
+  let deleteBtn = document.querySelector(".delete-btn.sale_post")
+  
+  const open = () => {
+    modalBg.classList.add("on")
+    modal.classList.add("on")
+  }
+  
+  const close = () => {
+    modalBg.classList.remove("on")
+    modal.classList.remove("on")
+    modalDelete.classList.remove("on")
+  }
+
+  const user_delete_open = () => {
+    modalDelete.classList.add("on")
+  }
+  
+  const user_delete_close = () => {
+    deleteItem(itemId)
+    location.href = "./userpage.html"
+  }
+  
+  open();
+  modalBg.addEventListener("click", close);
+  user_delete.addEventListener("click", user_delete_open);
+  user_edit.addEventListener("click", function() {
+    localStorage.setItem("itemId",itemId)
+    location.href = "./edituser_post.html"
+  });
+  cancleBtn.addEventListener("click", close)
+  deleteBtn.addEventListener("click", user_delete_close);
+}
