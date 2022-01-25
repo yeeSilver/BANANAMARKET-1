@@ -396,7 +396,7 @@ function editModal(postId) {
   
   const user_delete_close = () => {
     deletePost(postId)
-    location.href = "./userpage.html"
+    location.href = "userpage.html"
   }
   
   open();
@@ -404,7 +404,7 @@ function editModal(postId) {
   user_delete.addEventListener("click", user_delete_open);
   user_edit.addEventListener("click", function() {
     localStorage.setItem("postId",postId)
-    location.href = "./edituser_post.html"
+    location.href = "edituser_post.html"
   });
   cancleBtn.addEventListener("click", close)
   deleteBtn.addEventListener("click", user_delete_close);
@@ -451,12 +451,12 @@ const Logout_open = () => {
   modalLogout.classList.add("on")
 }
 const Logout_close = () => {
-  location.href = "./index.html"
+  location.href = "index.html"
   localStorage.clear()
 }
 
 const Setting = () => {
-  location.href = "./userpage.html"
+  location.href = "userpage.html"
 }
 
 dotBtn.addEventListener("click", open);
@@ -494,7 +494,7 @@ function saleModal(itemId, itemLink) {
   
   const user_delete_close = () => {
     deleteItem(itemId)
-    location.href = "./userpage.html"
+    location.href = "userpage.html"
   }
   
   open();
@@ -502,7 +502,7 @@ function saleModal(itemId, itemLink) {
   user_delete.addEventListener("click", user_delete_open);
   user_edit.addEventListener("click", function() {
     localStorage.setItem("itemId",itemId)
-    location.href = "./editsale_post.html"
+    location.href = "editsale_post.html"
   });
   cancleBtn.addEventListener("click", close)
   deleteBtn.addEventListener("click", user_delete_close);
