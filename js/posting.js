@@ -5,7 +5,7 @@ const accountname = localStorage.getItem("accountname");
 
 // 상단바 뒤로가기
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
-  window.history.back();
+  location.href = "./feed.html"
 });
 // 상단바 모달 설정 및 개인정보, 로그아웃
 // 게시물 불러오기
@@ -84,7 +84,7 @@ getFeed();
 // 댓글 리스트업
 async function getComments() {
   const url = "http://146.56.183.55:5050";
-  const res = await fetch(url + `/post/${postId}/comments`, {
+  const res = await fetch(url + `/post/${postId}/comments/?limit=100&skip=0`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
