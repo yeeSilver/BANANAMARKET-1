@@ -54,6 +54,7 @@ async function getFeed() {
   const post = json.posts;
   if (post.length !== 0) {
     for (let i = 0; i < post.length; i++) {
+      const hearted = post[i].hearted;
       const postId = post[i].id
       const authorImage = post[i].author.image;
       const authorAccount = post[i].author.accountname;
@@ -108,8 +109,10 @@ async function getFeed() {
       ["likes"].forEach((cls) => {
         section
           .querySelector(`.${cls}`)
-          .addEventListener("click", () => heartClick(postId));
+          .addEventListener("click", () => heartClick(postId, hearted));
       });
+      heartedlist.push(hearted);
+      
       ["comments"].forEach((cls) => {
         section
           .querySelector(`.${cls}`)
