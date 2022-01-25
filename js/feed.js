@@ -104,7 +104,7 @@ async function getFeed() {
       ["img-mini-profile", "post-title", "post-user-id"].forEach((cls) => {
         section
           .querySelector(`.${cls}`)
-          .addEventListener("click", () => GoToPage(authorAccount));
+          .addEventListener("click", () => GoToPage(authorAccount, postId));
       });
       ["likes"].forEach((cls) => {
         section
@@ -149,8 +149,9 @@ async function getFeed() {
 
 getFeed();
 
-function GoToPage(authorAccount) {
+function GoToPage(authorAccount, postId) {
   localStorage.setItem("authorAccountName", authorAccount);
+  localStorage.setItem("postId", postId);
   location.href = "otherpage.html";
 }
 

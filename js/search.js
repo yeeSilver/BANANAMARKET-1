@@ -16,7 +16,7 @@ async function searchId(search) {
   });
 
   const data = await res.json();
-  
+  console.log(data);
   data.forEach(user => {
     const authorName = user.username;
     const authorAccount = user.accountname;

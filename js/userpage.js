@@ -12,8 +12,6 @@ async function getProfile() {
     },
   });
   const json = await res.json();
-  const userid = json.profile._id;
-  localStorage.setItem('userid', `${userid}`);
   const 이미지 = json.profile.image;
   const 이름 = json.profile.username;
   const 계정 = json.profile.accountname;

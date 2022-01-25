@@ -25,11 +25,13 @@ async function login() {
     body: JSON.stringify(loginData),
   });
   const json = await res.json();
+  console.log(json);
   if (json.status === 422) {
     error.innerHTML = `*${json.message}`;
   }
   localStorage.setItem("Token", json.user.token);
   localStorage.setItem("accountname", json.user.accountname);
+  localStorage.setItem("myId", json.user._id);
   location.href = "feed.html";
 }
 const $loginBtn = document.querySelector(".login-button");

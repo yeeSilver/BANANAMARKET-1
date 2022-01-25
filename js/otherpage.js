@@ -1,7 +1,9 @@
 const accountname = localStorage.getItem("accountname");
 const authorAccount = localStorage.getItem("authorAccountName");
 const token = localStorage.getItem("Token");
-const userid = localStorage.getItem("userid");
+const myId = localStorage.getItem("myId")
+const postId = localStorage.getItem("postId");
+console.log(postId);
 async function getProfile() {
   const url = `https://api.mandarin.cf/profile/${authorAccount}`;
   const token = localStorage.getItem("Token");
@@ -19,11 +21,12 @@ async function getProfile() {
   const 소개 = json.profile.intro;
   const 팔로워수 = json.profile.followerCount;
   const 팔로잉수 = json.profile.followingCount;
-  let 팔로우버튼 = "언팔로우";
-  let 팔로우클래스 = "unfollow-btn";
+  let 팔로우버튼 = "팔로우";
+  let 팔로우클래스 = "follow-btn";
   const 팔로워리스트 = json.profile.follower;
+  console.log(팔로워리스트);
   팔로워리스트.forEach((팔로워) => {
-    if (!(팔로워 === userid)) {
+    if (!(팔로워 === myId)) {
       팔로우버튼 = "팔로우";
       팔로우클래스 = "follow-btn";
     } else {
@@ -305,7 +308,7 @@ async function GetList() {
   const moreBtns = document.querySelectorAll("#more");
   moreBtns.forEach((moreBtn) => {
     moreBtn.addEventListener("click", function () {
-      reportModal(userid)
+      reportModal(postId)
     });
   });
 }
@@ -388,8 +391,8 @@ async function GetAlbum() {
   });
 }
 
-async function reportPost(userid) {
-  const url = `https://api.mandarin.cf/post/${userid}report`;
+async function reportPost(postId) {
+  const url = `https://api.mandarin.cf/post/${postId}/report`;
   const report = await fetch(url, {
     method: "POST",
     headers: {
@@ -398,7 +401,7 @@ async function reportPost(userid) {
     },
     body: JSON.stringify({
       report: {
-        post: userid,
+        post: postId,
       },
     }),
   });
@@ -443,7 +446,7 @@ logoutBtn.addEventListener("click", Logout_close);
 userSetting.addEventListener("click", Setting);
 
 // 신고버튼 모달창
-function reportModal(userid) {
+function reportModal(postId) {
   let modalBgReport = document.querySelector(".modal_bg.report");
   let modal_Report = document.querySelector(".posting_modal.report");
   let user_report = document.querySelector(".user_report");
@@ -467,7 +470,7 @@ function reportModal(userid) {
   };
 
   const user_delete_close = () => {
-    reportPost(userid)
+    reportPost(postId)
     location.href = "otherpage.html";
   };
 
