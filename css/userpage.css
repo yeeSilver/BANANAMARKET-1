@@ -555,6 +555,10 @@ button {
   cursor: pointer;
   transition: all .3s linear;
 }
+.section_sale{
+  height: 170px;
+  bottom: -170px;
+}
 
 .posting_modal {
   /* display: none; */
