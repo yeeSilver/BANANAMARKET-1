@@ -2,7 +2,7 @@
 const token = localStorage.getItem("Token");
 async function getProfile() {
   const accountname = localStorage.getItem("accountname");
-  const url = `http://146.56.183.55:5050/profile/${accountname}`;
+  const url = `https://api.mandarin.cf/profile/${accountname}`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
     method: "GET",
@@ -75,7 +75,7 @@ async function GetSaleInfo() {
   const token = localStorage.getItem("Token");
   const accountname = localStorage.getItem("accountname");
   const saleimgdata = await fetch(
-    `http://146.56.183.55:5050/product/${accountname}`,
+    `https://api.mandarin.cf/product/${accountname}`,
     {
       method: "GET",
       headers: {
@@ -115,7 +115,7 @@ async function GetSaleInfo() {
 async function deleteItem(itemId) {
   const token = localStorage.getItem("Token");
   const deleteSale = await fetch(
-    `http://146.56.183.55:5050/product/${itemId}`,
+    `https://api.mandarin.cf/product/${itemId}`,
     {
       method: "DELETE",
       headers: {
@@ -158,7 +158,7 @@ async function GetList() {
   const token = localStorage.getItem("Token");
   const accountname = localStorage.getItem("accountname");
   const feedimgdata = await fetch(
-    `http://146.56.183.55:5050/post/${accountname}/userpost`,
+    `https://api.mandarin.cf/post/${accountname}/userpost`,
     {
       method: "GET",
       headers: {
@@ -310,7 +310,7 @@ async function UploadLikes(postId) {
   // const dataform = new FormData();
   // dataform.append("heartCount", heartState);
   const likedata = await fetch(
-    `http://146.56.183.55:5050/post/${postId}/heart`,
+    `https://api.mandarin.cf/post/${postId}/heart`,
     {
       method: "POST",
       headers: {
@@ -325,7 +325,7 @@ async function UploadLikes(postId) {
 async function DeleteLikes(postId) {
   const token = localStorage.getItem("Token");
   const likedata = await fetch(
-    `http://146.56.183.55:5050/post/${postId}/unheart`,
+    `https://api.mandarin.cf/post/${postId}/unheart`,
     {
       method: "DELETE",
       headers: {
@@ -342,7 +342,7 @@ async function GetAlbum() {
   const accountname = localStorage.getItem("accountname");
   const albumPhotoDiv = document.querySelector(".album-photos");
   const albumimgdata = await fetch(
-    `http://146.56.183.55:5050/post/${accountname}/userpost`,
+    `https://api.mandarin.cf/post/${accountname}/userpost`,
     {
       method: "GET",
       headers: {
@@ -415,7 +415,7 @@ function editModal(postId) {
 async function deletePost(postId) {
   const token = localStorage.getItem("Token");
   const deletePost = await fetch(
-    `http://146.56.183.55:5050/post/${postId}`,
+    `https://api.mandarin.cf/post/${postId}`,
     {
       method: "DELETE",
       headers: {

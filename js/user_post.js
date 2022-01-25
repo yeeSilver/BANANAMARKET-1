@@ -26,7 +26,7 @@ function listener() {
 async function getProfile() {
     const accountname = localStorage.getItem("accountname");
 
-    const url = `http://146.56.183.55:5050/profile/${accountname}`;
+    const url = `https://api.mandarin.cf/profile/${accountname}`;
     const token = localStorage.getItem("Token");
     const res = await fetch(url, {
         method: "GET",
@@ -75,7 +75,7 @@ $image.addEventListener("change", function () {
 async function imageUpload(files, index) {
     const formData = new FormData();
     formData.append("image", files[index]); //formData.append("키이름","값")
-    const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+    const res = await fetch(`https://api.mandarin.cf/image/uploadfile`, {
         method: "POST",
         body: formData,
     });
@@ -85,7 +85,7 @@ async function imageUpload(files, index) {
 }
 
 async function createPost() {
-    const url = "http://146.56.183.55:5050";
+    const url = "https://api.mandarin.cf";
     const token = localStorage.getItem("Token");
     //입력한 텍스트 불러와야함
     const contentText = $content.value;

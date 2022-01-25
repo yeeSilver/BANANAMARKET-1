@@ -11,7 +11,7 @@ arrow.addEventListener('click',function() {
 async function imageUpload(files) {
     const formData = new FormData();
     formData.append("image", files[0]); 
-    const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+    const res = await fetch(`https://api.mandarin.cf/image/uploadfile`, {
         method: "POST",
         body : formData
     })
@@ -23,7 +23,7 @@ async function imageUpload(files) {
   async function profileImage(e) {
     const files = e.target.files
     const result = await imageUpload(files)
-    $profileImg.src = "http://146.56.183.55:5050" + "/" + result
+    $profileImg.src = "https://api.mandarin.cf" + "/" + result
     console.log($profileImg.src)
     document.querySelector('.profile-user-image').src =  $profileImg.src
   }
@@ -35,7 +35,7 @@ async function imageUpload(files) {
     const intro = document.querySelector("#userIntroInput").value;
     const imageUrl = document.querySelector(".profile-user-image").src
     {
-        const res = await fetch("http://146.56.183.55:5050/user", {
+        const res = await fetch("https://api.mandarin.cf/user", {
             method: "PUT",
             headers: {
                 "Authorization" : `Bearer ${token}`,

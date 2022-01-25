@@ -3,7 +3,7 @@ const authorAccount = localStorage.getItem("authorAccountName");
 const token = localStorage.getItem("Token");
 const userid = localStorage.getItem("userid");
 async function getProfile() {
-  const url = `http://146.56.183.55:5050/profile/${authorAccount}`;
+  const url = `https://api.mandarin.cf/profile/${authorAccount}`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
     method: "GET",
@@ -93,7 +93,7 @@ getProfile();
 //팔로우 반영 하기
 async function 팔로우업로드() {
   const 팔로우데이터 = await fetch(
-    `http://146.56.183.55:5050/profile/${authorAccount}/follow`,
+    `https://api.mandarin.cf/profile/${authorAccount}/follow`,
     {
       method: "POST",
       headers: {
@@ -110,7 +110,7 @@ async function 팔로우업로드() {
 async function 팔로우취소() {
   const token = localStorage.getItem("Token");
   const 팔로우취소데이터 = await fetch(
-    `http://146.56.183.55:5050/profile/${authorAccount}/unfollow`,
+    `https://api.mandarin.cf/profile/${authorAccount}/unfollow`,
     {
       method: "DELETE",
       headers: {
@@ -127,7 +127,7 @@ const sellDiv = document.querySelector(".sell-items");
 // 판매 게시글 가져오기
 async function GetSaleInfo() {
   const saleimgdata = await fetch(
-    `http://146.56.183.55:5050/product/${authorAccount}`,
+    `https://api.mandarin.cf/product/${authorAccount}`,
     {
       method: "GET",
       headers: {
@@ -186,7 +186,7 @@ listBtn.addEventListener("click", () => {
 // 피드 가져오기 리스트형식
 async function GetList() {
   const feedimgdata = await fetch(
-    `http://146.56.183.55:5050/post/${authorAccount}/userpost`,
+    `https://api.mandarin.cf/post/${authorAccount}/userpost`,
     {
       method: "GET",
       headers: {
@@ -328,7 +328,7 @@ async function UploadLikes(postId) {
   // const dataform = new FormData();
   // dataform.append("heartCount", heartState);
   const likedata = await fetch(
-    `http://146.56.183.55:5050/post/${postId}/heart`,
+    `https://api.mandarin.cf/post/${postId}/heart`,
     {
       method: "POST",
       headers: {
@@ -343,7 +343,7 @@ async function UploadLikes(postId) {
 async function DeleteLikes(postId) {
   const token = localStorage.getItem("Token");
   const likedata = await fetch(
-    `http://146.56.183.55:5050/post/${postId}/unheart`,
+    `https://api.mandarin.cf/${postId}/unheart`,
     {
       method: "DELETE",
       headers: {
@@ -360,7 +360,7 @@ async function GetAlbum() {
   const accountname = localStorage.getItem("accountname");
   const albumPhotoDiv = document.querySelector(".album-photos");
   const albumimgdata = await fetch(
-    `http://146.56.183.55:5050/post/${accountname}/userpost`,
+    `https://api.mandarin.cf/post/${accountname}/userpost`,
     {
       method: "GET",
       headers: {
@@ -389,7 +389,7 @@ async function GetAlbum() {
 }
 
 async function reportPost(userid) {
-  const url = `http://146.56.183.55:5050/post/${userid}report`;
+  const url = `https://api.mandarin.cf/post/${userid}report`;
   const report = await fetch(url, {
     method: "POST",
     headers: {

@@ -21,7 +21,7 @@ function listener() {
 
 async function getProfile() {
     const accountname = localStorage.getItem("accountname");
-    const url = `http://146.56.183.55:5050/profile/${accountname}`;
+    const url = `https://api.mandarin.cf/profile/${accountname}`;
     const token = localStorage.getItem("Token");
     const res = await fetch(url, {
         method: "GET",
@@ -42,7 +42,7 @@ getProfile();
 async function imageUpload(files, index) {
     const formData = new FormData();
     formData.append("image", files[index]);
-    const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+    const res = await fetch(`https://api.mandarin.cf/image/uploadfile`, {
         method: "POST",
         body: formData,
     });
@@ -77,7 +77,7 @@ $image.addEventListener("change", function () {
 });
 
 async function createPost() {
-    const url = "http://146.56.183.55:5050";
+    const url = "https://api.mandarin.cf";
     const token = localStorage.getItem("Token");
     const contentText = $content.value;
     const imageUrls = [];

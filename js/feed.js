@@ -39,7 +39,7 @@ search_btn3.addEventListener("click", function () {
 
 const container = document.querySelector(".feed-main");
 async function getFeed() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   const token = localStorage.getItem("Token");
   const res = await fetch(url + "/post/feed", {
     method: "GET",
@@ -173,7 +173,7 @@ async function UploadLikes(postId) {
   // const dataform = new FormData();
   // dataform.append("heartCount", heartState);
   const likedata = await fetch(
-    `http://146.56.183.55:5050/post/${postId}/heart`,
+    `https://api.mandarin.cf/post/${postId}/heart`,
     {
       method: "POST",
       headers: {
@@ -188,7 +188,7 @@ async function UploadLikes(postId) {
 async function DeleteLikes(postId) {
   const token = localStorage.getItem("Token");
   const likedata = await fetch(
-    `http://146.56.183.55:5050/post/${postId}/unheart`,
+    `https://api.mandarin.cf/post/${postId}/unheart`,
     {
       method: "DELETE",
       headers: {

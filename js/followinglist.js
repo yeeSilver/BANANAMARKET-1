@@ -26,7 +26,7 @@ const profile = document.querySelector(".img-profile");
 async function getFollowing() {
   const accountname = localStorage.getItem("accountname");
 
-  const url = `http://146.56.183.55:5050/profile/${accountname}/following?limit=100&skip=0`;
+  const url = `https://api.mandarin.cf/profile/${accountname}/following?limit=100&skip=0`;
   const token = localStorage.getItem("Token");
   const res = await fetch(url, {
     method: "GET",

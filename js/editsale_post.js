@@ -32,7 +32,7 @@ saveBtn.addEventListener("click",()=>{
 async function uploadSaleImgName(files){
   const dataform = new FormData();
   dataform.append('image',files[0]);
-      const imgdata = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+      const imgdata = await fetch(`https://api.mandarin.cf/image/uploadfile`, {
         method: "POST", 
         body : dataform
     })
@@ -45,7 +45,7 @@ async function uploadSaleImgName(files){
 async function profileImage(e) {
   const files = e.target.files
   const result = await uploadSaleImgName(files);
-  saleImg.src = "http://146.56.183.55:5050" + "/" + result;
+  saleImg.src = "https://api.mandarin.cf" + "/" + result;
   const saleImgUrl = saleImg.src;
   document.querySelector('.sale-img-bg').style.backgroundImage = `url(${saleImgUrl})`;
 }
@@ -57,10 +57,10 @@ async function UploadSalePost(files){
   let salePrice_val = salePrice.value;
   salePrice_val = Number(salePrice_val);
   const urlresult = await uploadSaleImgName(files);
-  const imgUrl = "http://146.56.183.55:5050" + "/" + urlresult;
+  const imgUrl = "https://api.mandarin.cf" + "/" + urlresult;
 
   try{
-    const res = await fetch(`http://146.56.183.55:5050/product/${itemId}`, {
+    const res = await fetch(`https://api.mandarin.cf/product/${itemId}`, {
         method: "PUT",
         headers: {
           "Authorization" : `Bearer ${userToken}`,

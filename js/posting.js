@@ -12,7 +12,7 @@ document.querySelector(".icon-left-arrow").addEventListener("click", () => {
 
 const postId = localStorage.getItem("postId");
 async function getFeed() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   const res = await fetch(url + `/post/${postId}`, {
     method: "GET",
     headers: {
@@ -83,7 +83,7 @@ getFeed();
 
 // 댓글 리스트업
 async function getComments() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   const res = await fetch(url + `/post/${postId}/comments/?limit=100&skip=0`, {
     method: "GET",
     headers: {
@@ -178,7 +178,7 @@ getComments();
 // 댓글 작성
 
 async function writeComments() {
-  const url = `http://146.56.183.55:5050/post/${postId}/comments`;
+  const url = `https://api.mandarin.cf/post/${postId}/comments`;
   const contentText = textInput.value;
   const res = await fetch(url, {
     method: "POST",
@@ -201,7 +201,7 @@ textButton.addEventListener("click", function () {
 // 댓글 프로필 사진
 
 async function getProfile() {
-  const url = `http://146.56.183.55:5050/profile/${accountname}`;
+  const url = `https://api.mandarin.cf/profile/${accountname}`;
   const res = await fetch(url, {
     method: "GET",
     headers: {
@@ -221,7 +221,7 @@ getProfile();
 // 게시물 모달 신고
 
 async function reportComment(postId, commentId) {
-  const url = `http://146.56.183.55:5050/post/${postId}/comments/${commentId}/report`;
+  const url = `https://api.mandarin.cf/post/${postId}/comments/${commentId}/report`;
   const report = await fetch(url, {
     method: "POST",
     headers: {
@@ -311,7 +311,7 @@ function reportModal(postId, commentId) {
 // 댓글 삭제
 async function deleteComment(postId, commentId) {
   const deleteComment = await fetch(
-    `http://146.56.183.55:5050/post/${postId}/comments/${commentId}`,
+    `https://api.mandarin.cf/post/${postId}/comments/${commentId}`,
     {
       method: "DELETE",
       headers: {

@@ -2,7 +2,7 @@
 const token = localStorage.getItem("Token");
 const userList = document.querySelector(".search-result-list");
 const searchInput = document.querySelector(".user-search-input");
-const url = "http://146.56.183.55:5050";
+const url = "https://api.mandarin.cf";
 const search_result_list = document.querySelector('.search-result-list')
 const accountname = localStorage.getItem("accountname");
 
