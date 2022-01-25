@@ -1,4 +1,3 @@
-
 const textInput = document.querySelector(".textinput_input_text");
 const textButton = document.querySelector(".textinput_button");
 const token = localStorage.getItem("Token");
@@ -77,9 +76,7 @@ async function getFeed() {
         likeBtn.classList.add("likes-on");
       }
     });
-
-}
-  );
+  });
 }
 
 getFeed();
@@ -109,32 +106,44 @@ async function getComments() {
     const commentId = jsonComment[i].id;
     const useraccountName = jsonComment[i].author.accountname;
     console.log(useraccountName);
-    console.log(accountname)
+    console.log(accountname);
     const article = document.createElement("article");
     article.classList.add("comment-element");
     article.innerHTML = `<div class="comments-innerbox">
-    <img class="comments-profile" src="${image}" alt="프로필이미지" />
-    <h3>${username}</h3>
+    <img class="comments-img" src="${image}" alt="프로필이미지" />
+    <h3 class="comments-name">${username}</h3>
     <span class="settime">${spareDate}</span>
   </div>
   <img class="comments-dot" src="img/more-vertical.png" alt="">
   <p class="comments-contents">${content}</p>
     `;
-    ["comments-dot"].forEach((cls) => {
-      article
-        .querySelector(`.${cls}`)
-        .addEventListener("click", function() {
-          if(accountname !== useraccountName) {
-            reportModal(postId, commentId)
+    ["comments-dot"]
+      .forEach((cls) => {
+        article.querySelector(`.${cls}`).addEventListener("click", function () {
+          if (accountname !== useraccountName) {
+            reportModal(postId, commentId);
           } else {
-            deleteModal(postId, commentId)
+            deleteModal(postId, commentId);
           }
-        }
-      );
-      })
+        });
+      });
+      ["comments-img", "comments-name"].forEach((cls) => {
+        article
+          .querySelector(`.${cls}`)
+          .addEventListener("click", () => GoToPage(useraccountName));
+      });
     document.querySelector(".comments-container").appendChild(article);
   }
-}  
+}
+function GoToPage(useraccountName) {
+  if (accountname !== useraccountName) {
+    localStorage.setItem("authorAccountName", useraccountName);
+    location.href = "./otherpage.html";
+  } else {
+    location.href = "./userpage.html";
+  }
+}
+
 function checkDate(createdAt, time) {
   let currentTime = new Date();
   // console.log(currentTime);
@@ -164,7 +173,7 @@ function checkDate(createdAt, time) {
     return `${Math.floor(spareTime / 43800)}개월전`;
   }
 }
-getComments()
+getComments();
 
 // 댓글 작성
 
@@ -185,10 +194,9 @@ async function writeComments() {
   });
   const json = await res.json();
 }
-textButton.addEventListener('click', function (){
-  writeComments()
-})
-
+textButton.addEventListener("click", function () {
+  writeComments();
+});
 
 // 댓글 프로필 사진
 
@@ -203,17 +211,17 @@ async function getProfile() {
   });
   const json = await res.json();
   const 이미지 = json.profile.image;
-  const img = document.createElement('img')
-  img.src = `${이미지}`
-  document.querySelector('.textinput').appendChild(img);
+  const img = document.createElement("img");
+  img.src = `${이미지}`;
+  document.querySelector(".textinput").appendChild(img);
 }
 
 getProfile();
 
 // 게시물 모달 신고
 
-async function reportComment (postId, commentId) {
-  const url =  `http://146.56.183.55:5050/post/${postId}/comments/${commentId}/report`
+async function reportComment(postId, commentId) {
+  const url = `http://146.56.183.55:5050/post/${postId}/comments/${commentId}/report`;
   const report = await fetch(url, {
     method: "POST",
     headers: {
@@ -230,76 +238,75 @@ async function reportComment (postId, commentId) {
 
 // 댓글 삭제 모달
 function deleteModal(postId, commentId) {
-  let modalBg = document.querySelector(".modal_bg")
-  let modal = document.querySelector(".posting_modal")
-  let user_delete = document.querySelector(".user_delete")
-  let modalDelete = document.querySelector(".modal_delete")
-  let cancleBtn = document.querySelector(".cancel-button")
-  let deleteBtn = document.querySelector(".delete-btn")
-  
+  let modalBg = document.querySelector(".modal_bg");
+  let modal = document.querySelector(".posting_modal");
+  let user_delete = document.querySelector(".user_delete");
+  let modalDelete = document.querySelector(".modal_delete");
+  let cancleBtn = document.querySelector(".cancel-button");
+  let deleteBtn = document.querySelector(".delete-btn");
+
   const open = () => {
-    modalBg.classList.add("on")
-    modal.classList.add("on")
-  }
-  
+    modalBg.classList.add("on");
+    modal.classList.add("on");
+  };
+
   const close = () => {
-    modalBg.classList.remove("on")
-    modal.classList.remove("on")
-    modalDelete.classList.remove("on")
-  }
+    modalBg.classList.remove("on");
+    modal.classList.remove("on");
+    modalDelete.classList.remove("on");
+  };
 
   const user_delete_open = () => {
-    modalDelete.classList.add("on")
-  }
-  
+    modalDelete.classList.add("on");
+  };
+
   const user_delete_close = () => {
-    deleteComment(postId, commentId)
-    location.href = "./posting.html"
-  }
-  
+    deleteComment(postId, commentId);
+    location.href = "./posting.html";
+  };
+
   open();
   modalBg.addEventListener("click", close);
   user_delete.addEventListener("click", user_delete_open);
-  cancleBtn.addEventListener("click", close)
+  cancleBtn.addEventListener("click", close);
   deleteBtn.addEventListener("click", user_delete_close);
 }
 
 // 댓글 신고 모달
 function reportModal(postId, commentId) {
-  let modalBgReport = document.querySelector(".modal_bg.report")
-  let modal_Report = document.querySelector(".posting_modal.report")
-  let user_report = document.querySelector(".user_report")
-  let modalReport = document.querySelector(".modal_report")
-  let cancleBtn = document.querySelector(".cancel-button.report")
-  let reportBtn = document.querySelector(".report-btn")
-  
+  let modalBgReport = document.querySelector(".modal_bg.report");
+  let modal_Report = document.querySelector(".posting_modal.report");
+  let user_report = document.querySelector(".user_report");
+  let modalReport = document.querySelector(".modal_report");
+  let cancleBtn = document.querySelector(".cancel-button.report");
+  let reportBtn = document.querySelector(".report-btn");
+
   const open = () => {
-    modalBgReport.classList.add("on")
-    modal_Report.classList.add("on")
-  }
-  
+    modalBgReport.classList.add("on");
+    modal_Report.classList.add("on");
+  };
+
   const close = () => {
-    modalBgReport.classList.remove("on")
-    modal_Report.classList.remove("on")
-    modalReport.classList.remove("on")
-  }
+    modalBgReport.classList.remove("on");
+    modal_Report.classList.remove("on");
+    modalReport.classList.remove("on");
+  };
 
   const user_delete_open = () => {
-    modalReport.classList.add("on")
-  }
-  
+    modalReport.classList.add("on");
+  };
+
   const user_delete_close = () => {
-    reportComment (postId, commentId)
-    location.href = "./posting.html"
-  }
-  
+    reportComment(postId, commentId);
+    location.href = "./posting.html";
+  };
+
   open();
   modalBgReport.addEventListener("click", close);
   user_report.addEventListener("click", user_delete_open);
-  cancleBtn.addEventListener("click", close)
+  cancleBtn.addEventListener("click", close);
   reportBtn.addEventListener("click", user_delete_close);
 }
-
 
 // 댓글 삭제
 async function deleteComment(postId, commentId) {
