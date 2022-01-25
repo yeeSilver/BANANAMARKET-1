@@ -183,14 +183,23 @@ body {
   margin-bottom: 16px;
 }
 
-.cont-banana .btn {
+/* .cont-banana .btn {
   cursor: pointer;
   margin: 30px 0 20px;
-  background-color: #EEDBA5;
+  background-color: #F4BC1E;
 }
 
 .cont-banana .btn:focus {
   background-color: #F4BC1E;
+} */
+
+.login-button{
+  cursor: pointer;
+  margin: 30px 0 20px;
+  background-color: #F4BC1E;
+}
+.login-button:disabled{
+  background-color: #EEDBA5;
 }
 
 .cont-banana a {

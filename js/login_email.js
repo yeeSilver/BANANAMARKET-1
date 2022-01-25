@@ -1,9 +1,8 @@
 const join = document.querySelector(".join-email");
 const error = document.querySelector(".error-msg");
-function getInput() {
-  console.log(document.querySelector("#login-id").value);
-  console.log(document.querySelector("#login-pw").value);
-}
+
+
+
 
 async function login() {
   const email = document.querySelector("#login-id").value;
@@ -34,8 +33,24 @@ async function login() {
   localStorage.setItem("myId", json.user._id);
   location.href = "feed.html";
 }
+
+// 버튼 활성화
+const inputId = document.querySelector("#login-id")
+const inputPw = document.querySelector("#login-pw")
 const $loginBtn = document.querySelector(".login-button");
+
+$loginBtn.disabled = true;
 $loginBtn.addEventListener("click", login);
+
+inputId.addEventListener('keyup', listener );
+inputPw.addEventListener('keyup', listener );
+
+function listener() {
+  switch (!inputId.value || !inputPw.value) {
+      case true: $loginBtn.disabled = true; break;
+      case false: $loginBtn.disabled = false; break;
+  }
+}
 
 join.addEventListener("click", function () {
   location.href = "join_email.html";
