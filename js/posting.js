@@ -142,7 +142,7 @@ function GoToPage(useraccountName) {
   } else {
     location.href = "./userpage.html";
   }
-}
+} 
 
 function checkDate(createdAt, time) {
   let currentTime = new Date();

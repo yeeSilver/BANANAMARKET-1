@@ -92,6 +92,7 @@ async function GetSaleInfo() {
     const itemImg = el.itemImage;
     const itemPrice = el.price;
     const itemId = el.id;
+    const itemLink = el.link;
     console.log(itemId);
     let sellArt = document.createElement("article");
     sellArt.classList.add("display-sell");
@@ -104,7 +105,7 @@ async function GetSaleInfo() {
     ["saleImg", "saleName", "salePrice"].forEach((cls) => {
       sellArt
         .querySelector(`.${cls}`)
-        .addEventListener("click", () => saleModal(itemId));
+        .addEventListener("click", () => saleModal(itemId, itemLink));
     });
     sellDiv.appendChild(sellArt);
   });
@@ -466,7 +467,7 @@ logoutBtn.addEventListener("click", Logout_close)
 userSetting.addEventListener("click", Setting)
 
 // 판매 상품 모달
-function saleModal(itemId) {
+function saleModal(itemId, itemLink) {
   let modalBg = document.querySelector(".modal_bg.sale_post")
   let modal = document.querySelector(".userpage_modal.sale_post")
   let user_delete = document.querySelector(".user_delete.sale_post")
@@ -474,7 +475,8 @@ function saleModal(itemId) {
   let modalDelete = document.querySelector(".modal_salepost_delete")
   let cancleBtn = document.querySelector(".cancel-btn")
   let deleteBtn = document.querySelector(".delete-btn.sale_post")
-  
+  let saleSite = document.querySelector(".sale_post_site")
+
   const open = () => {
     modalBg.classList.add("on")
     modal.classList.add("on")
@@ -504,4 +506,7 @@ function saleModal(itemId) {
   });
   cancleBtn.addEventListener("click", close)
   deleteBtn.addEventListener("click", user_delete_close);
+  saleSite.addEventListener("click", function () {
+    location.href = `${itemLink}`
+  })
 }
