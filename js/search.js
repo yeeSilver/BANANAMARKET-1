@@ -55,8 +55,7 @@ async function searchId(search) {
 }
 searchId();
 
-searchInput.addEventListener('keyup', (e) => {
-  if(e.isComposing && e.keycode === 229) return;
+searchInput.addEventListener('input', (e) => {
   if(e.target.value === ""){
     removeAllList(userList);
   } else {
