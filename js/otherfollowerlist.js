@@ -28,7 +28,7 @@ async function getMyFollowing(id) {
 
 //타인의 팔로워 불러오기
 async function getFollow() {
-  const userid = localStorage.getItem("userid");
+  const userid = localStorage.getItem("myId");
   const url = `https://api.mandarin.cf/profile/${authorAccount}/follower?limit=100&skip=0`;
   const res = await fetch(url, {
     method: "GET",
@@ -48,11 +48,8 @@ async function getFollow() {
     const accountName = i.accountname;
     let 팔로우버튼 = '취소';
     let btnclass = 'cancle-btn';
-  
-    if(i._id === userid){
-      fBtn = 'hide';
-    }
-    
+    let fBtn='fBtn';
+
     const 팔로우버튼함수 = async () => {
       try{
         const datas = await getMyFollowing(i._id);
@@ -69,13 +66,16 @@ async function getFollow() {
       if(value==='팔로우'){
         btnclass = 'follow-btn'
       }
-      Markup(value,btnclass)
+      
+      Markup(value,btnclass,fBtn)
     });
 
     function Markup(팔로우버튼,btnclass){
+      if(i._id === userid){
+        fBtn = 'hide'
+      }
       const li = document.createElement("li");
       li.classList.add("follow-list");
-
       li.insertAdjacentHTML (
         "afterbegin",`
           <li class="follow-list">
