@@ -3,26 +3,11 @@ const home = document.querySelector(".img-home");
 const chat = document.querySelector(".img-chat");
 const plus = document.querySelector(".img-plus");
 const profile = document.querySelector(".img-profile");
+const token = localStorage.getItem("Token");
 
 뒤로가기.addEventListener("click", function () {
   location.href = "userpage.html";
 });
-// home.addEventListener("click", function () {
-//   location.href = "feed.html";
-// });
-
-// chat.addEventListener("click", function () {
-//   location.href = "chatting.html";
-// });
-
-// plus.addEventListener("click", function () {
-//   location.href = "sale_post.html";
-// });
-
-// profile.addEventListener("click", function () {
-//   location.href = "userpage.html";
-// });
-
 async function getFollowing() {
   const accountname = localStorage.getItem("accountname");
 
@@ -51,11 +36,12 @@ async function getFollowing() {
                 <p class="followName">${팔로우이름}</p>
                 <small class="followIntro">${팔로우소개}</small>
             </div>
-            <button type="submit" class="cancel-btn fBtn">취소</button>
+            <button type="submit" class="cancle-btn fBtn">취소</button>
         </li>
         `;
     ["fBtn"].forEach((cls) => {
-      li.querySelector(`.${cls}`).addEventListener("click", () => followBtn());
+      const btn = li.querySelector(`.${cls}`);
+      btn.addEventListener("click", () => followBtn(btn, `${accountName}`));
     });
     ["display-inline", "followName", "followIntro"].forEach((cls) => {
       li.querySelector(`.${cls}`).addEventListener("click", () =>
@@ -64,27 +50,62 @@ async function getFollowing() {
     });
     document.querySelector(".container").appendChild(li);
   });
-  function followBtn() {
-    let fBtn = document.querySelectorAll(".fBtn");
-    fBtn.forEach((e) => {
-      e.addEventListener("click", function () {
+  function followBtn(e,accountName) {
         if (e.innerText === "팔로우") {
           e.classList.remove("follow-btn");
-          e.classList.add("cancel-btn");
+          e.classList.add("cancle-btn");
           e.innerText = "취소";
+          팔로우업로드(accountName);
+
         } else {
-          e.classList.remove("cancel-btn");
+          e.classList.remove("cancle-btn");
           e.classList.add("follow-btn");
           e.innerText = "팔로우";
+          팔로우취소(accountName);
         }
-      });
-    });
-  }
+      }
 }
 
 function GoToPage(accountName) {
     localStorage.setItem("authorAccountName", accountName)
     location.href = "otherpage.html"
+}
+
+//팔로우 반영 하기
+async function 팔로우업로드(listAccountName) {
+  console.log(listAccountName)
+  const 팔로우데이터 = await fetch(
+    `https://api.mandarin.cf/profile/${listAccountName}/follow`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    }
+  );
+  const data = await 팔로우데이터.json();
+  console.log('팔로우완료');
+  console.log(data)
+}
+
+//팔로우 취소 하기
+async function 팔로우취소(listAccountName) {
+  console.log(listAccountName)
+
+  const 팔로우취소데이터 = await fetch(
+    `https://api.mandarin.cf/profile/${listAccountName}/unfollow`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    }
+  );
+  const data = await 팔로우취소데이터.json();
+  console.log("팔로우취소완료");
+  console.log(data)
 }
 
 getFollowing();
