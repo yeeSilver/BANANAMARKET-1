@@ -4,7 +4,7 @@ const $content = document.querySelector(".user_post-inp");
 const $uploadBtn = document.querySelector(".upload-btn");
 const $preview = document.querySelector(".art-preview");
 document.querySelector(".icon-left-arrow").addEventListener("click", () => {
-    location.href = "feed.html";
+    window.history.back();
 });
 
 // 버튼 활성화
@@ -52,7 +52,7 @@ function handleFiles(files) {
         if (!file.type.startsWith("image/")) {
             continue;
         }
-        
+
         const img = document.createElement("img");
         img.classList.add("art-preview_img");
         img.file = file;
@@ -123,4 +123,3 @@ async function createPost() {
 $uploadBtn.addEventListener("click", function () {
     createPost();
 });
-

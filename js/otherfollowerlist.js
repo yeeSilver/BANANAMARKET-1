@@ -66,7 +66,7 @@ async function getFollow() {
         btnclass = 'follow-btn'
       }
       
-      Markup(value,btnclass,fBtn)
+      Markup(value,btnclass)
     });
 
     function Markup(팔로우버튼,btnclass){
@@ -113,7 +113,7 @@ async function getFollow() {
           });
           document.querySelector(".container").appendChild(li);
           
-        }
+      }
 
   });
   
