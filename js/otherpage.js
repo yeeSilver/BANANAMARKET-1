@@ -363,7 +363,7 @@ async function GetAlbum() {
   const accountname = localStorage.getItem("accountname");
   const albumPhotoDiv = document.querySelector(".album-photos");
   const albumimgdata = await fetch(
-    `https://api.mandarin.cf/post/${accountname}/userpost`,
+    `https://api.mandarin.cf/post/${authorAccount}/userpost`,
     {
       method: "GET",
       headers: {
