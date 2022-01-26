@@ -1,12 +1,14 @@
 @charset "utf-8";
 @import "./components/navbar.css";
 
+/* hide는 리스트에서 '나'일 경우 팔로우 버튼이 생기지 않도록 하는 데 쓰이기 때문에 삭제하면 안됩니다!*/
 .hide{
     display: none;
 }
 .display-inline{
     display: inline-block;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .followers-nav{
