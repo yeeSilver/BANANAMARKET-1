@@ -38,8 +38,7 @@ async function getFollow() {
     },
   });
   const json = await res.json();
-  // console.log(json);
-  // let 팔로우버튼 = '팔로우';
+
   json.forEach((i) => {
     const 유저어카운트네임 = i.accountname;
     const 팔로우이미지 = i.image;
