@@ -138,7 +138,7 @@ async function getFeed() {
     img.classList.add("post-img");
 
     if(postImage.length === 1) {
-    li.innerHTML = `<img src=" ${postImage[0]}" onerror="this.style.display='none'" />`
+    li.innerHTML = `<img src=" ${postImage[0]}" onerror="this.src='/img/1.png'" />`
     wrap.appendChild(li);
       }
     else if (postImage.length > 1) {
