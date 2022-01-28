@@ -452,11 +452,16 @@ button {
   font-size: 10px;
 }
 
+.likes svg {
+  transition: .2s linear;
+}
+
 .likes-on {
   fill: #F26E22;
   stroke: #F26E22;
+  cursor: pointer;
+  transform: scale(1.15);
 }
-
 .post-date {
   font-size: 10px;
 }

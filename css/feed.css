@@ -133,9 +133,13 @@
 }
 
 /* 좋아요 하트 */
+.likes svg {
+  transition: .2s linear;
+}
 
 .likes-on {
   fill: #F26E22;
   stroke: #F26E22;
   cursor: pointer;
+  transform: scale(1.15);
 }
