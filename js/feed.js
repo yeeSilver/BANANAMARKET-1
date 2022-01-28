@@ -55,7 +55,7 @@ async function getFeed() {
   if (post.length !== 0) {
     for (let i = 0; i < post.length; i++) {
       const hearted = post[i].hearted;
-      const postId = post[i].id
+      const postId = post[i].id;
       const authorImage = post[i].author.image;
       const authorAccount = post[i].author.accountname;
       const authorName = post[i].author.username;
@@ -64,6 +64,7 @@ async function getFeed() {
       const image = post[i].image;
       const heartCount = post[i].heartCount;
       const update = post[i].updatedAt.slice(0, 10);
+      const postImage = image.split(",");
       const section = document.createElement("section");
       section.classList.add("home-feed");
       section.innerHTML = `
@@ -81,7 +82,8 @@ async function getFeed() {
     <div class="post-main">
     <div class="post-con-main">
     <p class="content">${content}</p>
-    <img src=" ${image}" onerror="this.style.display='none'" />
+    <ul id="img-wrap${i}">
+    </ul>
     </div>
     <div class="reaction-con">
     <ul class="reaction-list">
@@ -101,6 +103,7 @@ async function getFeed() {
         </article>
       </section>
             `;
+
       ["img-mini-profile", "post-title", "post-user-id"].forEach((cls) => {
         section
           .querySelector(`.${cls}`)
@@ -112,36 +115,60 @@ async function getFeed() {
           .addEventListener("click", () => heartClick(postId, hearted));
       });
       heartedlist.push(hearted);
-      
+
       ["comments"].forEach((cls) => {
         section
           .querySelector(`.${cls}`)
           .addEventListener("click", () => commentClick(postId));
       });
       document.querySelector(".home-feed-container").appendChild(section);
+      addPostImages(postImage, i);
     }
+    
   } else {
     feed_container.style.display = "block";
     home_feed_container.style.display = "none";
   }
   
+  function addPostImages(postImage, i) {
+    const wrap = document.getElementById(`img-wrap${i}`)
+    const li = document.createElement("li");
+    const img = document.createElement('img')
+    li.classList.add("post-img-wrap");
+    img.classList.add("post-img");
+
+    if(postImage.length === 1) {
+    li.innerHTML = `<img src=" ${postImage[0]}" onerror="this.style.display='none'" />`
+    wrap.appendChild(li);
+      }
+    else if (postImage.length > 1) {
+      for(let j = 0; j <= postImage.length - 1; j++){
+      const imgs = document.createElement('img');
+      imgs.classList.add("post-img");
+      li.appendChild(imgs);
+      wrap.appendChild(li);
+      imgs.src = `${postImage[j]}`
+      }
+    }
+  }
+  
   //  좋아요 구현
   const likesBtns = document.querySelectorAll(".likes svg");
-  const likeNums = document.querySelectorAll('.heartnumber');
+  const likeNums = document.querySelectorAll(".heartnumber");
   heartedlist.forEach((list, i) => {
-    if (list === true){
+    if (list === true) {
       likesBtns[i].classList.add("likes-on");
-    } 
-  })
+    }
+  });
 
   likesBtns.forEach((likeBtn, i) => {
     likeBtn.addEventListener("click", function () {
       if (likeBtn.classList.contains("likes-on")) {
         likeBtn.classList.remove("likes-on");
-        likeNums[i].innerText = (+(likeNums[i].innerText) - 1);
+        likeNums[i].innerText = +likeNums[i].innerText - 1;
       } else {
         likeBtn.classList.add("likes-on");
-        likeNums[i].innerText = (+(likeNums[i].innerText) + 1);
+        likeNums[i].innerText = +likeNums[i].innerText + 1;
       }
     });
   });
@@ -156,10 +183,10 @@ function GoToPage(authorAccount, postId) {
 }
 
 function heartClick(postId, hearted) {
-  if(hearted){
-    DeleteLikes(postId)
-  }else{
-    UploadLikes(postId)
+  if (hearted) {
+    DeleteLikes(postId);
+  } else {
+    UploadLikes(postId);
   }
 }
 
@@ -173,16 +200,13 @@ async function UploadLikes(postId) {
   const token = localStorage.getItem("Token");
   // const dataform = new FormData();
   // dataform.append("heartCount", heartState);
-  const likedata = await fetch(
-    `https://api.mandarin.cf/post/${postId}/heart`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-type": "application/json",
-      }
-    }
-  );
+  const likedata = await fetch(`https://api.mandarin.cf/post/${postId}/heart`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
+  });
 }
 
 //좋아요 취소
@@ -195,8 +219,7 @@ async function DeleteLikes(postId) {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-type": "application/json",
-      }
+      },
     }
   );
 }
-
