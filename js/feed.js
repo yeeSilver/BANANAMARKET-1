@@ -82,7 +82,8 @@ async function getFeed() {
     <div class="post-main">
     <div class="post-con-main">
     <p class="content">${content}</p>
-    <ul id="img-wrap${i}">
+    <ul id="img-wrap${i}" class="img-container">
+    <img src=" ${postImage[0]}" onerror="this.src='img/1.png'" />
     </ul>
     </div>
     <div class="reaction-con">
@@ -103,7 +104,6 @@ async function getFeed() {
         </article>
       </section>
             `;
-
       ["img-mini-profile", "post-title", "post-user-id"].forEach((cls) => {
         section
           .querySelector(`.${cls}`)
@@ -122,36 +122,64 @@ async function getFeed() {
           .addEventListener("click", () => commentClick(postId));
       });
       document.querySelector(".home-feed-container").appendChild(section);
-      addPostImages(postImage, i);
+      // Slide(i)
+      // addPostImages(postImage, i);
     }
-    
   } else {
     feed_container.style.display = "block";
     home_feed_container.style.display = "none";
   }
-  
-  function addPostImages(postImage, i) {
-    const wrap = document.getElementById(`img-wrap${i}`)
-    const li = document.createElement("li");
-    const img = document.createElement('img')
-    li.classList.add("post-img-wrap");
-    img.classList.add("post-img");
 
-    if(postImage.length === 1) {
-    li.innerHTML = `<img src=" ${postImage[0]}" onerror="this.src='img/1.png'" />`
-    wrap.appendChild(li);
-      }
-    else if (postImage.length > 1) {
-      for(let j = 0; j <= postImage.length - 1; j++){
-      const imgs = document.createElement('img');
-      imgs.classList.add("post-img");
-      li.appendChild(imgs);
-      wrap.appendChild(li);
-      imgs.src = `${postImage[j]}`
-      }
-    }
-  }
-  
+  // function addPostImages(postImage, i) {
+  //   const wrap = document.getElementById(`img-wrap${i}`);
+  //   const li = document.createElement("li");
+  //   const img = document.createElement("img");
+  //   li.classList.add("post-img-wrap");
+  //   img.classList.add("post-img");
+
+  //   if (postImage.length === 1) {
+  //     li.innerHTML = `<img src=" ${postImage[0]}" onerror="this.src='img/1.png'" />`;
+  //     wrap.appendChild(li);
+  //   } else if (postImage.length > 1) {
+  //     for (let j = 0; j <= postImage.length - 1; j++) {
+  //       const imgs = document.createElement("img");
+  //       imgs.classList.add("post-img");
+  //       li.appendChild(imgs);
+  //       wrap.appendChild(li);
+  //       imgs.src = `${postImage[j]}`;
+  //     }
+  //   }
+  // }
+  // function Slide(i) {
+  //   const container = document.getElementById(`img-wrap${i}`);
+  //   const slideImg = document.querySelectorAll(`.img-wrap${i} li img`);
+  //   console.log(slideImg);
+  //   const prev = document.querySelector(".prev");
+  //   const next = document.querySelector(".next");
+  //   let currentIdx = 0;
+  //   const slideCount = slideImg.length;
+  //   const slideWidth = 300;
+  //   const slideMargin = 20;
+  //   console.log(slideCount);
+  //   container.style.width =
+  //     (slideWidth + slideMargin) * slideCount - slideMargin + "px";
+  //   console.log(slideImg);
+  //   // console.log(container);
+  //   function moveSlide(num) {
+  //     container.style.left = -num * 320 + "px";
+  //     currentIdx = num;
+  //   }
+  //   prev.addEventListener("click", function () {
+  //     if (currentIdx !== 0) moveSlide(currentIdx - 1);
+  //   });
+
+  //   next.addEventListener("click", function () {
+  //     if (currentIdx !== slideCount - 1) {
+  //       moveSlide(currentIdx + 1);
+  //     }
+  //   });
+  // }
+
   //  좋아요 구현
   const likesBtns = document.querySelectorAll(".likes svg");
   const likeNums = document.querySelectorAll(".heartnumber");
@@ -173,9 +201,7 @@ async function getFeed() {
     });
   });
 }
-
 getFeed();
-
 function GoToPage(authorAccount, postId) {
   localStorage.setItem("authorAccountName", authorAccount);
   localStorage.setItem("postId", postId);
@@ -223,3 +249,4 @@ async function DeleteLikes(postId) {
     }
   );
 }
+
