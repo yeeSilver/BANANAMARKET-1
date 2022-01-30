@@ -249,6 +249,3 @@ async function DeleteLikes(postId) {
     }
   );
 }
-
-}
-
