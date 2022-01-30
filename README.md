@@ -113,19 +113,19 @@ SNS를 통한 온라인 소통의 장 바나나마켓입니다.
 
 |1. Splash|2. 회원가입|
 |:-:|:-:|
-|![First Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/1_splash.gif?raw=true?w=350)|![Second Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/2_join.gif?raw=true?w=350)|
+|![First Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/1_splash.gif?raw=true?w=300)|![Second Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/2_join.gif?raw=true?w=300)|
 |3. 로그인|4. 피드화면|
-|![First Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/3_login.gif?raw=true?w=350)|![Second Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/4_feed.gif?raw=true?w=350)|
+|![First Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/3_login.gif?raw=true?w=300)|![Second Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/4_feed.gif?raw=true?w=300)|
 |5. 포스팅 좋아요 및 댓글|6. 게시글 작성 및 나의 페이지|
-|![First Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/5_likes,comment.gif?raw=true?w=350)|![Second Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/6_upload.gif?raw=true?w=350)|
+|![First Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/5_likes,comment.gif?raw=true?w=300)|![Second Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/6_upload.gif?raw=true?w=300)|
 |7. 다른 사람 페이지|8. 프로필 수정|
-|![First Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/7_otherpage.gif?raw=true?w=350)|![Second Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/8_editprofile.gif?raw=true?w=350)|
+|![First Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/7_otherpage.gif?raw=true?w=300)|![Second Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/8_editprofile.gif?raw=true?w=300)|
 |9. 게시글 수정 및 삭제|10. 상품 등록|
-|![First Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/9_editpost.gif?raw=true?w=350)|![Second Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/10_salepost.gif?raw=true?w=350)|
+|![First Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/9_editpost.gif?raw=true?w=300)|![Second Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/10_salepost.gif?raw=true?w=300)|
 |11. 상품 수정 및 삭제|12. 팔로우 및 언팔로우|
-|![First Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/11_editsalepost.gif?raw=true?w=350)|![Second Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/12_follow.gif?raw=true?w=350)|
+|![First Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/11_editsalepost.gif?raw=true?w=300)|![Second Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/12_follow.gif?raw=true?w=300)|
 |13. 로그아웃|
-|![First Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/13_logout.gif?raw=true?w=350)|
+|![First Image](https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/gif/13_logout.gif?raw=true?w=300)|
 
 ## 7. 본인이 개발하며 고민했던 부분과 해결한 부분 및 느낀점 
 
