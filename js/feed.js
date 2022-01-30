@@ -248,8 +248,7 @@ async function DeleteLikes(postId) {
       },
     }
   );
-<<<<<<< HEAD
 }
-=======
+
 }
->>>>>>> 13440389e700af07cfde1cd21800b5db16bb9d44
+
