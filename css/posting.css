@@ -91,7 +91,9 @@ body {
     width: 20px;
     cursor: pointer;
 }
-
+.comments-contents{
+    margin-left: 20px;
+}
 /* 하단텍스트 입력  */
 
 .textinput {
@@ -128,7 +130,7 @@ body {
 .textinput_input_text {
     position: absolute;
     left: 60px;
-    width: 80%;
+    width: 70%;
     height: 100%;
     outline: none;
     font-size: 14px;

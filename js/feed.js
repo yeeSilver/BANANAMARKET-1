@@ -64,7 +64,7 @@ async function getFeed() {
       const image = post[i].image;
       const heartCount = post[i].heartCount;
       const update = post[i].updatedAt.slice(0, 10);
-      const postImage = image.split(",");
+      // const postImage = image.split(",");
       const section = document.createElement("section");
       section.classList.add("home-feed");
       section.innerHTML = `
@@ -83,7 +83,7 @@ async function getFeed() {
     <div class="post-con-main">
     <p class="content">${content}</p>
     <ul id="img-wrap${i}" class="img-container">
-    <img src=" ${postImage[0]}" onerror="this.src='img/1.png'" />
+    <img src=" ${image}" onerror="this.src='img/1.png'" />
     </ul>
     </div>
     <div class="reaction-con">
@@ -249,4 +249,3 @@ async function DeleteLikes(postId) {
     }
   );
 }
-
