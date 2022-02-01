@@ -105,7 +105,7 @@ SNS를 통한 온라인 소통의 장 바나나마켓입니다.
 
 |1. Splash|2. 회원가입|
 |:-:|:-:|
-|<img src="img/gif/1_splash.gif" alt= "1" style="border: 3px solid #333;  width:300px;">|<img src="img/gif/2_join.gif" alt= "2" style="border: 3px solid #333; width:300px;">|
+|<img src="img/gif/1_splash.gif" alt= "1" style="border: 3px solid #333; width:1000px;">|<img src="img/gif/2_join.gif" alt= "2" style="border: 3px solid #333; width:300px;">|
 |3. 로그인|4. 피드화면|
 |<img src="img/gif/3_login.gif" alt= "3" style="border: 3px solid #333; width:300px;">|<img src="img/gif/4_feed.gif" alt= "4" style="border: 3px solid #333; width:300px;">|
 |5. 포스팅 좋아요 및 댓글|6. 게시글 작성 및 나의 페이지|
