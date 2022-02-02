@@ -34,7 +34,7 @@ SNS를 통한 온라인 소통의 장 바나나마켓입니다.
             <strong>서해리</strong> <br />
         </td>
         <td align="center" width="160px">
-            <a href="https://github.com/skgml0"><img height="130px" width="130px" src="https://avatars.githubusercontent.com/u/93498183?v=4"/></a>
+            <a href="https://github.com/SongyeonHan"><img height="130px" width="130px" src="https://avatars.githubusercontent.com/u/93498183?v=4"/></a>
             <br />
             <strong>한송연</strong> <br />
         </td>
