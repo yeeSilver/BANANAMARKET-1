@@ -98,7 +98,7 @@ SNS를 통한 온라인 소통의 장 바나나마켓입니다.
 
 ## 5. UI
 
-<img src="https://github.com/scato3/BANANAMARKET/blob/hyunsu/img/entire_img.png?raw=true" alt="바나나 마켓"/>
+<img src="https://github.com/scato3/BANANAMARKET/blob/main/img/entire_img.png?raw=true" alt="바나나 마켓"/>
 <br/>
 
 ## 6. 기능
