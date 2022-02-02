@@ -1,6 +1,6 @@
 ## [0. 바나나 배포주소](https://scato3.github.io/BANANAMARKET/) [피그마](https://www.figma.com/file/R69gRlt5uLIhwZvkyPZWHy/%EB%B0%94%EB%82%98%EB%82%98%EB%A7%88%EC%BC%93?node-id=0%3A1)
 
-# 바나나마켓 🍌
+# 🍌바나나마켓 
 
 바나나마켓 서비스는 자신의 스토어에서 판매하고 있는 상품을 등록하여 홍보할 수 있는 SNS입니다. <br>다양한 상품을 업로드할 수 있습니다.
 
@@ -9,38 +9,13 @@
 피드를 구경하다가 마음에 드는 게시물을 발견했다면 좋아요를 누를 수 있고 댓글을 남기거나 공유를 할 수도 있습니다.<br>
 SNS를 통한 온라인 소통의 장 바나나마켓입니다.
 
-## 팀원
 
-<table>
-    <tr height="160px">
-        <td align="center" width="160px">
-            <a href="https://github.com/scato3"><img height="130px" width="130px" src="https://avatars.githubusercontent.com/u/58941022?v=4"/></a>
-            <br />
-            <strong>신현수</strong> <br />
-        </td>
-        <td align="center" width="160px">
-            <a href="https://github.com/AwesomeYelim"><img height="130px" width="130px" src="https://avatars.githubusercontent.com/u/93499143?v=4"/></a>
-            <br />
-            <strong>홍예림</strong> <br />
-        </td>
-        <td align="center" width="160px">
-            <a href="https://github.com/yeeSilver"><img height="130px" width="130px" src="https://avatars.githubusercontent.com/u/48678872?v=4"/></a>
-            <br />
-            <strong>안예은</strong> <br />
-        </td>
-        <td align="center" width="160px">
-            <a href="https://github.com/SeoHaeRi"><img height="130px" width="130px" src="https://avatars.githubusercontent.com/u/62414262?v=4"/></a>
-            <br />
-            <strong>서해리</strong> <br />
-        </td>
-        <td align="center" width="160px">
-            <a href="https://github.com/SongyeonHan"><img height="130px" width="130px" src="https://avatars.githubusercontent.com/u/93498183?v=4"/></a>
-            <br />
-            <strong>한송연</strong> <br />
-        </td>
-    </tr>
-</table>
-                                                                                                             
+## 🏃 팀원
+|신현수|홍예림|안예은|서해리|한송연|
+|:---:|:---:|:---:|:---:|:---:|
+|[![신현수깃헙](https://avatars.githubusercontent.com/u/58941022?v=4)](https://github.com/scato3)|[![홍예림깃헙](https://avatars.githubusercontent.com/u/93499143?v=4)](https://github.com/AwesomeYelim)|[![안예은깃헙](https://avatars.githubusercontent.com/u/48678872?v=4)](https://github.com/yeeSilver)| [![서해리깃헙](https://avatars.githubusercontent.com/u/62414262?v=4)](https://github.com/SeoHaeRi)| [![한송연깃헙](https://avatars.githubusercontent.com/u/93498183?v=4)](https://github.com/SongyeonHan)|
+
+
 ## 1. 구현 목표
 
 - 바나나마켓 SNS 개발
@@ -55,17 +30,17 @@ SNS를 통한 온라인 소통의 장 바나나마켓입니다.
 ```
 .
 ├── css
-|    ├── components
-|    │      └── navbar.css
+│    ├── components
+│    │      └── navbar.css
 │    └────── ...css
 │   
-├───── img
-│       ├── 2 
-│       └── ...img
-├───── js     
-│      └───── ...js
+├── img
+│    ├── 2 
+│    └── ...img
+├── js     
+│    └───── ...js
 │     
-└────── ...html
+└── ...html
 ```
 
 ## 4. 역할 분담
@@ -86,7 +61,26 @@ SNS를 통한 온라인 소통의 장 바나나마켓입니다.
 
 ### 안예은
 
-- 여러분의 역할을 적어주세요.
+- feed, feed_initial, salePost, search otherpage 페이지 UI 구현
+- salePost 페이지 (판매 상품 등록 페이지)
+    * input 요소 유효성 검사 처리와 전송 버튼 구현
+    * 조건 충족 시, 전송 버튼 활성화 구현
+    * 이미지 서버 전송 전, 미리보기 출력
+    * 판매 게시글 서버에 업로드 기능 구현
+- userpage 유저 프로필 페이지
+    * 유저의 판매 상품 리스트를 서버에서 불러와서 출력
+    * 유저의 피드를 앨범 형식으로 출력
+    * 이미지가 없는 경우, 이미지 예외처리
+    * followerlist, follwinglist 페이지의 취소,팔로우 버튼 구현
+- 피드 구현
+    * 유저, 다른 유저의 데이터를 서버로 부터 가져와서 피드 형식으로 출력
+    * 좋아요 기능 구현 (클릭 시, 서버에 좋아요 카운트 증가, 감소 반영)
+- otherpage 다른 유저의 프로필 페이지 구현
+- 팔로잉, 팔로우 버튼 구현
+- otherfollwining list, otherfollower list 페이지
+    * 취소, 팔로우 버튼 구현 (유저가 팔로잉하고 있는 타유저의 경우 취소 버튼을 출력하고 팔로잉하고 있지 않은 경우에는 팔로우 버튼 출력하기)
+    * 유저 본인 계정의 버튼 예외처리
+
 
 ### 서해리
 
@@ -121,6 +115,7 @@ SNS를 통한 온라인 소통의 장 바나나마켓입니다.
 
 ## 7. 본인이 개발하며 고민했던 부분과 해결한 부분 및 느낀점 
 
+**✍신현수님**
 - 피드 부분에서 for문 안에서 innerHTML을 통해 렌더링 과정을 가졌는데 그 과정에서 생성된 요소에 모두 접근하는 것에 있어서 애로사항을 겪었는데, forEach를 통하여 각각 요소에 접근하여 함수를 처리하는 방식으로 접근할 수 있었다.
 
 - 피드 부분에서 유저를 클릭했을 때, 그 해당 유저에 맞는 페이지가 렌더링되게 하는 부분에 있어서 애로사항이 있었는데, 페이지가 다르기 때문에 데이터를 직접적으로 넘겨줄 수 없기 때문에 로컬스토리지를 활용하여, 유저의 고유 id를 저장하여 사용하는 방식을 통해 해결할 수 있었다. 
@@ -130,3 +125,18 @@ SNS를 통한 온라인 소통의 장 바나나마켓입니다.
 - 서치페이지에서 keyup이벤트로 처리하였을 때 검색어가 IME KeyCode 229 이슈로 인해 검색을 하였을 때 하나의 아이디가 중복되서 나오는 이슈가 있었다. 그것을 해결하기 위해 input이벤트로 처리하여 해결하였다.
 
 - 협업 과정에서 git에 대한 이해가 많이 늘 수 있었으며, 잦은 소통이 좋은 결과물을 만든다는 것을 몸소 느낄 수 있었다. 또한 자바스크립트를 배울 때 어떤식으로 쓰여야할지 막막했던 부분을 프로젝트를 하며 조금씩 채워지는 느낌이 들었고, fetch에 대한 이해와 비동기처리에 대한 이해가 많이 부족하였는데 요번 기회를 통해 이해를 늘릴 수 있는 기회가 되었다.  
+
+**✍홍예림님**  
+
+**✍안예은님**  
+- [안예은 프로젝트 회고 블로그]()
+- innerHTML로 생성된 요소에 접근하여 이벤트를 걸어주는 부분에서 접근 어려움이 있었다. forEach문으로 class, id 이름을 찾아 이벤트를 걸어주는 방식으로 해결을 할 수 있었으며, 이벤트 타켓 위임 방식으로도 해결할 수 있음을 알 수 있었다.
+
+- async 함수의 반환값을 활용하는 부분이 어려웠다. 처음에는 외부 async 함수의 반환값을 가져와서 메인 async함수 안에서 처리를 하려고 했지만, Promise 값으로 반환이 되기 때문에 어떤식으로 불러와야 할 지 고민이 되었다. 메인 async 함수의 try,catch에서 외부 async 함수 값을 await을 이용하여 받아 value값을 넘겨주었다. try,catch에서 넘긴 value값을 then에서 활용하는 것이 아니라, 또 다른 함수의 인자값으로 value를 넘겨서 처리하였다. 이 기능을 구현하면서 Promise 반환값 처리를 다루는 것을 공부할 수 있었다. 
+
+- 좋아요 반영 구현에서 하트를 클릭했을 시, 서버에 반영된 하트 개수를 브라우저에 랜딩하게 되면 새로고침이 일어나기 때문에 유저가 화면을 볼 때 부자연스러울 것이라고 생각했다. 실시간 서버를 반영하여 랜딩하는 방법이 아닌, innerText를 사용하여 마크업을 수정하는 방법으로 구현하였다. 새로고침 현상 없이 서버는 반영되고 유저는 자연스럽게 하트 개수가 올라가고 내려가는 것을 확인 할 수 있도록 하였다. 
+
+
+**✍서해리님**  
+
+**✍한송연님**  
