@@ -1,4 +1,4 @@
-## [0. Banana Demo](https://scato3.github.io/BANANAMARKET/) 
+## [Banana Demo](https://scato3.github.io/BANANAMARKET/) 
 ## [바나나 피그마](https://www.figma.com/file/R69gRlt5uLIhwZvkyPZWHy/%EB%B0%94%EB%82%98%EB%82%98%EB%A7%88%EC%BC%93?node-id=0%3A1)
 
 # 🍌바나나마켓 
