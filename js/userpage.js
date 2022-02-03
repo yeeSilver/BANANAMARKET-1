@@ -274,7 +274,6 @@ async function GetList() {
   })
   
   likesBtns.forEach((likeBtn, i) => {
-    // console.log(i);
     likeBtn.addEventListener("click", function () {
       if (likeBtn.classList.contains("likes-on")) {
         likeBtn.classList.remove("likes-on");
