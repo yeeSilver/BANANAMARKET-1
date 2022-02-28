@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="icon" href="img/favi.ico">
+  <link rel="stylesheet" href="css/hyunsu.css">
+  <title>setting</title>
+</head>
+
+<body>
+  <section class="top-upload-nav">
+    <div class="arrow"></div>
+    <button class="profile-save-btn">저장</button>
+  </section>
+  
+  <section class="banana-container">
+    <form class="cont-banana profile-setting">
+      <label class="profile-img" for="profileImg">
+        <input type="file" id="profileImg" name="profile-img" accept="image/*" class="blind" />
+        <img src="img/profile_img.png" alt="프로필 이미지" class="profile-user-image">
+        <img src="img/upload_img_btn.png" alt="업로드 이미지 버튼">
+      </label>
+      <div class="inp-wrap">
+        <div class="inp userName">
+          <label for="userNameInput">사용자 이름 </label>
+          <input type="text" placeholder="2~10자 이내여야 합니다." id="userNameInput">
+        </div>
+        <div class="inp wantId">
+          <label for="userIdInput">계정 ID</label>
+          <input type="test" placeholder="영문, 숫자, 특수문자(.),(....)만 사용 가능합니다." id="userIdInput">
+          <p class="join-idinput-error"></p>
+        </div>
+        <div class="inp intro">
+          <label for="userIntroInput">소개</label>
+          <input type="text" placeholder="자신과 판매할 상품에 대해 소개해주세요!" id="userIntroInput">
+        </div>
+      </div>
+    </form>
+  </section>
+  <script src="js/setting.js"></script>
+</body>
+
+</html>

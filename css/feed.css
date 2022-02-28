@@ -1,0 +1,145 @@
+@import "./components/navbar.css";
+.hide{
+  display: none;
+}
+
+/* feed-main */
+.feed-main {
+  margin: 50px 0 65px;
+}
+
+.feed-container {
+  display: none;
+}
+
+.feed-main .home-feed-container{
+  display: block;
+  padding: 20px 16px;
+}
+.feed-main .home-feed-container .post-art{
+  max-width: 380px;
+  margin-bottom: 20px;
+  margin: 0 auto;
+}
+.feed-main .home-feed-container .post-art .post-user{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.post-art .post-user .img-mini-profile{
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.post-con-info{
+  display: flex;
+  align-items: center;
+}
+
+
+/* post-art > post-user */
+.post-con-info div{
+  margin-left: 12px;
+}
+.post-con-info div .post-title{
+  font-size: 14px;
+  cursor: pointer;
+}
+.post-con-info .post-user-id{
+  margin-top: 4px;
+  color: #767676;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* post-art > post-main */
+.post-art .post-main .post-con-main{
+  padding-left: 54px;
+}
+.post-art .post-main .post-con-main p{
+  font-size: 14px;
+  line-height: 18px;
+  margin: 16px 0;
+}
+.post-art .post-main .post-con-main img{
+  /* 이미지 크기 지정다시하기 */
+  height: 100%;
+  /* aspect-ratio: auto 9 / 16; */
+}
+
+.post-art .post-main .reaction-con{
+  padding-left: 54px; 
+  color: #767676;
+}
+.post-art .post-main .reaction-con .reaction-list{
+  display: flex;
+  align-items: center;
+}
+.reaction-con .reaction-list li{
+  display: flex;
+  align-items: center;
+  vertical-align: center;
+  list-style: none;
+  margin: 14px 18.5px 19px 0;
+  font-size: 12px;
+}
+.reaction-con .reaction-list li svg, .reaction-con .reaction-list li img{
+  margin-right: 8.5px;
+  cursor: pointer;
+}
+
+.reaction-con .post-date{
+  font-size: 10px;
+}
+
+
+.home-initial-sec div{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.home-initial-sec div p{
+  margin: 47px 0 20px;
+  font-size: 12px;
+  color: #767676;
+}
+.home-initial-sec div .search-btn.third {
+  padding: 13px 34px;
+  border-radius: 44px;
+  border: none;
+  background-color: #F4BC1E;
+  color: #fff;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.home-initial-sec div .search-btn.third:active {
+  transform: scale(0.9);
+}
+
+.search-header .search-btn {
+  cursor: pointer;
+}
+
+/* 네비바 기타옵션 */
+
+.footer-nav ul a:nth-child(1) span {
+  color: #f4bc1e;
+}
+
+/* 좋아요 하트 */
+.likes svg {
+  transition: .2s linear;
+}
+
+.likes-on {
+  fill: #F26E22;
+  stroke: #F26E22;
+  cursor: pointer;
+  transform: scale(1.15);
+}

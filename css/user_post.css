@@ -1,0 +1,134 @@
+@charset "utf-8";
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+body {
+    font-family: "Spoqa Han Sans Neo", "sans-serif";
+}
+
+.sr-only {
+    overflow: hidden;
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+}
+
+.icon-left-arrow {
+    cursor: pointer;
+}
+
+.header {
+    height: 48px;
+    border-bottom: 0.5px solid #dbdbdb;
+    box-sizing: border-box;
+}
+
+.header .header-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+}
+
+.main {
+    display: flex;
+    padding: 20px 16px 16px 16px;
+    box-sizing: border-box;
+    height: 70vh;
+}
+
+/* 프로필 이미지 */
+.profile-img-small {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+.user_post-sec {
+    width: 80%;
+    height: 80vh;
+}
+.user_post-article {
+    width: 100%;
+    height: 100%;
+}
+/* 텍스트,이미지 입력 */
+.user_post-article .user_post-article-cont {
+    width: 100%;
+    /* height: 100%; */
+    margin-top: 12px;
+}
+
+.user_post-inp {
+    width: 100%;
+    height: 50%;
+    border: none;
+    outline: none;
+    margin-left: 13px;
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    resize: none;
+}
+
+.user_post-inp::placeholder {
+    color: #c4c4c4;
+}
+
+.user_post-inp-cont {
+    margin-left: 12px;
+    margin-bottom: 16px;
+    line-height: 17.53px;
+    color: black;
+}
+
+.user_post-upload-img {
+    width: 50px;
+    display: block;
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 8;
+}
+
+.textinput_input_file {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 10;
+}
+
+.art-preview {
+    display: flex;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.art-preview_img {
+    border: 0.5px solid #dbdbdb;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+/* button */
+.upload-btn {
+    background: #f4bc1e;
+    color: #fff;
+    box-sizing: border-box;
+    min-width: 90px;
+    height: 32px;
+    font-size: 14px;
+    border-radius: 32px;
+    cursor: pointer;
+}
+
+.upload-btn:disabled {
+    background: #eedba5;
+}

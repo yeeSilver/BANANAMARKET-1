@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>바나나마켓 피드 페이지 입니다.</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="icon" href="img/favi.ico">
+    <link rel="stylesheet" href="css/userpage.css" />
+  </head>
+  <body>
+    <h1 class="sr-only">나의 프로필 및 피드</h1>
+    <nav class="top-nav">
+      <a href="javascript:history.back();" class="icon-left-arrow"
+        ><img src="img/arrow-left.png" class="icon-left-arrow" alt=""
+      /></a>
+      <button type="submit" class="icon-more">
+        <img src="img/more-vertical.png" alt="" />
+      </button>
+    </nav>
+
+    <section class="profile">
+      <button class="display-inline followers-num"></button>
+      <button class="display-inline followings-num"></button>
+    </section>
+
+    <div id="wrap">
+      <section class="sell">
+        <h2>판매 중인 상품</h2>
+        <div class="sell-items"></div>
+      </section>
+  
+      <section>
+        <h2 class="sr-only">피드</h2>
+        <main class="feed-main">
+          <!-- 버튼  -->
+          <div class="btn-con">
+            <button class="show-list">
+              <img src="img/icon-post-list-on.png" alt="" />
+            </button>
+            <button class="show-album">
+              <img src="img/icon-post-album-off.png" alt="" />
+            </button>
+          </div>
+  
+          <!-- 앨범 형식으로 보여주기 -->
+          <section class="album">
+            <div class="album-photos"></div>
+          </section>
+  
+          <!-- 리스트 형식으로 보여주기 -->
+          <section class="home-feed"></section>
+
+    </div> 
+        <!-- 하단 nav bar -->
+        <footer>
+          <nav class="footer-nav">
+            <ul>
+              <a href="feed.html">
+                <li class="home">
+                  <img
+                    class="img-home"
+                    src="img/2/footer-icon/home.svg"
+                    alt="home-icon"
+                  />
+                  <span>홈</span>
+                </li>
+              </a>
+              <a href="chatting.html">
+                <li class="chat">
+                  <img
+                    src="img/2/footer-icon/icon-message-circle.svg"
+                    alt="chat-icon"
+                  />
+                  <span>채팅</span>
+                </li>
+              </a>
+              <a href="user_post.html">
+                <li class="plus">
+                  <img
+                    src="img/2/footer-icon/icon-edit.svg"
+                    alt="write-icon"
+                  />
+                  <span>게시물작성</span>
+                </li>
+              </a>
+              <a href="userpage.html">
+                <li class="home">
+                  <img
+                    src="img/2/footer-icon/icon-user_y.svg"
+                    alt="icon-user"
+                  />
+                  <span>프로필</span>
+                </li>
+              </a>
+            </ul>
+          </nav>
+        </footer>
+      </main>
+    </section>
+    
+    <!-- 로그아웃 모달창 -->
+    <div class="modal_bg"></div>
+    <section class="userpage_modal">
+      <hr />
+      <button class="user_setting">설정 및 개인정보</button>
+      <button class="user_logout">로그아웃</button>
+    </section>
+    <div class="modal_logout">
+      <p>로그아웃 하시겠어요?</p>
+      <button type="submit" class="cancle-btn">취소</button>
+      <button type="submit" class="logout-btn">로그아웃</button>
+    </div>
+
+    <!-- 게시물 삭제 수정 모달창 -->
+    <div class="modal_bg post"></div>
+    <section class="userpage_modal post">
+      <hr />
+      <button class="user_delete">삭제</button>
+      <button class="user_edit">수정</button>
+    </section>
+    <div class="modal_delete">
+      <p>게시글을 삭제할까요?</p>
+      <button type="submit" class="cancel-button">취소</button>
+      <button type="submit" class="delete-btn">삭제</button>
+    </div>
+
+    <!-- 판매 게시글 모달창 -->
+    <div class="modal_bg sale_post"></div>
+    <section class="userpage_modal section_sale sale_post">
+      <hr />
+      <button class="user_delete sale_post">삭제</button>
+      <button class="user_edit sale_post">수정</button>
+      <button class="sale_post_site">웹사이트에서 상품보기</button>
+    </section>
+    <div class="modal_salepost_delete">
+      <p>삭제하시겠어요?</p>
+      <button type="submit" class="cancel-btn">취소</button>
+      <button type="submit" class="delete-btn sale_post">삭제</button>
+    </div>
+    <script src="js/userpage.js"></script>
+  </body>
+</html>
